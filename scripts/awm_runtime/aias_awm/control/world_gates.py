@@ -16,7 +16,13 @@ class WorldGateResult:
 
 
 class WorldGateEngine:
-    """WG0-WG6 deterministic pre-decision gates for the Audit World Model."""
+    """WG0-WG6 deterministic pre-decision gates for the Audit World Model.
+
+    Distinct from the G0-G7 verdict gates in scripts/harness_gate_executor.py
+    (the assurance-boundary gate catalog). See
+    ../../../../docs/eei-blueprint-crosswalk.md before adding another gate
+    catalog.
+    """
 
     def evaluate(
         self,

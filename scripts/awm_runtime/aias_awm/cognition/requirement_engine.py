@@ -21,6 +21,14 @@ class RequirementStateEngine:
 
     Evidence may explicitly encode `proves_breach=true` or `proves_effectiveness=true/false`
     in metadata. Missing evidence never proves a breach by itself.
+
+    This is the canonical requirement-atomization + sufficiency + breach
+    engine (see AtomicRequirement in domain/models.py for the AR schema).
+    `applicability` is currently a caller-supplied input — no evaluator yet
+    resolves `AtomicRequirement.applicability_rule_id` (the L7 conditional-
+    qualifier / "as applicable" exception test). That is a confirmed real
+    gap; see ../../../../docs/eei-blueprint-crosswalk.md before building it
+    as a standalone module instead of extending this engine.
     """
 
     def assess(

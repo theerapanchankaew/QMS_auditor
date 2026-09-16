@@ -11,6 +11,11 @@ Usage:
   python scripts/harness_gate_executor.py --input model_output.json
   python scripts/harness_gate_executor.py --validate-schema
   python scripts/harness_gate_executor.py --batch model_predictions.jsonl --outdir results/
+
+This is the canonical G0-G7 gate catalog + severity engine (M4 test,
+D2_SAFE ceiling) + harness (forced-override/rejection). See
+docs/eei-blueprint-crosswalk.md before adding another "gate_catalog.py",
+"severity_engine.py", or "harness.py" — this file already is all three.
 """
 
 import json

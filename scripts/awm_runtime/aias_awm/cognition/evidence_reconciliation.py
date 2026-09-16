@@ -31,6 +31,12 @@ class EvidenceReconciliationEngine:
     This engine does not decide conformity. It only creates a controlled evidence bundle.
     Evidence polarity is read from metadata['polarity'] where values are support|negative|contradict.
     If omitted, evidence is treated as supporting evidence.
+
+    This is the canonical evidence classification/corroboration engine
+    (EpistemicState already covers CORROBORATED/CONTRADICTORY at higher
+    fidelity than a 4-bucket DIRECT/INDIRECT/CORROBORATED/CONFLICTING
+    taxonomy). See ../../../../docs/eei-blueprint-crosswalk.md before adding
+    a separate "evidence_classifier.py" or "corroboration_engine.py".
     """
 
     def reconcile(self, evidence_items: list[EvidenceItem]) -> dict[str, EvidenceBundle]:

@@ -3,6 +3,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
 
+# World-model-facing state machine (W0-W9) — intentionally separate from the
+# S0-S11 assurance-boundary state machine in scripts/process_enforcer.py.
+# See ../../../../docs/eei-blueprint-crosswalk.md before introducing a third
+# S/W-style numbering scheme.
+
 
 class WorldState(str, Enum):
     W0_UNINITIALIZED = "W0_UNINITIALIZED"

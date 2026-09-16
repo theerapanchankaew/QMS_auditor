@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Canonical S0-S11 assurance-boundary state machine. See docs/eei-blueprint-crosswalk.md
+# before adding another "state_machine.py" — this IS the EEI blueprint's state machine.
 import argparse, json
 
 STATES=['S0_RECEIVED','S1_PREFLIGHT','S2_NORMALIZED','S3_MAPPED','S4_SUFFICIENCY','S5_BREACH_TEST','S6_EXPOSURE','S7_SEVERITY','S8_GROUNDING','S9_HUMAN_REVIEW','S10_RELEASED','S11_MONITORED']
