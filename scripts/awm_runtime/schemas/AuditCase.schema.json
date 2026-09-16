@@ -1,0 +1,66 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "audit_case_id": {
+      "title": "Audit Case Id",
+      "type": "string"
+    },
+    "organization_id": {
+      "title": "Organization Id",
+      "type": "string"
+    },
+    "standard_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Standard Ids",
+      "type": "array"
+    },
+    "audit_type": {
+      "enum": [
+        "document_review",
+        "record_sampling",
+        "interview",
+        "observation",
+        "performance_data_review",
+        "scenario_assessment",
+        "initial",
+        "surveillance",
+        "recertification"
+      ],
+      "title": "Audit Type",
+      "type": "string"
+    },
+    "scope": {
+      "additionalProperties": true,
+      "title": "Scope",
+      "type": "object"
+    },
+    "world_snapshot_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "World Snapshot Id"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "audit_case_id",
+    "organization_id",
+    "standard_ids",
+    "audit_type",
+    "created_at"
+  ],
+  "title": "AuditCase",
+  "type": "object"
+}

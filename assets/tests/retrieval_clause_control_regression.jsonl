@@ -1,0 +1,5 @@
+{"query":"ข้อ 4.1 มีประเด็นอะไรที่ต้องนำไปพิจารณาในข้อ 6.1", "requested_clause":"4.1", "expected_primary":["4.1"], "must_include_related":["6.1"], "must_not_primary":["A.5.2", "A.5.3"]}
+{"query":"อธิบายข้อ 6.1 เรื่อง risks and opportunities", "requested_clause":"6.1", "expected_primary":["6.1"], "must_include_related":["4.1", "4.2"], "must_not_primary":["A.5.2"]}
+{"query":"ข้อ 5.2 quality policy มีข้อกำหนดอะไร", "requested_clause":"5.2", "expected_primary":["5.2"], "must_include_related":["6.2", "7.3"], "must_not_primary":["A.4.1"]}
+{"query":"ข้อ 7.3 awareness เกี่ยวกับ quality policy อย่างไร", "requested_clause":"7.3", "expected_primary":["7.3"], "must_include_related":["5.2"], "must_not_primary":["A.5.2"]}
+{"query":"การเปลี่ยนแปลง QMS ต้องดูข้อใด", "requested_clause":"6.3", "expected_primary":["6.3"], "must_include_related":["5.3", "8.1"], "must_not_primary":["A.5.2"]}

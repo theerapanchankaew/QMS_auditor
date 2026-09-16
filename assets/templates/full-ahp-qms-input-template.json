@@ -1,0 +1,100 @@
+{
+  "objective": "Evaluate a QMS document or evidence set against ISO 9001 clauses using AHP-supported weighted scoring. This template is decision support only and must not replace clause-specific audit judgement.",
+  "evaluation_scale": {
+    "min_score": 0,
+    "max_score": 5,
+    "score_meaning": {
+      "0": "no evidence or not addressed",
+      "1": "very weak evidence or severe gap",
+      "2": "partial evidence with important gaps",
+      "3": "adequate evidence with limitations",
+      "4": "strong evidence with minor uncertainty",
+      "5": "clear complete traceable evidence"
+    }
+  },
+  "criteria": [
+    {
+      "id": "C1",
+      "name": "Context of organization and QMS scope",
+      "iso9001_clause_focus": "4.1, 4.2, 4.3, 4.4",
+      "what_to_score": "context, interested parties, QMS scope, process interaction, process responsibilities and controls"
+    },
+    {
+      "id": "C2",
+      "name": "Leadership, policy and roles",
+      "iso9001_clause_focus": "5.1, 5.2, 5.3",
+      "what_to_score": "leadership commitment, customer focus, quality policy, responsibility and authority"
+    },
+    {
+      "id": "C3",
+      "name": "Planning, risk, opportunity and objectives",
+      "iso9001_clause_focus": "6.1, 6.2, 6.3",
+      "what_to_score": "risk and opportunity planning, measurable quality objectives, change planning"
+    },
+    {
+      "id": "C4",
+      "name": "Support, resources and documented information",
+      "iso9001_clause_focus": "7.1, 7.2, 7.3, 7.4, 7.5",
+      "what_to_score": "resources, competence, awareness, communication, organizational knowledge, document and record controls"
+    },
+    {
+      "id": "C5",
+      "name": "Operation and service delivery control",
+      "iso9001_clause_focus": "8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7",
+      "what_to_score": "operational planning and control, customer requirements, design if applicable, external providers, delivery, release, nonconforming outputs"
+    },
+    {
+      "id": "C6",
+      "name": "Performance evaluation",
+      "iso9001_clause_focus": "9.1, 9.2, 9.3",
+      "what_to_score": "monitoring, measurement, analysis, customer satisfaction, internal audit, management review"
+    },
+    {
+      "id": "C7",
+      "name": "Improvement and corrective action",
+      "iso9001_clause_focus": "10.1, 10.2, 10.3",
+      "what_to_score": "improvement, nonconformity control, correction, corrective action, continual improvement evidence"
+    }
+  ],
+  "matrix_note": "This default reciprocal matrix derives weights C1=.10, C2=.15, C3=.15, C4=.15, C5=.20, C6=.15, C7=.10. Replace with auditor pairwise judgements when available and check CR.",
+  "matrix": [
+    [1, 0.666667, 0.666667, 0.666667, 0.5, 0.666667, 1],
+    [1.5, 1, 1, 1, 0.75, 1, 1.5],
+    [1.5, 1, 1, 1, 0.75, 1, 1.5],
+    [1.5, 1, 1, 1, 0.75, 1, 1.5],
+    [2, 1.333333, 1.333333, 1.333333, 1, 1.333333, 2],
+    [1.5, 1, 1, 1, 0.75, 1, 1.5],
+    [1, 0.666667, 0.666667, 0.666667, 0.5, 0.666667, 1]
+  ],
+  "alternatives": [
+    {
+      "id": "A1",
+      "name": "Uploaded QMS manual or evidence package",
+      "scores": {
+        "C1": 3,
+        "C2": 4,
+        "C3": 3,
+        "C4": 3,
+        "C5": 3,
+        "C6": 2,
+        "C7": 2
+      },
+      "evidence": {
+        "C1": ["Scope and process overview evidence; verify explicit ISO 9001 scope, exclusions and process interactions."],
+        "C2": ["Quality policy, quality objectives, organization chart or role assignment evidence."],
+        "C3": ["Risk management framework and quality objectives; verify measurable objectives and change planning."],
+        "C4": ["Document control, record control, HR, IT and communication evidence; verify competence and awareness records."],
+        "C5": ["Operational service delivery procedure evidence; verify end-to-end service controls and external provider controls."],
+        "C6": ["Performance monitoring evidence; verify internal audit and management review inputs/outputs."],
+        "C7": ["Improvement evidence; verify nonconformity, correction, root cause, corrective action and effectiveness records."]
+      }
+    }
+  ],
+  "required_output_controls": [
+    "Report AHP weights and consistency ratio before using weighted results.",
+    "If CR > 0.20, return ReviewRequired and do not finalize ranking.",
+    "Separate weighted score from audit verdict.",
+    "Use Complied, Noncomplied, InsufficientEvidence, ReviewRequired, ReferenceGap, OFI or OBS as verdict labels.",
+    "Never classify Major NC or Minor NC from the numeric score alone."
+  ]
+}

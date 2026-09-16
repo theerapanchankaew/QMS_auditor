@@ -1,0 +1,36 @@
+# --- Copyrighted third-party standards: NEVER commit ---
+# ISO/IEC FDIS drafts and vocabulary PDFs are licensed material.
+# Place your own licensed copies locally; they stay out of git history.
+assets/standards/*.pdf
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# --- Node (org_report_renderer.js tooling, if npm-installed locally) ---
+node_modules/
+
+# --- Runtime / secrets ---
+.env
+.env.*
+!.env.example
+*.local
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- Generated runtime artifacts (regenerate, don't version) ---
+/gate_results*/
+/regression_results*/
+/drift_results*/
+/results/
+*.tmp

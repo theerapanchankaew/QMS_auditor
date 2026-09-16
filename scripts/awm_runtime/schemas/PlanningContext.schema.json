@@ -1,0 +1,112 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "audit_case_id": {
+      "title": "Audit Case Id",
+      "type": "string"
+    },
+    "unresolved_requirement_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unresolved Requirement Ids",
+      "type": "array"
+    },
+    "unresolved_hypothesis_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unresolved Hypothesis Ids",
+      "type": "array"
+    },
+    "contradictory_evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Contradictory Evidence Ids",
+      "type": "array"
+    },
+    "stale_evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Stale Evidence Ids",
+      "type": "array"
+    },
+    "sample_population_size": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Sample Population Size"
+    },
+    "current_sample_size": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Current Sample Size"
+    },
+    "remaining_time_minutes": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Remaining Time Minutes"
+    },
+    "max_action_cost": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Max Action Cost"
+    },
+    "decision_ready": {
+      "default": false,
+      "title": "Decision Ready",
+      "type": "boolean"
+    },
+    "critical_unknowns": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Critical Unknowns",
+      "type": "array"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "audit_case_id",
+    "created_at"
+  ],
+  "title": "PlanningContext",
+  "type": "object"
+}

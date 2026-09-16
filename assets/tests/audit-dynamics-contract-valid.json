@@ -1,0 +1,9 @@
+{
+  "epistemic_class":"prediction_only",
+  "predicted_delta":{
+    "evidence_world":{"missing_evidence":["effectiveness_record"]},
+    "uncertainty":0.35,
+    "information_gain":0.72,
+    "candidate_next_actions":["request_document_or_record"]
+  }
+}

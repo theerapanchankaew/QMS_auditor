@@ -1,0 +1,109 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "title": "Action Id",
+      "type": "string"
+    },
+    "audit_case_id": {
+      "title": "Audit Case Id",
+      "type": "string"
+    },
+    "action_type": {
+      "enum": [
+        "REQUEST_DOCUMENT",
+        "REQUEST_RECORD",
+        "ASK_INTERVIEW",
+        "OBSERVE_PROCESS",
+        "EXPAND_SAMPLE",
+        "TRACE_TRANSACTION",
+        "VERIFY_APPROVAL",
+        "VERIFY_VERSION",
+        "VERIFY_EFFECTIVENESS",
+        "CHECK_RECURRENCE",
+        "CROSS_CHECK",
+        "ESCALATE_HUMAN",
+        "STOP"
+      ],
+      "title": "Action Type",
+      "type": "string"
+    },
+    "target_requirement_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Target Requirement Ids",
+      "type": "array"
+    },
+    "target_entity_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Target Entity Ids",
+      "type": "array"
+    },
+    "rationale": {
+      "title": "Rationale",
+      "type": "string"
+    },
+    "expected_information_gain": {
+      "anyOf": [
+        {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Expected Information Gain"
+    },
+    "cost_score": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cost Score"
+    },
+    "priority_score": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Priority Score"
+    },
+    "status": {
+      "enum": [
+        "PROPOSED",
+        "APPROVED",
+        "EXECUTED",
+        "CANCELLED"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "action_id",
+    "audit_case_id",
+    "action_type",
+    "rationale",
+    "status"
+  ],
+  "title": "AuditAction",
+  "type": "object"
+}

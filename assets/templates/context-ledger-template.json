@@ -1,0 +1,19 @@
+{
+  "task_mode": "nc_classification",
+  "route": "conformity_evaluation",
+  "loaded_sources": [
+    "SKILL.md",
+    "references/26-layered-audit-cognition.md",
+    "references/27-clause-requirement-profiles.md",
+    "references/28-evidence-schema.md",
+    "references/25-nc-severity-calibration-guide.md"
+  ],
+  "excluded_sources": [
+    "web",
+    "external connectors",
+    "base memory"
+  ],
+  "evidence_inventory": [],
+  "open_questions": [],
+  "decision_state": "ready"
+}

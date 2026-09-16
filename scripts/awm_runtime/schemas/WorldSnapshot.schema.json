@@ -1,0 +1,450 @@
+{
+  "$defs": {
+    "AuditAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "title": "Action Id",
+          "type": "string"
+        },
+        "audit_case_id": {
+          "title": "Audit Case Id",
+          "type": "string"
+        },
+        "action_type": {
+          "enum": [
+            "REQUEST_DOCUMENT",
+            "REQUEST_RECORD",
+            "ASK_INTERVIEW",
+            "OBSERVE_PROCESS",
+            "EXPAND_SAMPLE",
+            "TRACE_TRANSACTION",
+            "VERIFY_APPROVAL",
+            "VERIFY_VERSION",
+            "VERIFY_EFFECTIVENESS",
+            "CHECK_RECURRENCE",
+            "CROSS_CHECK",
+            "ESCALATE_HUMAN",
+            "STOP"
+          ],
+          "title": "Action Type",
+          "type": "string"
+        },
+        "target_requirement_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Target Requirement Ids",
+          "type": "array"
+        },
+        "target_entity_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Target Entity Ids",
+          "type": "array"
+        },
+        "rationale": {
+          "title": "Rationale",
+          "type": "string"
+        },
+        "expected_information_gain": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expected Information Gain"
+        },
+        "cost_score": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cost Score"
+        },
+        "priority_score": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Priority Score"
+        },
+        "status": {
+          "enum": [
+            "PROPOSED",
+            "APPROVED",
+            "EXECUTED",
+            "CANCELLED"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action_id",
+        "audit_case_id",
+        "action_type",
+        "rationale",
+        "status"
+      ],
+      "title": "AuditAction",
+      "type": "object"
+    },
+    "AuditHypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "hypothesis_id": {
+          "title": "Hypothesis Id",
+          "type": "string"
+        },
+        "audit_case_id": {
+          "title": "Audit Case Id",
+          "type": "string"
+        },
+        "hypothesis_type": {
+          "enum": [
+            "CONFORMITY",
+            "BREACH",
+            "INSUFFICIENT_EVIDENCE",
+            "SYSTEMIC_FAILURE",
+            "INEFFECTIVE_CONTROL",
+            "RECURRENCE"
+          ],
+          "title": "Hypothesis Type",
+          "type": "string"
+        },
+        "statement": {
+          "title": "Statement",
+          "type": "string"
+        },
+        "requirement_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Requirement Ids",
+          "type": "array"
+        },
+        "supporting_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Supporting Evidence Ids",
+          "type": "array"
+        },
+        "contradicting_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Contradicting Evidence Ids",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "PROPOSED",
+            "SUPPORTED",
+            "WEAKENED",
+            "REFUTED",
+            "UNRESOLVED"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "unresolved_questions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Unresolved Questions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "hypothesis_id",
+        "audit_case_id",
+        "hypothesis_type",
+        "statement",
+        "status"
+      ],
+      "title": "AuditHypothesis",
+      "type": "object"
+    },
+    "EntityState": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "entity_type": {
+          "title": "Entity Type",
+          "type": "string"
+        },
+        "attributes": {
+          "additionalProperties": true,
+          "title": "Attributes",
+          "type": "object"
+        },
+        "effective_from": {
+          "format": "date-time",
+          "title": "Effective From",
+          "type": "string"
+        },
+        "effective_to": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effective To"
+        }
+      },
+      "required": [
+        "entity_id",
+        "entity_type",
+        "effective_from"
+      ],
+      "title": "EntityState",
+      "type": "object"
+    },
+    "RequirementAssessment": {
+      "additionalProperties": false,
+      "properties": {
+        "assessment_id": {
+          "title": "Assessment Id",
+          "type": "string"
+        },
+        "audit_case_id": {
+          "title": "Audit Case Id",
+          "type": "string"
+        },
+        "requirement_id": {
+          "title": "Requirement Id",
+          "type": "string"
+        },
+        "applicability": {
+          "enum": [
+            "APPLICABLE",
+            "NOT_APPLICABLE",
+            "UNRESOLVED"
+          ],
+          "title": "Applicability",
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/$defs/RequirementState"
+        },
+        "positive_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Positive Evidence Ids",
+          "type": "array"
+        },
+        "negative_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Negative Evidence Ids",
+          "type": "array"
+        },
+        "contradictory_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Contradictory Evidence Ids",
+          "type": "array"
+        },
+        "missing_evidence": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing Evidence",
+          "type": "array"
+        },
+        "coverage_ratio": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Coverage Ratio"
+        },
+        "breach_proven": {
+          "default": false,
+          "title": "Breach Proven",
+          "type": "boolean"
+        },
+        "effectiveness_proven": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effectiveness Proven"
+        },
+        "reasoning_candidate": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reasoning Candidate"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "title": "Updated At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "assessment_id",
+        "audit_case_id",
+        "requirement_id",
+        "applicability",
+        "state",
+        "updated_at"
+      ],
+      "title": "RequirementAssessment",
+      "type": "object"
+    },
+    "RequirementState": {
+      "enum": [
+        "UNKNOWN",
+        "NOT_APPLICABLE",
+        "INSUFFICIENT_EVIDENCE",
+        "PARTIALLY_SUPPORTED",
+        "SATISFIED",
+        "BREACH_PROVEN",
+        "CONTRADICTORY",
+        "REVIEW_REQUIRED"
+      ],
+      "title": "RequirementState",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "snapshot_id": {
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "organization_id": {
+      "title": "Organization Id",
+      "type": "string"
+    },
+    "as_of": {
+      "format": "date-time",
+      "title": "As Of",
+      "type": "string"
+    },
+    "process_states": {
+      "items": {
+        "$ref": "#/$defs/EntityState"
+      },
+      "title": "Process States",
+      "type": "array"
+    },
+    "control_states": {
+      "items": {
+        "$ref": "#/$defs/EntityState"
+      },
+      "title": "Control States",
+      "type": "array"
+    },
+    "risk_states": {
+      "items": {
+        "$ref": "#/$defs/EntityState"
+      },
+      "title": "Risk States",
+      "type": "array"
+    },
+    "opportunity_states": {
+      "items": {
+        "$ref": "#/$defs/EntityState"
+      },
+      "title": "Opportunity States",
+      "type": "array"
+    },
+    "requirement_states": {
+      "items": {
+        "$ref": "#/$defs/RequirementAssessment"
+      },
+      "title": "Requirement States",
+      "type": "array"
+    },
+    "hypothesis_states": {
+      "items": {
+        "$ref": "#/$defs/AuditHypothesis"
+      },
+      "title": "Hypothesis States",
+      "type": "array"
+    },
+    "action_states": {
+      "items": {
+        "$ref": "#/$defs/AuditAction"
+      },
+      "title": "Action States",
+      "type": "array"
+    },
+    "source_manifest_hash": {
+      "title": "Source Manifest Hash",
+      "type": "string"
+    },
+    "rule_pack_hash": {
+      "title": "Rule Pack Hash",
+      "type": "string"
+    },
+    "created_from_event_seq": {
+      "minimum": 0,
+      "title": "Created From Event Seq",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "snapshot_id",
+    "organization_id",
+    "as_of",
+    "source_manifest_hash",
+    "rule_pack_hash",
+    "created_from_event_seq"
+  ],
+  "title": "WorldSnapshot",
+  "type": "object"
+}

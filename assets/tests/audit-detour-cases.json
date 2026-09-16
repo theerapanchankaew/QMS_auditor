@@ -1,0 +1,26 @@
+{
+  "cases": [
+    {
+      "id":"DET-001-contradictory-interview",
+      "before_state":{
+        "criterion":"ISO 9001:2026","clause":"6.1.3","atomic_requirement_ids":["6.1.3-b"],
+        "requirement_world":{"applicability":"applies"},
+        "evidence_world":{"observed_evidence_ids":["E1"],"missing_evidence":[],"contradictions":[],"provenance_complete":true},
+        "process_world":{"process_id":"P1","implementation_state":"implemented","systemicity_state":"local"},
+        "sampling_state":{},"assurance_state":{"state_machine_state":"S3_MAPPED","gate_state":{"G2":"pass"}}
+      },
+      "after_state":{
+        "criterion":"ISO 9001:2026","clause":"6.1.3","atomic_requirement_ids":["6.1.3-b"],
+        "requirement_world":{"applicability":"applies"},
+        "evidence_world":{"observed_evidence_ids":["E1"],"missing_evidence":[],"contradictions":["I1 conflicts with E1"],"provenance_complete":true},
+        "process_world":{"process_id":"P1","implementation_state":"implemented","systemicity_state":"local"},
+        "sampling_state":{},"assurance_state":{"state_machine_state":"S3_MAPPED","gate_state":{"G2":"pass"}}
+      },
+      "allowed_changed_prefixes":["evidence_world.contradictions"],
+      "expected_valid_continuations":["cross_check","interview_role","expand_sample"],
+      "actual_continuations":["cross_check","interview_role","expand_sample"],
+      "detour_output":{"epistemic_class":"prediction_only"},
+      "min_valid_continuation_rate":0.90
+    }
+  ]
+}

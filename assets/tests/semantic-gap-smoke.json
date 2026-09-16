@@ -1,0 +1,14 @@
+{
+  "case_id": "QMS-SMOKE-001",
+  "clause": "6.1.3",
+  "observed_states": [
+    "opportunity_identified",
+    "implementation_started"
+  ],
+  "expected_states": [
+    "opportunity_identified",
+    "implementation_started",
+    "intended_outcome_defined",
+    "effectiveness_evaluated"
+  ]
+}

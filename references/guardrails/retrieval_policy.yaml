@@ -1,0 +1,49 @@
+# Retrieval policy for QMS skill using local LLMs such as Qwen 2.5 with Ollama.
+
+language:
+  output_language: "th"
+  allow_official_titles_in_english: true
+  prohibit_language_mixing: true
+
+section_types:
+  requirement:
+    allowed_as_primary: true
+    allowed_for_conformity_assessment: true
+  informative:
+    allowed_as_primary: false
+    allowed_for_conformity_assessment: false
+    allowed_as_supporting_explanation: true
+  bibliography:
+    allowed_as_primary: false
+    allowed_for_conformity_assessment: false
+
+retrieval:
+  exact_clause_lookup_required_when_clause_detected: true
+  if_exact_clause_not_found: "stop"
+  use_hybrid_search_for_related_context: true
+  use_related_clause_map: true
+  use_parent_child_context: true
+  max_primary_items: 5
+  max_related_items: 8
+  max_informative_items: 5
+
+validation_gates:
+  clause_mismatch:
+    action: "stop"
+    message: "Requested clause and retrieved primary clause do not match."
+  annex_used_as_primary:
+    action: "stop"
+    message: "Annex A is informative only and cannot be used as primary requirement evidence."
+  no_primary_evidence:
+    action: "stop"
+    message: "Primary requirement evidence is missing."
+  unsupported_assessment:
+    action: "human_review"
+    message: "Assessment contains claims not supported by evidence pack."
+
+scoring:
+  clause_match_weight: 0.45
+  bm25_weight: 0.25
+  vector_weight: 0.20
+  title_match_weight: 0.10
+  reject_wrong_clause_when_explicit_clause_requested: true

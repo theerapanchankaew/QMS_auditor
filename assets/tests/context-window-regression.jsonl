@@ -1,0 +1,1 @@
+{"case_id": "CTX-001", "group": "context_window", "input": "long multi-file audit evidence package", "expected_preserve": ["source_trace", "evidence_inventory", "open_questions", "decision_state"]}

@@ -1,0 +1,131 @@
+{
+  "$defs": {
+    "RequirementState": {
+      "enum": [
+        "UNKNOWN",
+        "NOT_APPLICABLE",
+        "INSUFFICIENT_EVIDENCE",
+        "PARTIALLY_SUPPORTED",
+        "SATISFIED",
+        "BREACH_PROVEN",
+        "CONTRADICTORY",
+        "REVIEW_REQUIRED"
+      ],
+      "title": "RequirementState",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "assessment_id": {
+      "title": "Assessment Id",
+      "type": "string"
+    },
+    "audit_case_id": {
+      "title": "Audit Case Id",
+      "type": "string"
+    },
+    "requirement_id": {
+      "title": "Requirement Id",
+      "type": "string"
+    },
+    "applicability": {
+      "enum": [
+        "APPLICABLE",
+        "NOT_APPLICABLE",
+        "UNRESOLVED"
+      ],
+      "title": "Applicability",
+      "type": "string"
+    },
+    "state": {
+      "$ref": "#/$defs/RequirementState"
+    },
+    "positive_evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Positive Evidence Ids",
+      "type": "array"
+    },
+    "negative_evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Negative Evidence Ids",
+      "type": "array"
+    },
+    "contradictory_evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Contradictory Evidence Ids",
+      "type": "array"
+    },
+    "missing_evidence": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing Evidence",
+      "type": "array"
+    },
+    "coverage_ratio": {
+      "anyOf": [
+        {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Coverage Ratio"
+    },
+    "breach_proven": {
+      "default": false,
+      "title": "Breach Proven",
+      "type": "boolean"
+    },
+    "effectiveness_proven": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Effectiveness Proven"
+    },
+    "reasoning_candidate": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reasoning Candidate"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "title": "Updated At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "assessment_id",
+    "audit_case_id",
+    "requirement_id",
+    "applicability",
+    "state",
+    "updated_at"
+  ],
+  "title": "RequirementAssessment",
+  "type": "object"
+}

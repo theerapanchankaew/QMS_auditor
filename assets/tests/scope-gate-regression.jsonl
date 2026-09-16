@@ -1,0 +1,2 @@
+{"case_id": "SCOPE-001", "group": "scope_gate", "input": "classify ISO 14001 environmental aspect finding only", "expected_verdict": "OUT_OF_SCOPE"}
+{"case_id": "SCOPE-002", "group": "scope_gate", "input": "evaluate ISO 9001 clause 10.2 corrective action evidence", "expected_verdict": "not_out_of_scope"}

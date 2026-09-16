@@ -1,0 +1,43 @@
+{
+  "policy_id": "local-rag-connection-policy",
+  "version": "2026.0-rag-ready-1",
+  "purpose": "Permit only approved local indexes that are derived from controlled manifest sources.",
+  "network_allowed": false,
+  "web_fallback_allowed": false,
+  "external_connector_allowed": false,
+  "allowed_connection_types": [
+    "local_index",
+    "local_jsonl_chunks",
+    "local_sqlite_index"
+  ],
+  "required_fields": [
+    "rag_profile_id",
+    "status",
+    "connection_type",
+    "index_path",
+    "source_manifest",
+    "allow_network",
+    "allow_web_fallback",
+    "require_source_trace",
+    "require_human_auditor_contract"
+  ],
+  "approved_profiles": [
+    {
+      "rag_profile_id": "bundled-qms-local-index",
+      "status": "approved",
+      "connection_type": "local_jsonl_chunks",
+      "index_path": "assets/rag_indexes/bundled-qms-local-index.jsonl",
+      "source_manifest": "assets/manifests/bundled-source-manifest.json",
+      "allow_network": false,
+      "allow_web_fallback": false,
+      "require_source_trace": true,
+      "require_human_auditor_contract": true,
+      "allowed_source_ids": [
+        "iso9001-fdis-2026-en",
+        "iso9000-fdis-2026-en",
+        "iso9000-glossary-2025-en",
+        "qms-curated-references"
+      ]
+    }
+  ]
+}

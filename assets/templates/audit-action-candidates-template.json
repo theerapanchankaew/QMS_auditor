@@ -1,0 +1,17 @@
+{
+  "candidate_actions": [
+    {
+      "action_type": "request_document_or_record",
+      "reason": "resolve evidence sufficiency",
+      "score_components": {
+        "evidence_gain": 0.9,
+        "requirement_coverage": 0.8,
+        "contradiction_resolution": 0.2,
+        "systemicity_value": 0.3,
+        "audit_cost": 0.2,
+        "redundancy": 0.1,
+        "speculation_risk": 0.0
+      }
+    }
+  ]
+}

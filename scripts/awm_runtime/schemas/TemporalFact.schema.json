@@ -1,0 +1,101 @@
+{
+  "$defs": {
+    "TemporalState": {
+      "enum": [
+        "ACTIVE",
+        "EXPIRED",
+        "SUPERSEDED",
+        "WITHDRAWN",
+        "UNKNOWN"
+      ],
+      "title": "TemporalState",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "fact_id": {
+      "title": "Fact Id",
+      "type": "string"
+    },
+    "organization_id": {
+      "title": "Organization Id",
+      "type": "string"
+    },
+    "entity_id": {
+      "title": "Entity Id",
+      "type": "string"
+    },
+    "fact_type": {
+      "title": "Fact Type",
+      "type": "string"
+    },
+    "value": {
+      "additionalProperties": true,
+      "title": "Value",
+      "type": "object"
+    },
+    "valid_from": {
+      "format": "date-time",
+      "title": "Valid From",
+      "type": "string"
+    },
+    "valid_to": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Valid To"
+    },
+    "recorded_at": {
+      "format": "date-time",
+      "title": "Recorded At",
+      "type": "string"
+    },
+    "supersedes_fact_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Supersedes Fact Id"
+    },
+    "source_evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Source Evidence Ids",
+      "type": "array"
+    },
+    "state": {
+      "$ref": "#/$defs/TemporalState",
+      "default": "ACTIVE"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    }
+  },
+  "required": [
+    "fact_id",
+    "organization_id",
+    "entity_id",
+    "fact_type",
+    "value",
+    "valid_from",
+    "recorded_at"
+  ],
+  "title": "TemporalFact",
+  "type": "object"
+}

@@ -1,0 +1,13 @@
+interface:
+  display_name: QMS Auditor ISO 9001 2026
+  short_description: ISO 9001:2026 evidence-gated auditor with executable audit world
+    model and controlled next-action planning
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

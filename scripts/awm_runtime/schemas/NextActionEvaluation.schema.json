@@ -1,0 +1,42 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "case_id": {
+      "title": "Case Id",
+      "type": "string"
+    },
+    "predicted_action_types": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Predicted Action Types",
+      "type": "array"
+    },
+    "acceptable_gold_action_types": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Acceptable Gold Action Types",
+      "type": "array"
+    },
+    "matched": {
+      "title": "Matched",
+      "type": "boolean"
+    },
+    "reciprocal_rank": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Reciprocal Rank",
+      "type": "number"
+    }
+  },
+  "required": [
+    "case_id",
+    "predicted_action_types",
+    "acceptable_gold_action_types",
+    "matched",
+    "reciprocal_rank"
+  ],
+  "title": "NextActionEvaluation",
+  "type": "object"
+}

@@ -1,0 +1,12 @@
+{
+  "case_id": "QMS-DEMO-001",
+  "criterion": "ISO 9001:2026",
+  "clause": "6.1.3",
+  "atomic_requirement_ids": [],
+  "requirement_world": {"applicability":"applies","qualifiers":[],"required_evidence_classes":[]},
+  "evidence_world": {"observed_evidence_ids":[],"missing_evidence":[],"contradictions":[],"provenance_complete":false},
+  "process_world": {"process_id":"","implementation_state":"unknown","control_points":[],"interfaces":[],"systemicity_state":"unknown"},
+  "sampling_state": {},
+  "assurance_state": {"state_machine_state":"S3_MAPPED","gate_state":{},"release_authority":"none"},
+  "epistemic_class": "observed_state"
+}

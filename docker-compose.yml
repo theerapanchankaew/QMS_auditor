@@ -1,0 +1,63 @@
+name: qms-auditor-iso-9001-2026
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: qms-ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    # Uncomment to use an NVIDIA GPU (requires nvidia-container-toolkit):
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+  pipelines:
+    image: ghcr.io/open-webui/pipelines:main
+    container_name: qms-pipelines
+    restart: unless-stopped
+    ports:
+      - "9099:9099"
+    environment:
+      - PIPELINES_API_KEY=${PIPELINES_API_KEY:-0p3n-w3bu!}
+      - QMS_SKILL_ROOT=/app/qms-skill
+      - QMS_PYTHON_BIN=python3
+    volumes:
+      # The gateway filter that OpenWebUI Pipelines auto-loads on startup.
+      - ./deploy/openwebui/pipelines:/app/pipelines
+      # The full skill bundle, mounted read-only. The pipeline shells out to
+      # scripts/*.py under this path — it does NOT copy them into the image.
+      - .:/app/qms-skill:ro
+      - pipelines_data:/app/data
+    depends_on:
+      - ollama
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: qms-open-webui
+    restart: unless-stopped
+    ports:
+      - "3000:8080"
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      # Register the pipelines server as an OpenAI-compatible connection so
+      # its filters (this repo's gateway) sit in front of every chat turn.
+      - OPENAI_API_BASE_URLS=http://pipelines:9099
+      - OPENAI_API_KEYS=${PIPELINES_API_KEY:-0p3n-w3bu!}
+      - WEBUI_AUTH=true
+    volumes:
+      - openwebui_data:/app/backend/data
+    depends_on:
+      - ollama
+      - pipelines
+
+volumes:
+  ollama_data:
+  openwebui_data:
+  pipelines_data:

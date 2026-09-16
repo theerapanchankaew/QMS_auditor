@@ -1,0 +1,22 @@
+{
+  "case_id": null,
+  "standard": "ISO 9001:2026",
+  "mode": "nc_classification",
+  "route": "conformity_evaluation",
+  "clause_candidates": [],
+  "sources_used": [],
+  "gates_passed": [
+    "preflight_guard",
+    "scope_gate",
+    "evidence_parser",
+    "requirement_element_decomposer",
+    "conditional_qualifier_gate",
+    "qms_exposure_analysis",
+    "severity_gate",
+    "counterfactual_challenge"
+  ],
+  "verdict": "ReviewRequired",
+  "nc_class": "None",
+  "trigger_or_anchor": null,
+  "review_required": true
+}

@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2025-05-13",
+  "description": "QMS Auditor ISO 9001:2026 — Upskill Module Registry",
+  "immutable_core_files": [
+    "references/governance/closed-source-policy.md",
+    "references/governance/auditor-code-of-conduct.md",
+    "references/governance/evidence-integrity-rules.md",
+    "references/governance/refusal-and-escalation-rules.md",
+    "references/governance/controlled-output-rules.md",
+    "references/12-ethics-cov-escalation-rules.md",
+    "references/17-knowledge-boundary-enforcement.md"
+  ],
+  "modules": [
+    {
+      "module_id": "qms-predictive-semantic-architecture-v1",
+      "type": "architecture_module",
+      "version": "1.0.0",
+      "status": "active",
+      "added_date": "2026-09-08",
+      "files": [
+        "references/44-predictive-semantic-architecture-v1.md",
+        "references/45-qms-semantic-evidence-model-v1.md"
+      ],
+      "triggers": [
+        "semantic evidence",
+        "JEPA",
+        "predictive audit",
+        "evidence meaning"
+      ],
+      "f1_priority_score": 0.0,
+      "replaces": null,
+      "notes": "v6.0.0 vNext; non-authoritative predictive layer; deterministic assurance authority preserved."
+    },
+    {
+      "module_id": "qms-evidence-gap-predictor-v1",
+      "type": "predictive_module",
+      "version": "1.0.0",
+      "status": "active",
+      "added_date": "2026-09-08",
+      "files": [
+        "references/46-evidence-gap-predictor-v1.md",
+        "scripts/evidence_gap_predictor.py"
+      ],
+      "triggers": [
+        "evidence gap",
+        "missing evidence",
+        "what to check next"
+      ],
+      "f1_priority_score": 0.0,
+      "replaces": null,
+      "notes": "v6.0.0 vNext; non-authoritative predictive layer; deterministic assurance authority preserved."
+    },
+    {
+      "module_id": "qms-audit-world-model-v1",
+      "type": "predictive_module",
+      "version": "1.0.0",
+      "status": "active",
+      "added_date": "2026-09-08",
+      "files": [
+        "references/47-audit-world-model-v1.md",
+        "scripts/audit_world_model.py"
+      ],
+      "triggers": [
+        "world model",
+        "audit state",
+        "simulate audit trajectory"
+      ],
+      "f1_priority_score": 0.0,
+      "replaces": null,
+      "notes": "v6.0.0 vNext; non-authoritative predictive layer; deterministic assurance authority preserved."
+    },
+    {
+      "module_id": "qms-next-best-audit-action-v1",
+      "type": "predictive_module",
+      "version": "1.0.0",
+      "status": "active",
+      "added_date": "2026-09-08",
+      "files": [
+        "references/48-next-best-audit-action-v1.md",
+        "scripts/next_best_audit_action.py"
+      ],
+      "triggers": [
+        "next best audit action",
+        "next question",
+        "audit strategy"
+      ],
+      "f1_priority_score": 0.0,
+      "replaces": null,
+      "notes": "v6.0.0 vNext; non-authoritative predictive layer; deterministic assurance authority preserved."
+    },
+    {
+      "module_id": "qms-prediction-evidence-gate-v1",
+      "type": "guardrail_module",
+      "version": "1.0.0",
+      "status": "active",
+      "added_date": "2026-09-08",
+      "files": [
+        "references/49-prediction-evidence-separation-gate-v1.md",
+        "scripts/prediction_evidence_gate.py"
+      ],
+      "triggers": [
+        "prediction evidence gate",
+        "prediction leakage",
+        "PE-1"
+      ],
+      "f1_priority_score": 0.0,
+      "replaces": null,
+      "notes": "v6.0.0 vNext; non-authoritative predictive layer; deterministic assurance authority preserved."
+    },
+    {
+      "module_id": "qms-self-supervised-audit-learning-v1",
+      "type": "learning_governance_module",
+      "version": "1.0.0",
+      "status": "active",
+      "added_date": "2026-09-08",
+      "files": [
+        "references/50-self-supervised-audit-learning-governance-v1.md"
+      ],
+      "triggers": [
+        "self supervised",
+        "masked audit learning",
+        "training governance"
+      ],
+      "f1_priority_score": 0.0,
+      "replaces": null,
+      "notes": "v6.0.0 vNext; non-authoritative predictive layer; deterministic assurance authority preserved."
+    },
+    {
+      "module_id": "qms-audit-world-model-coherence-v1",
+      "type": "architecture_module",
+      "version": "1.0.0",
+      "status": "active",
+      "added_date": "2026-09-11",
+      "files": [
+        "references/57-audit-state-equivalence-v1.md",
+        "references/58-world-model-coherence-assurance-v1.md",
+        "scripts/audit_state_canonicalizer.py",
+        "scripts/world_model_coherence.py"
+      ],
+      "triggers": [
+        "world model coherence",
+        "state compression",
+        "state distinction",
+        "audit state equivalence"
+      ],
+      "f1_priority_score": 0.0,
+      "replaces": null,
+      "notes": "v6.2.0; structural world-model validation; no assurance authority."
+    },
+    {
+      "module_id": "qms-audit-detour-robustness-v1",
+      "type": "guardrail_module",
+      "version": "1.0.0",
+      "status": "active",
+      "added_date": "2026-09-11",
+      "files": [
+        "references/59-audit-detour-robustness-v1.md",
+        "scripts/audit_detour_test.py"
+      ],
+      "triggers": [
+        "detour robustness",
+        "audit perturbation",
+        "adversarial audit trajectory"
+      ],
+      "f1_priority_score": 0.0,
+      "replaces": null,
+      "notes": "v6.2.0; tests structural recovery under valid trajectory perturbations."
+    },
+    {
+      "module_id": "qms-audit-dynamics-learning-v1",
+      "type": "learning_governance_module",
+      "version": "1.0.0",
+      "status": "active",
+      "added_date": "2026-09-11",
+      "files": [
+        "references/60-audit-dynamics-learning-contract-v1.md",
+        "references/61-audit-trajectory-dataset-v1.md",
+        "scripts/audit_dynamics_contract.py"
+      ],
+      "triggers": [
+        "audit dynamics",
+        "historical audit trajectories",
+        "offline world model training"
+      ],
+      "f1_priority_score": 0.0,
+      "replaces": null,
+      "notes": "v6.2.0; learned transition planning contract; authoritative verdict targets prohibited."
+    },
+    {
+      "module_id": "qms-audit-world-model-maturity-v1",
+      "type": "architecture_module",
+      "version": "1.0.0",
+      "status": "active",
+      "added_date": "2026-09-11",
+      "files": [
+        "references/62-audit-world-model-maturity-v1.md"
+      ],
+      "triggers": [
+        "AWM maturity",
+        "audit world model level",
+        "world model readiness"
+      ],
+      "f1_priority_score": 0.0,
+      "replaces": null,
+      "notes": "v6.2.0; controls claims from AWM-0 through AWM-5."
+    }
+  ]
+}

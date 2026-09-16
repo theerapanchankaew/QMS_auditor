@@ -1,0 +1,152 @@
+{
+  "manifest_id": "qms-bundled-source-manifest",
+  "manifest_version": "2026.0-rag-ready-1",
+  "source_boundary": "controlled_sources_only",
+  "allow_web_fallback": false,
+  "allow_external_connectors": false,
+  "allow_base_memory_for_audit_substance": false,
+  "default_mode": "bundled_only",
+  "approved_modes": [
+    "bundled_only",
+    "uploaded_controlled_evidence",
+    "approved_local_rag"
+  ],
+  "source_registration_rule": "A source is usable for audit substance only if it appears here or is explicitly uploaded in the current task as controlled evidence.",
+  "sources": [
+    {
+      "source_id": "iso9001-fdis-2026-en",
+      "title": "ISO/FDIS 9001:2026 Quality management systems — Requirements",
+      "source_category": "standard",
+      "status": "final_draft",
+      "language": "en",
+      "controlled_location": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+      "checksum_sha256": "71252005f9433c063600f9a36fc4d4f0fdecf1c4f97146b026c6e45b2e2bba7a",
+      "knowledge_roles": [
+        "requirements",
+        "clause_lookup",
+        "audit_criteria",
+        "conformity_evaluation"
+      ],
+      "allowed_use": [
+        "clause interpretation",
+        "audit planning",
+        "conformity evaluation",
+        "certification impact analysis"
+      ],
+      "allowed_outputs": [
+        "short requirement summary",
+        "audit question",
+        "evidence expectation",
+        "source trace"
+      ],
+      "prohibited_outputs": [
+        "long verbatim quotation",
+        "full standard reproduction",
+        "uncited interpretation",
+        "web comparison"
+      ],
+      "external_access_allowed": false,
+      "requires_human_auditor_contract": true
+    },
+    {
+      "source_id": "iso9000-fdis-2026-en",
+      "title": "ISO/FDIS 9000:2026 Quality management — Fundamentals and vocabulary",
+      "source_category": "standard",
+      "status": "final_draft",
+      "language": "en",
+      "controlled_location": "assets/standards/ISO_FDIS_9000_2026_en.pdf",
+      "checksum_sha256": "0b4060484ae0eed539f5b07255b5de2c0b6e362ca739c47ebdff9e50f99770f4",
+      "knowledge_roles": [
+        "vocabulary",
+        "fundamentals",
+        "definition_lookup",
+        "auditor_interpretation"
+      ],
+      "allowed_use": [
+        "definition lookup",
+        "thai translation",
+        "auditor explanation",
+        "certification impact analysis"
+      ],
+      "allowed_outputs": [
+        "short definition summary",
+        "thai explanation",
+        "audit impact summary",
+        "source trace"
+      ],
+      "prohibited_outputs": [
+        "long verbatim quotation",
+        "full standard reproduction",
+        "uncited interpretation",
+        "web comparison"
+      ],
+      "external_access_allowed": false,
+      "requires_human_auditor_contract": true
+    },
+    {
+      "source_id": "iso9000-glossary-2025-en",
+      "title": "ISO 9000 Glossary — Guidance on selected words used in the ISO 9000 family of standards",
+      "source_category": "guidance",
+      "status": "published_guidance",
+      "language": "en",
+      "controlled_location": "assets/standards/ISO9000GlossaryENv5FA2025.pdf",
+      "checksum_sha256": "9db3ad43bab17c50620aa45ddc9c7b93b7997aef434ac50ae918210c195a1e81",
+      "knowledge_roles": [
+        "common_word_meaning",
+        "translation_support",
+        "definition_context"
+      ],
+      "allowed_use": [
+        "selected word meaning",
+        "thai explanation",
+        "auditor explanation"
+      ],
+      "allowed_outputs": [
+        "short meaning summary",
+        "thai explanation",
+        "source trace"
+      ],
+      "prohibited_outputs": [
+        "long verbatim quotation",
+        "full document reproduction",
+        "web comparison"
+      ],
+      "external_access_allowed": false,
+      "requires_human_auditor_contract": true
+    },
+    {
+      "source_id": "qms-curated-references",
+      "title": "Bundled curated QMS auditor references and governance files",
+      "source_category": "curated_reference_set",
+      "status": "approved_internal_skill_reference",
+      "language": "mixed",
+      "controlled_location": "references",
+      "checksum_sha256": null,
+      "knowledge_roles": [
+        "audit_workflow",
+        "guardrails",
+        "human_auditor_logic",
+        "output_contract",
+        "AHP"
+      ],
+      "allowed_use": [
+        "workflow guidance",
+        "guardrail enforcement",
+        "output formatting",
+        "AHP scoring"
+      ],
+      "allowed_outputs": [
+        "audit-safe summary",
+        "dialog prompt",
+        "human auditor frame",
+        "score report"
+      ],
+      "prohibited_outputs": [
+        "external source substitution",
+        "uncited interpretation"
+      ],
+      "external_access_allowed": false,
+      "requires_human_auditor_contract": true
+    }
+  ]
+}

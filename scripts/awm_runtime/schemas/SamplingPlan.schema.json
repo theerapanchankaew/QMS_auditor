@@ -1,0 +1,67 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "audit_case_id": {
+      "title": "Audit Case Id",
+      "type": "string"
+    },
+    "target_entity_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Entity Id"
+    },
+    "population_size": {
+      "minimum": 0,
+      "title": "Population Size",
+      "type": "integer"
+    },
+    "current_sample_size": {
+      "minimum": 0,
+      "title": "Current Sample Size",
+      "type": "integer"
+    },
+    "additional_sample_size": {
+      "minimum": 0,
+      "title": "Additional Sample Size",
+      "type": "integer"
+    },
+    "strategy": {
+      "enum": [
+        "RISK_BASED",
+        "TEMPORAL",
+        "RECURRENCE_TARGETED",
+        "CONTRADICTION_TARGETED"
+      ],
+      "title": "Strategy",
+      "type": "string"
+    },
+    "periods": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Periods",
+      "type": "array"
+    },
+    "rationale": {
+      "title": "Rationale",
+      "type": "string"
+    }
+  },
+  "required": [
+    "audit_case_id",
+    "population_size",
+    "current_sample_size",
+    "additional_sample_size",
+    "strategy",
+    "rationale"
+  ],
+  "title": "SamplingPlan",
+  "type": "object"
+}

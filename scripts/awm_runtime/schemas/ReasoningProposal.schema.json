@@ -1,0 +1,408 @@
+{
+  "$defs": {
+    "AuditAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "title": "Action Id",
+          "type": "string"
+        },
+        "audit_case_id": {
+          "title": "Audit Case Id",
+          "type": "string"
+        },
+        "action_type": {
+          "enum": [
+            "REQUEST_DOCUMENT",
+            "REQUEST_RECORD",
+            "ASK_INTERVIEW",
+            "OBSERVE_PROCESS",
+            "EXPAND_SAMPLE",
+            "TRACE_TRANSACTION",
+            "VERIFY_APPROVAL",
+            "VERIFY_VERSION",
+            "VERIFY_EFFECTIVENESS",
+            "CHECK_RECURRENCE",
+            "CROSS_CHECK",
+            "ESCALATE_HUMAN",
+            "STOP"
+          ],
+          "title": "Action Type",
+          "type": "string"
+        },
+        "target_requirement_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Target Requirement Ids",
+          "type": "array"
+        },
+        "target_entity_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Target Entity Ids",
+          "type": "array"
+        },
+        "rationale": {
+          "title": "Rationale",
+          "type": "string"
+        },
+        "expected_information_gain": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expected Information Gain"
+        },
+        "cost_score": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cost Score"
+        },
+        "priority_score": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Priority Score"
+        },
+        "status": {
+          "enum": [
+            "PROPOSED",
+            "APPROVED",
+            "EXECUTED",
+            "CANCELLED"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action_id",
+        "audit_case_id",
+        "action_type",
+        "rationale",
+        "status"
+      ],
+      "title": "AuditAction",
+      "type": "object"
+    },
+    "AuditHypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "hypothesis_id": {
+          "title": "Hypothesis Id",
+          "type": "string"
+        },
+        "audit_case_id": {
+          "title": "Audit Case Id",
+          "type": "string"
+        },
+        "hypothesis_type": {
+          "enum": [
+            "CONFORMITY",
+            "BREACH",
+            "INSUFFICIENT_EVIDENCE",
+            "SYSTEMIC_FAILURE",
+            "INEFFECTIVE_CONTROL",
+            "RECURRENCE"
+          ],
+          "title": "Hypothesis Type",
+          "type": "string"
+        },
+        "statement": {
+          "title": "Statement",
+          "type": "string"
+        },
+        "requirement_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Requirement Ids",
+          "type": "array"
+        },
+        "supporting_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Supporting Evidence Ids",
+          "type": "array"
+        },
+        "contradicting_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Contradicting Evidence Ids",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "PROPOSED",
+            "SUPPORTED",
+            "WEAKENED",
+            "REFUTED",
+            "UNRESOLVED"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "unresolved_questions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Unresolved Questions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "hypothesis_id",
+        "audit_case_id",
+        "hypothesis_type",
+        "statement",
+        "status"
+      ],
+      "title": "AuditHypothesis",
+      "type": "object"
+    },
+    "NCClass": {
+      "enum": [
+        "Major",
+        "Minor"
+      ],
+      "title": "NCClass",
+      "type": "string"
+    },
+    "RequirementAssessment": {
+      "additionalProperties": false,
+      "properties": {
+        "assessment_id": {
+          "title": "Assessment Id",
+          "type": "string"
+        },
+        "audit_case_id": {
+          "title": "Audit Case Id",
+          "type": "string"
+        },
+        "requirement_id": {
+          "title": "Requirement Id",
+          "type": "string"
+        },
+        "applicability": {
+          "enum": [
+            "APPLICABLE",
+            "NOT_APPLICABLE",
+            "UNRESOLVED"
+          ],
+          "title": "Applicability",
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/$defs/RequirementState"
+        },
+        "positive_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Positive Evidence Ids",
+          "type": "array"
+        },
+        "negative_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Negative Evidence Ids",
+          "type": "array"
+        },
+        "contradictory_evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Contradictory Evidence Ids",
+          "type": "array"
+        },
+        "missing_evidence": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing Evidence",
+          "type": "array"
+        },
+        "coverage_ratio": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Coverage Ratio"
+        },
+        "breach_proven": {
+          "default": false,
+          "title": "Breach Proven",
+          "type": "boolean"
+        },
+        "effectiveness_proven": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Effectiveness Proven"
+        },
+        "reasoning_candidate": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reasoning Candidate"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "title": "Updated At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "assessment_id",
+        "audit_case_id",
+        "requirement_id",
+        "applicability",
+        "state",
+        "updated_at"
+      ],
+      "title": "RequirementAssessment",
+      "type": "object"
+    },
+    "RequirementState": {
+      "enum": [
+        "UNKNOWN",
+        "NOT_APPLICABLE",
+        "INSUFFICIENT_EVIDENCE",
+        "PARTIALLY_SUPPORTED",
+        "SATISFIED",
+        "BREACH_PROVEN",
+        "CONTRADICTORY",
+        "REVIEW_REQUIRED"
+      ],
+      "title": "RequirementState",
+      "type": "string"
+    },
+    "Verdict": {
+      "enum": [
+        "Complied",
+        "OFI",
+        "Noncomplied",
+        "InsufficientEvidence",
+        "ReviewRequired"
+      ],
+      "title": "Verdict",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "mapped_requirement_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Mapped Requirement Ids",
+      "type": "array"
+    },
+    "evidence_interpretations": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Evidence Interpretations",
+      "type": "array"
+    },
+    "proposed_hypotheses": {
+      "items": {
+        "$ref": "#/$defs/AuditHypothesis"
+      },
+      "title": "Proposed Hypotheses",
+      "type": "array"
+    },
+    "unresolved_questions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unresolved Questions",
+      "type": "array"
+    },
+    "proposed_actions": {
+      "items": {
+        "$ref": "#/$defs/AuditAction"
+      },
+      "title": "Proposed Actions",
+      "type": "array"
+    },
+    "candidate_assessments": {
+      "items": {
+        "$ref": "#/$defs/RequirementAssessment"
+      },
+      "title": "Candidate Assessments",
+      "type": "array"
+    },
+    "candidate_verdict": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Verdict"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "candidate_nc_class": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/NCClass"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "title": "ReasoningProposal",
+  "type": "object"
+}

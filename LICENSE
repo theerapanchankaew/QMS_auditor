@@ -1,0 +1,26 @@
+Proprietary License — All Rights Reserved
+
+Copyright (c) 2026 Theerapan. All rights reserved.
+
+This repository and its contents (including SKILL.md, references/, scripts/,
+assets/, agents/, and deploy/) are proprietary and confidential. No part of
+this repository may be copied, distributed, sublicensed, or used to build a
+commercial or public service without prior written permission from the
+copyright holder.
+
+This repository is intended for private, internal use in deploying a local
+AI auditing assistant (QMS Auditor ISO 9001:2026) and is NOT an open-source
+project. Do not make this repository public without first removing or
+re-licensing:
+
+  1. Any ISO/IEC standard PDFs or excerpts (see NOTICE.md) — these are
+     licensed third-party works, not covered by this license, and must not
+     be redistributed.
+  2. Any MASCI (or other certification body) org-branded templates, report
+     footers, or logos referenced under references/43-org-template-contract.md
+     and assets/templates/masci-*.json — these belong to their respective
+     organizations.
+
+THE SOFTWARE AND CONTENT ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED. THIS TOOL DOES NOT ISSUE CERTIFICATION DECISIONS; ALL
+MATERIAL AUDIT CONCLUSIONS REQUIRE HUMAN AUDITOR REVIEW.

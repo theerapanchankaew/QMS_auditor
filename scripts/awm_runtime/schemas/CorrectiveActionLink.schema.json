@@ -1,0 +1,129 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "ca_id": {
+      "title": "Ca Id",
+      "type": "string"
+    },
+    "organization_id": {
+      "title": "Organization Id",
+      "type": "string"
+    },
+    "finding_id": {
+      "title": "Finding Id",
+      "type": "string"
+    },
+    "requirement_id": {
+      "title": "Requirement Id",
+      "type": "string"
+    },
+    "process_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Process Id"
+    },
+    "raised_at": {
+      "format": "date-time",
+      "title": "Raised At",
+      "type": "string"
+    },
+    "correction_completed_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Correction Completed At"
+    },
+    "root_cause_completed_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Root Cause Completed At"
+    },
+    "action_completed_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Action Completed At"
+    },
+    "effectiveness_verified_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Effectiveness Verified At"
+    },
+    "effectiveness_result": {
+      "default": "NOT_VERIFIED",
+      "enum": [
+        "EFFECTIVE",
+        "INEFFECTIVE",
+        "NOT_VERIFIED"
+      ],
+      "title": "Effectiveness Result",
+      "type": "string"
+    },
+    "closed_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Closed At"
+    },
+    "source_evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Source Evidence Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "ca_id",
+    "organization_id",
+    "finding_id",
+    "requirement_id",
+    "raised_at"
+  ],
+  "title": "CorrectiveActionLink",
+  "type": "object"
+}

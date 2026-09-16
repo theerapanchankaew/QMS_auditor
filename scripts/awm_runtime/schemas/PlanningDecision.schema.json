@@ -1,0 +1,271 @@
+{
+  "$defs": {
+    "ActionScore": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "title": "Action Id",
+          "type": "string"
+        },
+        "information_gain": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Information Gain",
+          "type": "number"
+        },
+        "requirement_coverage": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Requirement Coverage",
+          "type": "number"
+        },
+        "evidence_strength": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Evidence Strength",
+          "type": "number"
+        },
+        "contradiction_reduction": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Contradiction Reduction",
+          "type": "number"
+        },
+        "temporal_relevance": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Temporal Relevance",
+          "type": "number"
+        },
+        "acquisition_cost": {
+          "minimum": 0.0,
+          "title": "Acquisition Cost",
+          "type": "number"
+        },
+        "risk_weight": {
+          "default": 1.0,
+          "minimum": 0.0,
+          "title": "Risk Weight",
+          "type": "number"
+        },
+        "utility": {
+          "title": "Utility",
+          "type": "number"
+        },
+        "admissible": {
+          "default": true,
+          "title": "Admissible",
+          "type": "boolean"
+        },
+        "blocked_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Blocked Reason"
+        }
+      },
+      "required": [
+        "action_id",
+        "information_gain",
+        "requirement_coverage",
+        "evidence_strength",
+        "contradiction_reduction",
+        "temporal_relevance",
+        "acquisition_cost",
+        "utility"
+      ],
+      "title": "ActionScore",
+      "type": "object"
+    },
+    "AuditAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "title": "Action Id",
+          "type": "string"
+        },
+        "audit_case_id": {
+          "title": "Audit Case Id",
+          "type": "string"
+        },
+        "action_type": {
+          "enum": [
+            "REQUEST_DOCUMENT",
+            "REQUEST_RECORD",
+            "ASK_INTERVIEW",
+            "OBSERVE_PROCESS",
+            "EXPAND_SAMPLE",
+            "TRACE_TRANSACTION",
+            "VERIFY_APPROVAL",
+            "VERIFY_VERSION",
+            "VERIFY_EFFECTIVENESS",
+            "CHECK_RECURRENCE",
+            "CROSS_CHECK",
+            "ESCALATE_HUMAN",
+            "STOP"
+          ],
+          "title": "Action Type",
+          "type": "string"
+        },
+        "target_requirement_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Target Requirement Ids",
+          "type": "array"
+        },
+        "target_entity_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Target Entity Ids",
+          "type": "array"
+        },
+        "rationale": {
+          "title": "Rationale",
+          "type": "string"
+        },
+        "expected_information_gain": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expected Information Gain"
+        },
+        "cost_score": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cost Score"
+        },
+        "priority_score": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Priority Score"
+        },
+        "status": {
+          "enum": [
+            "PROPOSED",
+            "APPROVED",
+            "EXECUTED",
+            "CANCELLED"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action_id",
+        "audit_case_id",
+        "action_type",
+        "rationale",
+        "status"
+      ],
+      "title": "AuditAction",
+      "type": "object"
+    },
+    "PlannedAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/AuditAction"
+        },
+        "score": {
+          "$ref": "#/$defs/ActionScore"
+        }
+      },
+      "required": [
+        "action",
+        "score"
+      ],
+      "title": "PlannedAction",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "audit_case_id": {
+      "title": "Audit Case Id",
+      "type": "string"
+    },
+    "policy_version": {
+      "title": "Policy Version",
+      "type": "string"
+    },
+    "ranked_actions": {
+      "items": {
+        "$ref": "#/$defs/PlannedAction"
+      },
+      "title": "Ranked Actions",
+      "type": "array"
+    },
+    "selected_action_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Selected Action Id"
+    },
+    "stop_decision": {
+      "enum": [
+        "CONTINUE",
+        "STOP_DECISION_READY",
+        "STOP_BUDGET",
+        "ESCALATE_HUMAN"
+      ],
+      "title": "Stop Decision",
+      "type": "string"
+    },
+    "rationale": {
+      "title": "Rationale",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "audit_case_id",
+    "policy_version",
+    "stop_decision",
+    "rationale",
+    "created_at"
+  ],
+  "title": "PlanningDecision",
+  "type": "object"
+}

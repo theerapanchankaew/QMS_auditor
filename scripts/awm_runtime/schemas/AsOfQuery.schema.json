@@ -1,0 +1,47 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "organization_id": {
+      "title": "Organization Id",
+      "type": "string"
+    },
+    "valid_at": {
+      "format": "date-time",
+      "title": "Valid At",
+      "type": "string"
+    },
+    "known_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Known At"
+    },
+    "entity_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Entity Ids",
+      "type": "array"
+    },
+    "fact_types": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Fact Types",
+      "type": "array"
+    }
+  },
+  "required": [
+    "organization_id",
+    "valid_at"
+  ],
+  "title": "AsOfQuery",
+  "type": "object"
+}

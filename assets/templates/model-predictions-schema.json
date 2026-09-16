@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QMS model_predictions.jsonl line schema",
+  "type": "object",
+  "required": [
+    "case_id",
+    "predicted_verdict",
+    "predicted_nc_class"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "predicted_verdict": {
+      "type": "string",
+      "enum": [
+        "Complied",
+        "Noncomplied",
+        "OFI",
+        "OBS",
+        "InsufficientEvidence",
+        "ReviewRequired",
+        "ReferenceGap",
+        "OUT_OF_SCOPE"
+      ]
+    },
+    "predicted_nc_class": {
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "Major",
+            "Minor",
+            "None",
+            ""
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "predicted_clause": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "predicted_trigger_or_anchor": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "predicted_evidence_gap": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rationale": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

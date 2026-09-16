@@ -1,0 +1,83 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "title": "Action Id",
+      "type": "string"
+    },
+    "information_gain": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Information Gain",
+      "type": "number"
+    },
+    "requirement_coverage": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Requirement Coverage",
+      "type": "number"
+    },
+    "evidence_strength": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Evidence Strength",
+      "type": "number"
+    },
+    "contradiction_reduction": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Contradiction Reduction",
+      "type": "number"
+    },
+    "temporal_relevance": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Temporal Relevance",
+      "type": "number"
+    },
+    "acquisition_cost": {
+      "minimum": 0.0,
+      "title": "Acquisition Cost",
+      "type": "number"
+    },
+    "risk_weight": {
+      "default": 1.0,
+      "minimum": 0.0,
+      "title": "Risk Weight",
+      "type": "number"
+    },
+    "utility": {
+      "title": "Utility",
+      "type": "number"
+    },
+    "admissible": {
+      "default": true,
+      "title": "Admissible",
+      "type": "boolean"
+    },
+    "blocked_reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Blocked Reason"
+    }
+  },
+  "required": [
+    "action_id",
+    "information_gain",
+    "requirement_coverage",
+    "evidence_strength",
+    "contradiction_reduction",
+    "temporal_relevance",
+    "acquisition_cost",
+    "utility"
+  ],
+  "title": "ActionScore",
+  "type": "object"
+}

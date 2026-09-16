@@ -1,0 +1,66 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "drift_id": {
+      "title": "Drift Id",
+      "type": "string"
+    },
+    "organization_id": {
+      "title": "Organization Id",
+      "type": "string"
+    },
+    "detected_at": {
+      "format": "date-time",
+      "title": "Detected At",
+      "type": "string"
+    },
+    "drift_type": {
+      "enum": [
+        "WORLD_STATE_STALE",
+        "SOURCE_STATE_DIVERGENCE",
+        "TEMPORAL_CONTRADICTION",
+        "LATE_ARRIVING_EVIDENCE",
+        "RECURRENCE_SIGNAL"
+      ],
+      "title": "Drift Type",
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "INFO",
+        "WARN",
+        "ALERT"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "entity_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Entity Ids",
+      "type": "array"
+    },
+    "requirement_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Requirement Ids",
+      "type": "array"
+    },
+    "details": {
+      "additionalProperties": true,
+      "title": "Details",
+      "type": "object"
+    }
+  },
+  "required": [
+    "drift_id",
+    "organization_id",
+    "detected_at",
+    "drift_type",
+    "severity"
+  ],
+  "title": "TemporalDriftEvent",
+  "type": "object"
+}

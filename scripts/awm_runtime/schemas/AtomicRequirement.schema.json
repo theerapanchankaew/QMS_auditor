@@ -1,0 +1,146 @@
+{
+  "$defs": {
+    "EvidenceExpectation": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_type": {
+          "title": "Evidence Type",
+          "type": "string"
+        },
+        "minimum_strength": {
+          "enum": [
+            "claim",
+            "documented",
+            "implemented",
+            "recorded",
+            "verified",
+            "effectiveness"
+          ],
+          "title": "Minimum Strength",
+          "type": "string"
+        },
+        "mandatory": {
+          "default": true,
+          "title": "Mandatory",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "evidence_type",
+        "minimum_strength"
+      ],
+      "title": "EvidenceExpectation",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "requirement_id": {
+      "title": "Requirement Id",
+      "type": "string"
+    },
+    "standard_id": {
+      "title": "Standard Id",
+      "type": "string"
+    },
+    "clause": {
+      "title": "Clause",
+      "type": "string"
+    },
+    "subject": {
+      "title": "Subject",
+      "type": "string"
+    },
+    "obligation": {
+      "title": "Obligation",
+      "type": "string"
+    },
+    "object": {
+      "title": "Object",
+      "type": "string"
+    },
+    "condition": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Condition"
+    },
+    "qualifier": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Qualifier"
+    },
+    "applicability_rule_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Applicability Rule Id"
+    },
+    "semantic_category": {
+      "enum": [
+        "D2_SAFE",
+        "M4_MANDATORY",
+        "AMBIGUOUS"
+      ],
+      "title": "Semantic Category",
+      "type": "string"
+    },
+    "evidence_expectations": {
+      "items": {
+        "$ref": "#/$defs/EvidenceExpectation"
+      },
+      "title": "Evidence Expectations",
+      "type": "array"
+    },
+    "failure_patterns": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Failure Patterns",
+      "type": "array"
+    },
+    "negative_inference_rules": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Negative Inference Rules",
+      "type": "array"
+    },
+    "version": {
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "requirement_id",
+    "standard_id",
+    "clause",
+    "subject",
+    "obligation",
+    "object",
+    "semantic_category",
+    "evidence_expectations",
+    "version"
+  ],
+  "title": "AtomicRequirement",
+  "type": "object"
+}

@@ -1,0 +1,10 @@
+{"case_id":"BEH-NC-001","verdict":"Noncomplied","nc_class":"Major","clause":"8.6","note":"8.6 release without verification — M3"}
+{"case_id":"BEH-NC-002","verdict":"Noncomplied","nc_class":"Minor","clause":"10.2","note":"10.2 CA exists, one record gap — D1"}
+{"case_id":"BEH-OFI-001","verdict":"OFI","nc_class":"None","clause":"8.3","note":"8.3 where-applicable not assessed, no D&D activity evident"}
+{"case_id":"BEH-CPL-001","verdict":"Complied","nc_class":"None","clause":"9.2","note":"9.2 full audit programme with records"}
+{"case_id":"BEH-INS-001","verdict":"InsufficientEvidence","nc_class":"None","clause":"7.2","note":"7.2 competence claim only, no training records provided"}
+{"case_id":"BEH-OOS-001","verdict":"OUT_OF_SCOPE","nc_class":"None","clause":"N/A","note":"ISO 14001 standalone — out of QMS scope"}
+{"case_id":"BEH-MAJ-002","verdict":"Noncomplied","nc_class":"Major","clause":"9.2","note":"9.2 no internal audit programme at all — M4"}
+{"case_id":"BEH-MAJ-003","verdict":"Noncomplied","nc_class":"Major","clause":"6.1","note":"6.1 no R&O planning process at all — M4"}
+{"case_id":"BEH-MIN-002","verdict":"Noncomplied","nc_class":"Minor","clause":"7.5","note":"7.5 one record field missing, no exposure — D1"}
+{"case_id":"BEH-RRQ-001","verdict":"ReviewRequired","nc_class":"None","clause":"8.6","note":"8.6 conflicting release evidence — needs competent review"}

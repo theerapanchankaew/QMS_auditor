@@ -1,0 +1,48 @@
+{
+  "compression_cases": [
+    {
+      "id": "COMP-001-order-invariance",
+      "expect_equivalent": true,
+      "min_jaccard": 0.95,
+      "state_a": {
+        "criterion": "ISO 9001:2026", "clause": "6.1.3", "atomic_requirement_ids": ["6.1.3-a","6.1.3-b"],
+        "requirement_world": {"applicability":"applies","qualifiers":[],"required_evidence_classes":["record","performance_data"]},
+        "evidence_world": {"observed_evidence_ids":["E2","E1"],"missing_evidence":["effectiveness_record"],"contradictions":[],"provenance_complete":true},
+        "process_world": {"process_id":"P1","implementation_state":"implemented","control_points":["C2","C1"],"interfaces":[],"systemicity_state":"local"},
+        "sampling_state": {"sample_ids":["S2","S1"]}, "assurance_state": {"state_machine_state":"S3_MAPPED","gate_state":{"G2":"pass"}}
+      },
+      "state_b": {
+        "criterion": "ISO 9001:2026", "clause": "6.1.3", "atomic_requirement_ids": ["6.1.3-b","6.1.3-a"],
+        "requirement_world": {"required_evidence_classes":["performance_data","record"],"qualifiers":[],"applicability":"applies"},
+        "evidence_world": {"contradictions":[],"missing_evidence":["effectiveness_record"],"observed_evidence_ids":["E1","E2"],"provenance_complete":true},
+        "process_world": {"interfaces":[],"control_points":["C1","C2"],"process_id":"P1","systemicity_state":"local","implementation_state":"implemented"},
+        "sampling_state": {"sample_ids":["S1","S2"]}, "assurance_state": {"gate_state":{"G2":"pass"},"state_machine_state":"S3_MAPPED"}
+      },
+      "continuations_a": ["request_document_or_record","cross_check","expand_sample"],
+      "continuations_b": ["expand_sample","request_document_or_record","cross_check"]
+    }
+  ],
+  "distinction_cases": [
+    {
+      "id": "DIST-001-effectiveness-proof",
+      "min_precision": 0.90, "min_recall": 0.90,
+      "state_a": {
+        "criterion":"ISO 9001:2026","clause":"6.1.3","atomic_requirement_ids":["6.1.3-b"],
+        "requirement_world":{"applicability":"applies"},
+        "evidence_world":{"observed_evidence_ids":["E1"],"missing_evidence":[],"contradictions":[],"provenance_complete":true,"effectiveness_proven":true},
+        "process_world":{"process_id":"P1","implementation_state":"implemented","systemicity_state":"local"},
+        "sampling_state":{},"assurance_state":{"state_machine_state":"S4_SUFFICIENCY","gate_state":{"G4":"pass"}}
+      },
+      "state_b": {
+        "criterion":"ISO 9001:2026","clause":"6.1.3","atomic_requirement_ids":["6.1.3-b"],
+        "requirement_world":{"applicability":"applies"},
+        "evidence_world":{"observed_evidence_ids":["E1"],"missing_evidence":["effectiveness_record"],"contradictions":[],"provenance_complete":true,"effectiveness_proven":false},
+        "process_world":{"process_id":"P1","implementation_state":"implemented","systemicity_state":"local"},
+        "sampling_state":{},"assurance_state":{"state_machine_state":"S3_MAPPED","gate_state":{"G4":"not_run"}}
+      },
+      "continuations_a":["cross_check","expand_sample"],
+      "continuations_b":["request_document_or_record","cross_check","expand_sample"],
+      "distinguishing_continuations":["request_document_or_record"]
+    }
+  ]
+}

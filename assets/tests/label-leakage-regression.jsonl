@@ -1,0 +1,1 @@
+{"case_id": "LEAK-001", "group": "label_leakage", "input_fields": ["case_id", "scenario", "expected_verdict", "expected_nc_class"], "expected_removed_fields": ["expected_verdict", "expected_nc_class"]}

@@ -1,0 +1,142 @@
+{
+  "$defs": {
+    "GateResult": {
+      "additionalProperties": false,
+      "properties": {
+        "gate_id": {
+          "title": "Gate Id",
+          "type": "string"
+        },
+        "gate_version": {
+          "title": "Gate Version",
+          "type": "string"
+        },
+        "result": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "BLOCK",
+            "PENDING",
+            "NA"
+          ],
+          "title": "Result",
+          "type": "string"
+        },
+        "reason_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason Code"
+        },
+        "details": {
+          "additionalProperties": true,
+          "title": "Details",
+          "type": "object"
+        }
+      },
+      "required": [
+        "gate_id",
+        "gate_version",
+        "result"
+      ],
+      "title": "GateResult",
+      "type": "object"
+    },
+    "NCClass": {
+      "enum": [
+        "Major",
+        "Minor"
+      ],
+      "title": "NCClass",
+      "type": "string"
+    },
+    "Verdict": {
+      "enum": [
+        "Complied",
+        "OFI",
+        "Noncomplied",
+        "InsufficientEvidence",
+        "ReviewRequired"
+      ],
+      "title": "Verdict",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "trace_id": {
+      "title": "Trace Id",
+      "type": "string"
+    },
+    "audit_case_id": {
+      "title": "Audit Case Id",
+      "type": "string"
+    },
+    "world_snapshot_id": {
+      "title": "World Snapshot Id",
+      "type": "string"
+    },
+    "requirement_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Requirement Ids",
+      "type": "array"
+    },
+    "evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "hypothesis_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Hypothesis Ids",
+      "type": "array"
+    },
+    "gates": {
+      "items": {
+        "$ref": "#/$defs/GateResult"
+      },
+      "title": "Gates",
+      "type": "array"
+    },
+    "candidate_verdict": {
+      "$ref": "#/$defs/Verdict"
+    },
+    "candidate_nc_class": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/NCClass"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "trace_id",
+    "audit_case_id",
+    "world_snapshot_id",
+    "candidate_verdict",
+    "created_at"
+  ],
+  "title": "GateTrace",
+  "type": "object"
+}

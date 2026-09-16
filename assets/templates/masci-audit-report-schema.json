@@ -1,0 +1,317 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MASCI Audit Report Output Struct",
+  "description": "Structured output schema for QMS skill v5.6 — model fills every required field before org_report_renderer.py generates the branded docx",
+  "type": "object",
+  "required": [
+    "section_a",
+    "section_b",
+    "section_c",
+    "section_d",
+    "section_e",
+    "meta"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["form_ref", "issue", "revision", "issue_date", "confidential"],
+      "properties": {
+        "form_ref":    { "type": "string", "example": "FP-016-16" },
+        "issue":       { "type": "string", "example": "Iss.0" },
+        "revision":    { "type": "string", "example": "Rev.4" },
+        "issue_date":  { "type": "string", "example": "6/6/68 SCD" },
+        "confidential":{ "type": "boolean", "const": true }
+      }
+    },
+
+    "section_a": {
+      "type": "object",
+      "description": "Section A: Client Information",
+      "required": [
+        "client_name_th", "client_name_en",
+        "address_th", "address_en",
+        "audit_mode", "site_type",
+        "audit_date",
+        "client_representatives",
+        "audit_team",
+        "num_employees_in_scope",
+        "management_systems",
+        "certified_scope",
+        "audit_objectives",
+        "audit_criteria"
+      ],
+      "properties": {
+        "client_name_th":  { "type": "string" },
+        "client_name_en":  { "type": "string" },
+        "address_th":      { "type": "string" },
+        "address_en":      { "type": "string" },
+        "audit_mode":      { "type": "string", "enum": ["on-site", "remote", "on-site and remote"] },
+        "site_type":       { "type": "string", "enum": ["permanent site", "temporary site"] },
+        "audit_date":      { "type": "string" },
+        "client_representatives": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "position"],
+            "properties": {
+              "name":     { "type": "string" },
+              "position": { "type": "string" }
+            }
+          }
+        },
+        "audit_team": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "role"],
+            "properties": {
+              "name": { "type": "string" },
+              "role": { "type": "string" }
+            }
+          }
+        },
+        "num_employees_in_scope": { "type": "integer" },
+        "management_systems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["application_no", "certification_no", "expired_date", "standard", "audit_program", "certification_application"],
+            "properties": {
+              "application_no":           { "type": "string" },
+              "certification_no":         { "type": "string" },
+              "expired_date":             { "type": "string" },
+              "standard":                 { "type": "string" },
+              "audit_program":            { "type": "string" },
+              "certification_application":{ "type": "string" }
+            }
+          }
+        },
+        "certified_scope": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["ms", "site", "scope_th", "scope_en", "isic_iaf_code"],
+            "properties": {
+              "ms":          { "type": "string" },
+              "site":        { "type": "string" },
+              "scope_th":    { "type": "string" },
+              "scope_en":    { "type": "string" },
+              "isic_iaf_code":{ "type": "string" }
+            }
+          }
+        },
+        "scope_appropriateness": {
+          "type": "string",
+          "enum": ["Suitable", "Unsuitable"],
+          "default": "Suitable"
+        },
+        "scope_change_reason": { "type": "string", "default": "" },
+        "audit_objectives": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "audit_criteria": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      }
+    },
+
+    "section_b": {
+      "type": "object",
+      "description": "Section B: Audit Summary",
+      "required": [
+        "nonconformities_found",
+        "num_major_nc",
+        "num_minor_nc",
+        "ofi_found",
+        "deviation_from_plan",
+        "significant_changes",
+        "ca_effectiveness",
+        "certification_mark_use",
+        "unresolved_diverging_opinions",
+        "significant_issues_for_audit_programme"
+      ],
+      "properties": {
+        "nonconformities_found":   { "type": "boolean" },
+        "num_major_nc":            { "type": "integer", "minimum": 0 },
+        "num_minor_nc":            { "type": "integer", "minimum": 0 },
+        "ofi_found":               { "type": "boolean" },
+        "deviation_from_plan":     { "type": "boolean" },
+        "deviation_detail":        { "type": "string", "default": "" },
+        "significant_changes":     { "type": "boolean" },
+        "changes_detail": {
+          "type": "object",
+          "properties": {
+            "num_relevant_persons": { "type": "string", "default": "" },
+            "org_structure":        { "type": "string", "default": "" },
+            "process":              { "type": "string", "default": "" },
+            "other":                { "type": "string", "default": "" },
+            "conform_to_standard":  { "type": "boolean", "default": true }
+          }
+        },
+        "ca_effectiveness": {
+          "type": "object",
+          "properties": {
+            "no_previous_nc":   { "type": "boolean" },
+            "num_nc_items":     { "type": "integer", "minimum": 0, "default": 0 },
+            "effective_items":  { "type": "integer", "minimum": 0, "default": 0 },
+            "not_effective_items": { "type": "integer", "minimum": 0, "default": 0 }
+          }
+        },
+        "certification_mark_use": {
+          "type": "object",
+          "required": ["in_use", "status"],
+          "properties": {
+            "in_use": { "type": "boolean" },
+            "status": {
+              "type": "string",
+              "enum": ["Conform", "Not conform", "Observation", "Nonconformity"]
+            },
+            "detail": { "type": "string", "default": "" }
+          }
+        },
+        "unresolved_diverging_opinions": { "type": "boolean" },
+        "unresolved_detail": { "type": "string", "default": "" },
+        "significant_issues_for_audit_programme": { "type": "boolean" },
+        "significant_issues_detail": { "type": "string", "default": "" }
+      }
+    },
+
+    "section_c": {
+      "type": "object",
+      "description": "Section C: Summary of Findings",
+      "required": ["audit_type", "findings"],
+      "properties": {
+        "audit_type": {
+          "type": "string",
+          "description": "e.g. 'Surveillance (QMS, EMS and OHSMS)'"
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["category", "verdict", "summary"],
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "e.g. 'Documentation', 'Risks and opportunities', 'Internal audit'"
+              },
+              "category_description": { "type": "string" },
+              "verdict": {
+                "type": "string",
+                "enum": ["Effective", "Minor NC", "Major NC"]
+              },
+              "summary": { "type": "string" }
+            }
+          },
+          "minItems": 1
+        }
+      }
+    },
+
+    "section_d": {
+      "type": "object",
+      "description": "Section D: Auditor Recommendation",
+      "required": ["recommendation_type", "recommendations_by_ms"],
+      "properties": {
+        "recommendation_type": {
+          "type": "string",
+          "enum": ["maintain", "follow_up_required"],
+          "description": "maintain = no major NC; follow_up_required = major NC found"
+        },
+        "recommendations_by_ms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["ms", "recommendation"],
+            "properties": {
+              "ms": { "type": "string" },
+              "recommendation": {
+                "type": "string",
+                "enum": [
+                  "Acknowledge and maintain the certification",
+                  "Follow up corrective action within 6 months",
+                  "Reassessment required"
+                ]
+              }
+            }
+          }
+        },
+        "follow_up_deadline": {
+          "type": "string",
+          "description": "Required when recommendation_type = follow_up_required"
+        }
+      }
+    },
+
+    "section_e": {
+      "type": "object",
+      "description": "Section E: Audit Programme",
+      "required": ["audit_programme_rows", "clause_coverage", "signatories"],
+      "properties": {
+        "audit_programme_rows": {
+          "type": "array",
+          "description": "One row per audit cycle year",
+          "items": {
+            "type": "object",
+            "required": ["year_label", "audit_date", "qms_stage", "ems_stage", "ohsms_stage", "duration_md"],
+            "properties": {
+              "year_label":   { "type": "string" },
+              "audit_date":   { "type": "string" },
+              "qms_stage":    { "type": "string" },
+              "ems_stage":    { "type": "string" },
+              "ohsms_stage":  { "type": "string" },
+              "duration_md":  { "type": "string" }
+            }
+          }
+        },
+        "clause_coverage": {
+          "type": "array",
+          "description": "Per-standard clause coverage tables",
+          "items": {
+            "type": "object",
+            "required": ["standard", "clauses"],
+            "properties": {
+              "standard": { "type": "string" },
+              "clauses": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["clause_no", "clause_title"],
+                  "properties": {
+                    "clause_no":    { "type": "string" },
+                    "clause_title": { "type": "string" },
+                    "stg2_re":      { "type": "string", "default": "" },
+                    "surv1":        { "type": "string", "default": "" },
+                    "surv2":        { "type": "string", "default": "" },
+                    "na":           { "type": "boolean", "default": false }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "signatories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "role", "date"],
+            "properties": {
+              "name": { "type": "string" },
+              "role": { "type": "string" },
+              "date": { "type": "string" }
+            }
+          },
+          "minItems": 1
+        },
+        "remark": {
+          "type": "string",
+          "default": "The audit conclusion is based on a sampling process of the available data during the audit."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{"case_id":"BEH-NC-001","predicted_verdict":"Noncomplied","predicted_nc_class":"Major","predicted_clause":"8.6","predicted_trigger_or_anchor":"M3","rationale":"Product shipped before acceptance sign-off — M3"}
+{"case_id":"BEH-NC-002","predicted_verdict":"Noncomplied","predicted_nc_class":"Minor","predicted_clause":"10.2","predicted_trigger_or_anchor":"D1","rationale":"CA process exists, one record missing — D1"}
+{"case_id":"BEH-OFI-001","predicted_verdict":"OFI","predicted_nc_class":"None","predicted_clause":"8.3","predicted_trigger_or_anchor":null,"rationale":"D&D applicability not assessed — OFI per L7"}
+{"case_id":"BEH-CPL-001","predicted_verdict":"Complied","predicted_nc_class":"None","predicted_clause":"9.2","predicted_trigger_or_anchor":null,"rationale":"Programme with records, all elements covered"}
+{"case_id":"BEH-INS-001","predicted_verdict":"InsufficientEvidence","predicted_nc_class":"None","predicted_clause":"7.2","predicted_trigger_or_anchor":null,"rationale":"Claim only, no training records — InsufficientEvidence"}
+{"case_id":"BEH-OOS-001","predicted_verdict":"OUT_OF_SCOPE","predicted_nc_class":"None","predicted_clause":"N/A","predicted_trigger_or_anchor":null,"rationale":"ISO 14001 standalone request"}
+{"case_id":"BEH-MAJ-002","predicted_verdict":"Noncomplied","predicted_nc_class":"Major","predicted_clause":"9.2","predicted_trigger_or_anchor":"M4","rationale":"No audit programme at all — M4"}
+{"case_id":"BEH-MAJ-003","predicted_verdict":"Noncomplied","predicted_nc_class":"Major","predicted_clause":"6.1","predicted_trigger_or_anchor":"M4","rationale":"No R&O planning process — M4"}
+{"case_id":"BEH-MIN-002","predicted_verdict":"Noncomplied","predicted_nc_class":"Minor","predicted_clause":"7.5","predicted_trigger_or_anchor":"D1","rationale":"One record field missing, no exposure — D1"}
+{"case_id":"BEH-RRQ-001","predicted_verdict":"ReviewRequired","predicted_nc_class":"None","predicted_clause":"8.6","predicted_trigger_or_anchor":null,"rationale":"Conflicting release evidence — ReviewRequired"}

@@ -1,0 +1,96 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "recurrence_id": {
+      "title": "Recurrence Id",
+      "type": "string"
+    },
+    "organization_id": {
+      "title": "Organization Id",
+      "type": "string"
+    },
+    "requirement_id": {
+      "title": "Requirement Id",
+      "type": "string"
+    },
+    "prior_finding_id": {
+      "title": "Prior Finding Id",
+      "type": "string"
+    },
+    "current_finding_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Current Finding Id"
+    },
+    "prior_ca_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Prior Ca Id"
+    },
+    "current_observed_at": {
+      "format": "date-time",
+      "title": "Current Observed At",
+      "type": "string"
+    },
+    "same_or_equivalent_failure": {
+      "title": "Same Or Equivalent Failure",
+      "type": "boolean"
+    },
+    "prior_effectiveness_verified": {
+      "title": "Prior Effectiveness Verified",
+      "type": "boolean"
+    },
+    "representative_scope_confirmed": {
+      "default": false,
+      "title": "Representative Scope Confirmed",
+      "type": "boolean"
+    },
+    "recurrence_proven": {
+      "default": false,
+      "title": "Recurrence Proven",
+      "type": "boolean"
+    },
+    "m5_eligible": {
+      "default": false,
+      "title": "M5 Eligible",
+      "type": "boolean"
+    },
+    "rationale": {
+      "title": "Rationale",
+      "type": "string"
+    },
+    "evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "recurrence_id",
+    "organization_id",
+    "requirement_id",
+    "prior_finding_id",
+    "current_observed_at",
+    "same_or_equivalent_failure",
+    "prior_effectiveness_verified",
+    "rationale"
+  ],
+  "title": "RecurrenceAssessment",
+  "type": "object"
+}

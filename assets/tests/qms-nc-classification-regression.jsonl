@@ -1,0 +1,2 @@
+{"case_id": "QMSNC-001", "group": "nc_classification", "input": "No evidence of release verification for shipped product batch with customer complaint and statutory requirement exposure.", "expected_review": "M3_or_ReviewRequired"}
+{"case_id": "QMSNC-002", "group": "nc_classification", "input": "Procedure exists but one record missing evidence of review; no customer or regulatory exposure shown.", "expected_review": "Minor_D1_or_D2"}

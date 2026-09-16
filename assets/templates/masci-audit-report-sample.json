@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "form_ref": "FP-016-16",
+    "issue": "Iss.0",
+    "revision": "Rev.4",
+    "issue_date": "6/6/68 SCD",
+    "confidential": true
+  },
+  "section_a": {
+    "client_name_th": "บริษัท ไลท์ติ้ง แอนด์ อีควิปเมนท์ จำกัด (มหาชน)",
+    "client_name_en": "Lighting and Equipment Public Company Limited",
+    "address_th": "เลขที่ 45/29 หมู่ 3 ถนนบางบัวทอง-สุพรรณบุรี ตำบลหน้าไม้ อำเภอลาดหลุมแก้ว จังหวัดปทุมธานี 12140",
+    "address_en": "45/29 Moo 3 Bangbuothong-Supanburi road, Namai, Latlumkaeo district, Pathumthani 12140, Thailand",
+    "audit_mode": "on-site",
+    "site_type": "permanent site",
+    "audit_date": "25 – 26 พฤศจิกายน 2568",
+    "client_representatives": [
+      { "name": "คุณสรายุทธิ์ คงทน",       "position": "Senior Assembly Manager" },
+      { "name": "คุณวาลุกา พรชัยวิรัช",     "position": "ผู้ช่วยผู้จัดการ/ผู้แทนฝ่ายบริหาร" }
+    ],
+    "audit_team": [
+      { "name": "นายปริญญา  เสียงเลิศ",        "role": "ผู้ตรวจประเมิน QMS" },
+      { "name": "นางสาววรภา ดงไม้สถิตย์",      "role": "หัวหน้าผู้ตรวจประเมิน EMS และ OHSMS" }
+    ],
+    "num_employees_in_scope": 70,
+    "management_systems": [
+      { "application_no": "QMS66016/1889", "certification_no": "QMS23017/1850", "expired_date": "30 พฤศจิกายน 2569", "standard": "มอก. 9001-2559 (ISO 9001:2015)", "audit_program": "Surveillance#2", "certification_application": "single site" },
+      { "application_no": "EMS66009/649",  "certification_no": "EMS23010/563",  "expired_date": "30 พฤศจิกายน 2569", "standard": "มอก.14001–2559 (ISO 14001:2015)", "audit_program": "Surveillance#2", "certification_application": "single site" },
+      { "application_no": "OHSMS66006/258","certification_no": "OHSMS23010/245","expired_date": "30 พฤศจิกายน 2569", "standard": "มอก.45001-2561 (ISO 45001:2018)", "audit_program": "Surveillance#2", "certification_application": "single site" }
+    ],
+    "certified_scope": [
+      { "ms": "QMS", "site": "Premise", "scope_th": "การประกอบดวงโคมไฟฟ้า ดวงโคมไฟฟ้าประเภทแอลอีดี และชุดดวงโคมไฟฟ้าประเภทแอลอีดีพร้อมเสา", "scope_en": "Assembly of lighting fixture, LED lighting fixture and LED lighting set with stand pole", "isic_iaf_code": "QMS 3150 │ 19 NSC" },
+      { "ms": "EMS", "site": "Premise", "scope_th": "", "scope_en": "", "isic_iaf_code": "EMS 3150 │ 19 NSC" },
+      { "ms": "OHSMS", "site": "Premise", "scope_th": "", "scope_en": "", "isic_iaf_code": "OHSMS 3150 │ 19 NSC" }
+    ],
+    "scope_appropriateness": "Suitable",
+    "audit_objectives": [
+      "To determine the conformity of the organization's management system with audit criteria;",
+      "To determine the ability of the management system to ensure the organization meets applicable statutory, regulatory and contractual requirements;",
+      "To determine the effectiveness of the management system to ensure the client can reasonably expect to achieve its specified objectives;",
+      "To verify the conformity of the MASCI's regulation;",
+      "To verify the effectiveness of corrective action of nonconformity(ies) from the previous audit."
+    ],
+    "audit_criteria": [
+      "Requirement of defined normative document on management systems;",
+      "Defined processes and documentation of the management system developed by the organization;",
+      "Statutory, regulatory and contractual requirement related to the management system;",
+      "MASCI's regulation for certification and audit."
+    ]
+  },
+  "section_b": {
+    "nonconformities_found": false,
+    "num_major_nc": 0,
+    "num_minor_nc": 0,
+    "ofi_found": true,
+    "deviation_from_plan": false,
+    "deviation_detail": "",
+    "significant_changes": true,
+    "changes_detail": {
+      "num_relevant_persons": "",
+      "org_structure": "ผังโครงสร้างองค์กร วันที่มีผลบังคับใช้ 1 กันยายน 2568",
+      "process": "",
+      "other": "",
+      "conform_to_standard": true
+    },
+    "ca_effectiveness": {
+      "no_previous_nc": false,
+      "num_nc_items": 0,
+      "effective_items": 0,
+      "not_effective_items": 0
+    },
+    "certification_mark_use": {
+      "in_use": true,
+      "status": "Conform",
+      "detail": "ใบรับรองใช้ในการประมูลงานและติดบอร์ดประชาสัมพันธ์ภายในโรงงาน และประชาสัมพันธ์ในระบบ I-Web ของบริษัทฯ"
+    },
+    "unresolved_diverging_opinions": false,
+    "unresolved_detail": "",
+    "significant_issues_for_audit_programme": false,
+    "significant_issues_detail": ""
+  },
+  "section_c": {
+    "audit_type": "Surveillance (QMS, EMS and OHSMS)",
+    "findings": [
+      {
+        "category": "Documentation",
+        "category_description": "The organization established a documentation system demonstrated conformity with the requirements of the audit standard.",
+        "verdict": "Effective",
+        "summary": "คู่มือคุณภาพ (QM-01) คู่มือสิ่งแวดล้อม (EM-01) และคู่มืออาชีวอนามัยและความปลอดภัย (OM-01) Rev.3 Effective Date: 01/09/25 อนุมัติโดย Senior Assembly Manager\nระเบียบปฏิบัติงาน SP-DC-04 Rev.1 Effective Date: 01/07/25 และ SP-PT-01 Rev.2 Effective Date: 05/11/25"
+      },
+      {
+        "category": "Risks and opportunities",
+        "category_description": "The organization has determined the context and identified applicable risks and opportunities.",
+        "verdict": "Effective",
+        "summary": "องค์กรมีการทบทวนบริบทองค์กรและพิจารณาความต้องการของผู้มีส่วนได้เสีย ทบทวนครั้งล่าสุดเมื่อวันที่ 1 กรกฎาคม 2568\nผลการประเมินพบเพียงความเสี่ยงระดับปานกลาง (M) และระดับต่ำ (L)"
+      },
+      {
+        "category": "Internal audit",
+        "category_description": "The organization implements and maintains an internal audit programme.",
+        "verdict": "Effective",
+        "summary": "Required frequency: 1 ครั้ง/ปี\nDate conducted: 26-28 สิงหาคม 2568\nStatus: ปิดสรุปแล้ว (ไม่พบข้อบกพร่อง พบเพียงข้อสังเกต)"
+      },
+      {
+        "category": "Management review",
+        "category_description": "Top management reviewed the management system at planned intervals.",
+        "verdict": "Effective",
+        "summary": "Required frequency: 2 ครั้ง/ปี\nConducted: ครั้งที่ 1 วันที่ 15 มกราคม 2568 และ ครั้งที่ 2 วันที่ 17 กรกฎาคม 2568\nDecisions recorded and actioned."
+      },
+      {
+        "category": "Handling of customer complaints",
+        "category_description": "The organization maintains effective procedures for handling customer feedback.",
+        "verdict": "Effective",
+        "summary": "QMS: พฤศจิกายน 2567 – ตุลาคม 2568 มีข้อร้องเรียนคุณภาพจากลูกค้า 12 รายการ (Driver ไหม้, น้ำรั่วซึม, หลอดไม่ติด)\nองค์กรได้ดำเนินการปฏิบัติการแก้ไขครบถ้วนเรียบร้อย\nEMS และ OHSMS: ไม่มีข้อร้องเรียน"
+      },
+      {
+        "category": "Continual improvement",
+        "category_description": "The organization implemented continual improvement approaches.",
+        "verdict": "Effective",
+        "summary": "การสร้างห้องปรับอากาศในไลน์การผลิต เพื่อปรับปรุงสภาพแวดล้อมการทำงาน\nการจัดทำเครื่องหยอดคอมปาวด์เพื่อลดการสูญเสียทรัพยากร\nการกำหนดตัวชี้วัด (KPI) ด้านสิ่งแวดล้อมเกี่ยวกับการลดการใช้พลังงานไฟฟ้า"
+      }
+    ]
+  },
+  "section_d": {
+    "recommendation_type": "maintain",
+    "recommendations_by_ms": [
+      { "ms": "QMS",   "recommendation": "Acknowledge and maintain the certification" },
+      { "ms": "EMS",   "recommendation": "Acknowledge and maintain the certification" },
+      { "ms": "OHSMS", "recommendation": "Acknowledge and maintain the certification" }
+    ]
+  },
+  "section_e": {
+    "audit_programme_rows": [
+      { "year_label": "พฤศจิกายน 2566", "audit_date": "2-3 พ.ย. 2566", "qms_stage": "Stage.2  2.5MD", "ems_stage": "2 MD",  "ohsms_stage": "2 MD",  "duration_md": "6.5 MD" },
+      { "year_label": "พฤศจิกายน 2567", "audit_date": "26-27 พ.ย. 2567","qms_stage": "Surv#1  1.5MD", "ems_stage": "1 MD",  "ohsms_stage": "1 MD",  "duration_md": "3.5 MD" },
+      { "year_label": "พฤศจิกายน 2568", "audit_date": "25-26 พ.ย. 2568","qms_stage": "Surv#2  1.5MD", "ems_stage": "1 MD",  "ohsms_stage": "1 MD",  "duration_md": "3.5 MD" },
+      { "year_label": "พฤศจิกายน 2569", "audit_date": "-",               "qms_stage": "Reassessment",   "ems_stage": "",      "ohsms_stage": "",      "duration_md": "" }
+    ],
+    "clause_coverage": [
+      {
+        "standard": "QMS",
+        "clauses": [
+          { "clause_no": "4",      "clause_title": "Context of the organization" },
+          { "clause_no": "4.1",    "clause_title": "Understanding the organization and its context" },
+          { "clause_no": "4.2",    "clause_title": "Understanding the needs and expectations of interested parties" },
+          { "clause_no": "4.3",    "clause_title": "Determining the scope of the management system" },
+          { "clause_no": "4.4",    "clause_title": "Management system and its processes" },
+          { "clause_no": "5",      "clause_title": "Leadership" },
+          { "clause_no": "5.1",    "clause_title": "Leadership and commitment" },
+          { "clause_no": "5.2",    "clause_title": "Policy" },
+          { "clause_no": "5.3",    "clause_title": "Organizational roles, responsibilities and authorities" },
+          { "clause_no": "6",      "clause_title": "Planning" },
+          { "clause_no": "6.1",    "clause_title": "Actions to address risks and opportunities" },
+          { "clause_no": "6.2",    "clause_title": "Objectives and planning to achieve them" },
+          { "clause_no": "6.3",    "clause_title": "Planning of changes" },
+          { "clause_no": "7",      "clause_title": "Support" },
+          { "clause_no": "7.1",    "clause_title": "Resources" },
+          { "clause_no": "7.2",    "clause_title": "Competence" },
+          { "clause_no": "7.3",    "clause_title": "Awareness" },
+          { "clause_no": "7.4",    "clause_title": "Communication" },
+          { "clause_no": "7.5",    "clause_title": "Documented information" },
+          { "clause_no": "8",      "clause_title": "Operation" },
+          { "clause_no": "8.1",    "clause_title": "Operational planning and control" },
+          { "clause_no": "8.2",    "clause_title": "Requirements for products and services" },
+          { "clause_no": "8.3",    "clause_title": "Design and development of products and services", "na": true },
+          { "clause_no": "8.4",    "clause_title": "Control of externally provided processes, products and services" },
+          { "clause_no": "8.5",    "clause_title": "Production and service provision" },
+          { "clause_no": "8.6",    "clause_title": "Release of products and services" },
+          { "clause_no": "8.7",    "clause_title": "Control of nonconforming outputs" },
+          { "clause_no": "9",      "clause_title": "Performance evaluation" },
+          { "clause_no": "9.1",    "clause_title": "Monitoring, measurement, analysis and evaluation" },
+          { "clause_no": "9.2",    "clause_title": "Internal audit" },
+          { "clause_no": "9.3",    "clause_title": "Management review" },
+          { "clause_no": "10",     "clause_title": "Improvement" },
+          { "clause_no": "10.1",   "clause_title": "General" },
+          { "clause_no": "10.2",   "clause_title": "Nonconformity and corrective action" },
+          { "clause_no": "10.3",   "clause_title": "Continual improvement" }
+        ]
+      }
+    ],
+    "signatories": [
+      { "name": "นายปริญญา  เสียงเลิศ",     "role": "QMS lead auditor",         "date": "26 พฤศจิกายน 2568" },
+      { "name": "นางสาววรภา ดงไม้สถิตย์",   "role": "EMS & OHSMS lead auditor", "date": "26 พฤศจิกายน 2568" }
+    ],
+    "remark": "The audit conclusion is based on a sampling process of the available data during the audit."
+  }
+}

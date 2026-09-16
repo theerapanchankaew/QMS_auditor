@@ -1,0 +1,197 @@
+Node,Node Title,ID,Role,Description,Downstream (Structural),Score (0-4)
+4.1,Understanding the organization and its context,4.1-01,Input,Identify internal issues relevant to purpose/strategic direction (inputs to risk planning).,"4.2, 4.3, 5.1.1, 5.2.1, 6.1.1, 6.2.1, 6.3, 9.3.2",1.73
+4.1,Understanding the organization and its context,4.1-02,Input,Identify external issues (regulatory/market/technology) relevant to QMS.,"4.2, 4.3, 5.1.1, 5.2.1, 6.1.1, 6.2.1, 6.3, 9.3.2",1.73
+4.1,Understanding the organization and its context,4.1-03,Output,Review/update context when significant changes occur; evidence of review cycle.,"4.2, 4.3, 5.1.1, 5.2.1, 6.1.1, 6.2.1, 6.3, 9.3.2",1.73
+4.2,Understanding the needs and expectations of interested parties,4.2-01,Input,Identify relevant interested parties for QMS.,"4.3, 5.1.2, 6.1.1, 7.4, 8.2.2, 9.3.2",1.41
+4.2,Understanding the needs and expectations of interested parties,4.2-02,Input,Determine relevant requirements/expectations of interested parties.,"4.3, 5.1.2, 6.1.1, 7.4, 8.2.2, 9.3.2",1.41
+4.2,Understanding the needs and expectations of interested parties,4.2-03,Output,Monitor/review changes in interested parties and their requirements.,"4.3, 5.1.2, 6.1.1, 7.4, 8.2.2, 9.3.2",1.41
+4.3,Determining the scope of the quality management system,4.3-01,Control,Determine QMS scope considering issues (4.1) and interested parties (4.2).,4.4.1,0.43
+4.3,Determining the scope of the quality management system,4.3-02,Control,Define boundaries/applicability incl. products/services and sites.,4.4.1,0.43
+4.3,Determining the scope of the quality management system,4.3-03,Output,Maintain documented scope and ensure it is available/communicated.,4.4.1,0.43
+4.4.1,"The organization shall establish, implement, maintain and continually improve a quality management",4.4.1-01,Input,"Define/determine requirements and criteria for The organization shall establish, implement, maintain and continually improve a quality management.","4.4.2, 5.3, 6.1.2, 6.1.3, 7.1.1, 7.1.2, 7.1.3, 7.1.4, 7.1.5.1, 7.1.5.2, 7.1.6, 9.1.1, 9.2.1",3.14
+4.4.1,"The organization shall establish, implement, maintain and continually improve a quality management",4.4.1-02,Control,"Implement and maintain controls/activities for The organization shall establish, implement, maintain and continually improve a quality management with evidence.","4.4.2, 5.3, 6.1.2, 6.1.3, 7.1.1, 7.1.2, 7.1.3, 7.1.4, 7.1.5.1, 7.1.5.2, 7.1.6, 9.1.1, 9.2.1",3.14
+4.4.1,"The organization shall establish, implement, maintain and continually improve a quality management",4.4.1-03,Output,"Review and improve The organization shall establish, implement, maintain and continually improve a quality management; ensure records/outputs are retained.","4.4.2, 5.3, 6.1.2, 6.1.3, 7.1.1, 7.1.2, 7.1.3, 7.1.4, 7.1.5.1, 7.1.5.2, 7.1.6, 9.1.1, 9.2.1",3.14
+4.4.2,Documented information shall be available to the extent necessary:,4.4.2-01,Input,Define/determine requirements and criteria for Documented information shall be available to the extent necessary:.,7.5.1,0.32
+4.4.2,Documented information shall be available to the extent necessary:,4.4.2-02,Control,Implement and maintain controls/activities for Documented information shall be available to the extent necessary: with evidence.,7.5.1,0.32
+4.4.2,Documented information shall be available to the extent necessary:,4.4.2-03,Output,Review and improve Documented information shall be available to the extent necessary:; ensure records/outputs are retained.,7.5.1,0.32
+5.1.1,General,5.1.1-01,Input,Define/determine requirements and criteria for General.,"5.1.2, 5.2.1, 5.3, 6.1.1, 9.3.1",1.19
+5.1.1,General,5.1.1-02,Control,Implement and maintain controls/activities for General with evidence.,"5.1.2, 5.2.1, 5.3, 6.1.1, 9.3.1",1.19
+5.1.1,General,5.1.1-03,Output,Review and improve General; ensure records/outputs are retained.,"5.1.2, 5.2.1, 5.3, 6.1.1, 9.3.1",1.19
+5.1.2,Customer focus,5.1.2-01,Input,Define/determine requirements and criteria for Customer focus.,"8.2.1, 8.2.2, 8.2.3.1, 8.2.3.2, 8.2.4",1.3
+5.1.2,Customer focus,5.1.2-02,Control,Implement and maintain controls/activities for Customer focus with evidence.,"8.2.1, 8.2.2, 8.2.3.1, 8.2.3.2, 8.2.4",1.3
+5.1.2,Customer focus,5.1.2-03,Output,Review and improve Customer focus; ensure records/outputs are retained.,"8.2.1, 8.2.2, 8.2.3.1, 8.2.3.2, 8.2.4",1.3
+5.2.1,Top management shall establish a quality policy that:,5.2.1-01,Input,Define/determine requirements and criteria for Top management shall establish a quality policy that:.,"5.2.2, 6.2.1",0.65
+5.2.1,Top management shall establish a quality policy that:,5.2.1-02,Control,Implement and maintain controls/activities for Top management shall establish a quality policy that: with evidence.,"5.2.2, 6.2.1",0.65
+5.2.1,Top management shall establish a quality policy that:,5.2.1-03,Output,Review and improve Top management shall establish a quality policy that:; ensure records/outputs are retained.,"5.2.2, 6.2.1",0.65
+5.2.2,The quality policy shall:,5.2.2-01,Input,Define/determine requirements and criteria for The quality policy shall:.,7.3,0.43
+5.2.2,The quality policy shall:,5.2.2-02,Control,Implement and maintain controls/activities for The quality policy shall: with evidence.,7.3,0.43
+5.2.2,The quality policy shall:,5.2.2-03,Output,Review and improve The quality policy shall:; ensure records/outputs are retained.,7.3,0.43
+5.3,"Roles, responsibilities and authorities",5.3-01,Input,"Define/determine requirements and criteria for Roles, responsibilities and authorities.","6.3, 7.2, 7.4",0.86
+5.3,"Roles, responsibilities and authorities",5.3-02,Control,"Implement and maintain controls/activities for Roles, responsibilities and authorities with evidence.","6.3, 7.2, 7.4",0.86
+5.3,"Roles, responsibilities and authorities",5.3-03,Output,"Review and improve Roles, responsibilities and authorities; ensure records/outputs are retained.","6.3, 7.2, 7.4",0.86
+6.1.1,Determining risks and opportunities,6.1.1-01,Input,Identify risks & opportunities based on 4.1/4.2 context and strategic direction.,"6.1.2, 6.1.3, 9.2.2",0.97
+6.1.1,Determining risks and opportunities,6.1.1-02,Control,Assess risks to conformity and customer satisfaction; prioritize by criteria.,"6.1.2, 6.1.3, 9.2.2",0.97
+6.1.1,Determining risks and opportunities,6.1.1-03,Output,Integrate risk/opportunity register into process framework (4.4) with owners.,"6.1.2, 6.1.3, 9.2.2",0.97
+6.1.2,Actions to address risks,6.1.2-01,Control,Define actions to address prioritized risks (avoid/reduce/share/accept).,"4.4.1, 6.1.3, 8.1, 8.3.2, 8.4.1, 8.4.2, 8.4.3, 9.1.3, 9.3.2",2.16
+6.1.2,Actions to address risks,6.1.2-02,Control,Assign owners/resources and integrate actions into operational controls (8.1).,"4.4.1, 6.1.3, 8.1, 8.3.2, 8.4.1, 8.4.2, 8.4.3, 9.1.3, 9.3.2",2.16
+6.1.2,Actions to address risks,6.1.2-03,Output,Define indicators/criteria to evaluate effectiveness of risk actions.,"4.4.1, 6.1.3, 8.1, 8.3.2, 8.4.1, 8.4.2, 8.4.3, 9.1.3, 9.3.2",2.16
+6.1.2,Actions to address risks,6.1.2-04,Output,Verify integration of risk actions into QMS processes (4.4) and records.,"4.4.1, 6.1.3, 8.1, 8.3.2, 8.4.1, 8.4.2, 8.4.3, 9.1.3, 9.3.2",2.16
+6.1.3,Actions to address opportunities,6.1.3-01,Control,Define actions to seize opportunities aligned with objectives and strategy.,"4.4.1, 8.1, 9.3.2",0.97
+6.1.3,Actions to address opportunities,6.1.3-02,Control,Integrate opportunity actions into processes/projects with owners/resources.,"4.4.1, 8.1, 9.3.2",0.97
+6.1.3,Actions to address opportunities,6.1.3-03,Output,Define measures to evaluate opportunity realization/benefits.,"4.4.1, 8.1, 9.3.2",0.97
+6.2.1,"The organization shall establish quality objectives at relevant processes, functions and levels.",6.2.1-01,Input,"Define/determine requirements and criteria for The organization shall establish quality objectives at relevant processes, functions and levels..","6.2.2, 7.3, 9.1.3",0.86
+6.2.1,"The organization shall establish quality objectives at relevant processes, functions and levels.",6.2.1-02,Control,"Implement and maintain controls/activities for The organization shall establish quality objectives at relevant processes, functions and levels. with evidence.","6.2.2, 7.3, 9.1.3",0.86
+6.2.1,"The organization shall establish quality objectives at relevant processes, functions and levels.",6.2.1-03,Output,"Review and improve The organization shall establish quality objectives at relevant processes, functions and levels.; ensure records/outputs are retained.","6.2.2, 7.3, 9.1.3",0.86
+6.2.2,"When planning how to achieve its quality objectives, the organization shall determine:",6.2.2-01,Input,"Define/determine requirements and criteria for When planning how to achieve its quality objectives, the organization shall determine:.","7.1.1, 7.1.2, 7.1.3, 7.1.4, 7.1.5.1, 7.1.5.2, 7.1.6",1.73
+6.2.2,"When planning how to achieve its quality objectives, the organization shall determine:",6.2.2-02,Control,"Implement and maintain controls/activities for When planning how to achieve its quality objectives, the organization shall determine: with evidence.","7.1.1, 7.1.2, 7.1.3, 7.1.4, 7.1.5.1, 7.1.5.2, 7.1.6",1.73
+6.2.2,"When planning how to achieve its quality objectives, the organization shall determine:",6.2.2-03,Output,"Review and improve When planning how to achieve its quality objectives, the organization shall determine:; ensure records/outputs are retained.","7.1.1, 7.1.2, 7.1.3, 7.1.4, 7.1.5.1, 7.1.5.2, 7.1.6",1.73
+6.3,Planning of changes,6.3-01,Control,Assess impact of planned changes on process results and QMS integrity.,"7.4, 8.3.6, 8.5.6",0.97
+6.3,Planning of changes,6.3-02,Control,"Plan resources, responsibilities, and timing for changes.","7.4, 8.3.6, 8.5.6",0.97
+6.3,Planning of changes,6.3-03,Output,Communicate changes and ensure continuity of operations.,"7.4, 8.3.6, 8.5.6",0.97
+7.1.1,General,7.1.1-01,Input,Define/determine requirements and criteria for General.,"6.2.2, 7.1.2, 8.1, 9.3.3",1.08
+7.1.1,General,7.1.1-02,Control,Implement and maintain controls/activities for General with evidence.,"6.2.2, 7.1.2, 8.1, 9.3.3",1.08
+7.1.1,General,7.1.1-03,Output,Review and improve General; ensure records/outputs are retained.,"6.2.2, 7.1.2, 8.1, 9.3.3",1.08
+7.1.2,People,7.1.2-01,Input,Define/determine requirements and criteria for People.,"7.1.3, 7.2",0.76
+7.1.2,People,7.1.2-02,Control,Implement and maintain controls/activities for People with evidence.,"7.1.3, 7.2",0.76
+7.1.2,People,7.1.2-03,Output,Review and improve People; ensure records/outputs are retained.,"7.1.3, 7.2",0.76
+7.1.3,Infrastructure,7.1.3-01,Input,Define/determine requirements and criteria for Infrastructure.,"7.1.4, 8.5.1, 8.5.2, 8.5.3, 8.5.4, 8.5.5, 8.5.6",1.84
+7.1.3,Infrastructure,7.1.3-02,Control,Implement and maintain controls/activities for Infrastructure with evidence.,"7.1.4, 8.5.1, 8.5.2, 8.5.3, 8.5.4, 8.5.5, 8.5.6",1.84
+7.1.3,Infrastructure,7.1.3-03,Output,Review and improve Infrastructure; ensure records/outputs are retained.,"7.1.4, 8.5.1, 8.5.2, 8.5.3, 8.5.4, 8.5.5, 8.5.6",1.84
+7.1.4,Environment for the operation of processes,7.1.4-01,Input,Define/determine requirements and criteria for Environment for the operation of processes.,,0.32
+7.1.4,Environment for the operation of processes,7.1.4-02,Control,Implement and maintain controls/activities for Environment for the operation of processes with evidence.,,0.32
+7.1.4,Environment for the operation of processes,7.1.4-03,Output,Review and improve Environment for the operation of processes; ensure records/outputs are retained.,,0.32
+7.1.5.1,General,7.1.5.1-01,Input,Define/determine requirements and criteria for General.,7.1.5.2,0.43
+7.1.5.1,General,7.1.5.1-02,Control,Implement and maintain controls/activities for General with evidence.,7.1.5.2,0.43
+7.1.5.1,General,7.1.5.1-03,Output,Review and improve General; ensure records/outputs are retained.,7.1.5.2,0.43
+7.1.5.2,Traceability of measurement results,7.1.5.2-01,Input,Define/determine requirements and criteria for Traceability of measurement results.,,0.32
+7.1.5.2,Traceability of measurement results,7.1.5.2-02,Control,Implement and maintain controls/activities for Traceability of measurement results with evidence.,,0.32
+7.1.5.2,Traceability of measurement results,7.1.5.2-03,Output,Review and improve Traceability of measurement results; ensure records/outputs are retained.,,0.32
+7.1.6,Organizational knowledge,7.1.6-01,Input,Define/determine requirements and criteria for Organizational knowledge.,,0.22
+7.1.6,Organizational knowledge,7.1.6-02,Control,Implement and maintain controls/activities for Organizational knowledge with evidence.,,0.22
+7.1.6,Organizational knowledge,7.1.6-03,Output,Review and improve Organizational knowledge; ensure records/outputs are retained.,,0.22
+7.2,Competence,7.2-01,Input,Define/determine requirements and criteria for Competence.,"7.3, 8.3.4, 8.5.1, 8.5.2, 8.5.3, 8.5.4, 8.5.5, 8.5.6, 9.2.2",2.16
+7.2,Competence,7.2-02,Control,Implement and maintain controls/activities for Competence with evidence.,"7.3, 8.3.4, 8.5.1, 8.5.2, 8.5.3, 8.5.4, 8.5.5, 8.5.6, 9.2.2",2.16
+7.2,Competence,7.2-03,Output,Review and improve Competence; ensure records/outputs are retained.,"7.3, 8.3.4, 8.5.1, 8.5.2, 8.5.3, 8.5.4, 8.5.5, 8.5.6, 9.2.2",2.16
+7.3,Awareness,7.3-01,Input,Define/determine requirements and criteria for Awareness.,7.4,0.54
+7.3,Awareness,7.3-02,Control,Implement and maintain controls/activities for Awareness with evidence.,7.4,0.54
+7.3,Awareness,7.3-03,Output,Review and improve Awareness; ensure records/outputs are retained.,7.4,0.54
+7.4,Communication,7.4-01,Input,Define/determine requirements and criteria for Communication.,"5.2.2, 6.3, 8.2.1, 8.2.2, 8.2.3.1, 8.2.3.2, 8.2.4, 8.4.3",2.16
+7.4,Communication,7.4-02,Control,Implement and maintain controls/activities for Communication with evidence.,"5.2.2, 6.3, 8.2.1, 8.2.2, 8.2.3.1, 8.2.3.2, 8.2.4, 8.4.3",2.16
+7.4,Communication,7.4-03,Output,Review and improve Communication; ensure records/outputs are retained.,"5.2.2, 6.3, 8.2.1, 8.2.2, 8.2.3.1, 8.2.3.2, 8.2.4, 8.4.3",2.16
+7.5.1,General,7.5.1-01,Input,Define/determine requirements and criteria for General.,7.5.2,0.32
+7.5.1,General,7.5.1-02,Control,Implement and maintain controls/activities for General with evidence.,7.5.2,0.32
+7.5.1,General,7.5.1-03,Output,Review and improve General; ensure records/outputs are retained.,7.5.2,0.32
+7.5.2,Creating and updating documented information,7.5.2-01,Input,Define/determine requirements and criteria for Creating and updating documented information.,,0.11
+7.5.2,Creating and updating documented information,7.5.2-02,Control,Implement and maintain controls/activities for Creating and updating documented information with evidence.,,0.11
+7.5.2,Creating and updating documented information,7.5.2-03,Output,Review and improve Creating and updating documented information; ensure records/outputs are retained.,,0.11
+7.5.3.1,Documented information required by the quality management system and by this document shall,7.5.3.1-01,Input,Define/determine requirements and criteria for Documented information required by the quality management system and by this document shall.,7.5.3.2,0.22
+7.5.3.1,Documented information required by the quality management system and by this document shall,7.5.3.1-02,Control,Implement and maintain controls/activities for Documented information required by the quality management system and by this document shall with evidence.,7.5.3.2,0.22
+7.5.3.1,Documented information required by the quality management system and by this document shall,7.5.3.1-03,Output,Review and improve Documented information required by the quality management system and by this document shall; ensure records/outputs are retained.,7.5.3.2,0.22
+7.5.3.2,"For the control of documented information, the organization shall address the following activities,",7.5.3.2-01,Input,"Define/determine requirements and criteria for For the control of documented information, the organization shall address the following activities,.",,0.11
+7.5.3.2,"For the control of documented information, the organization shall address the following activities,",7.5.3.2-02,Control,"Implement and maintain controls/activities for For the control of documented information, the organization shall address the following activities, with evidence.",,0.11
+7.5.3.2,"For the control of documented information, the organization shall address the following activities,",7.5.3.2-03,Output,"Review and improve For the control of documented information, the organization shall address the following activities,; ensure records/outputs are retained.",,0.11
+8.1,Operational planning and control,8.1-01,Control,Implement operational controls including actions from 6.1.2/6.1.3.,"8.3.1, 8.3.2, 8.3.3, 8.3.4, 8.3.5, 8.3.6, 8.4.1, 8.4.2, 8.4.3, 8.5.1, 8.5.2, 8.5.3, 8.5.4, 8.5.5, 8.5.6, 9.1.1, 9.2.1",4.0
+8.1,Operational planning and control,8.1-02,Control,Apply criteria/methods to control processes and outputs based on risk.,"8.3.1, 8.3.2, 8.3.3, 8.3.4, 8.3.5, 8.3.6, 8.4.1, 8.4.2, 8.4.3, 8.5.1, 8.5.2, 8.5.3, 8.5.4, 8.5.5, 8.5.6, 9.1.1, 9.2.1",4.0
+8.1,Operational planning and control,8.1-03,Output,Collect and retain operational performance data for evaluation (9.1).,"8.3.1, 8.3.2, 8.3.3, 8.3.4, 8.3.5, 8.3.6, 8.4.1, 8.4.2, 8.4.3, 8.5.1, 8.5.2, 8.5.3, 8.5.4, 8.5.5, 8.5.6, 9.1.1, 9.2.1",4.0
+8.2.1,Customer communication,8.2.1-01,Input,Define/determine requirements and criteria for Customer communication.,"8.2.2, 8.5.3, 9.1.2",0.86
+8.2.1,Customer communication,8.2.1-02,Control,Implement and maintain controls/activities for Customer communication with evidence.,"8.2.2, 8.5.3, 9.1.2",0.86
+8.2.1,Customer communication,8.2.1-03,Output,Review and improve Customer communication; ensure records/outputs are retained.,"8.2.2, 8.5.3, 9.1.2",0.86
+8.2.2,Determining the requirements for products and services,8.2.2-01,Input,Define/determine requirements and criteria for Determining the requirements for products and services.,8.3.3,0.65
+8.2.2,Determining the requirements for products and services,8.2.2-02,Control,Implement and maintain controls/activities for Determining the requirements for products and services with evidence.,8.3.3,0.65
+8.2.2,Determining the requirements for products and services,8.2.2-03,Output,Review and improve Determining the requirements for products and services; ensure records/outputs are retained.,8.3.3,0.65
+8.2.3.1,The organization shall ensure that it has the ability to meet the requirements for products and,8.2.3.1-01,Input,Define/determine requirements and criteria for The organization shall ensure that it has the ability to meet the requirements for products and.,8.2.3.2,0.43
+8.2.3.1,The organization shall ensure that it has the ability to meet the requirements for products and,8.2.3.1-02,Control,Implement and maintain controls/activities for The organization shall ensure that it has the ability to meet the requirements for products and with evidence.,8.2.3.2,0.43
+8.2.3.1,The organization shall ensure that it has the ability to meet the requirements for products and,8.2.3.1-03,Output,Review and improve The organization shall ensure that it has the ability to meet the requirements for products and; ensure records/outputs are retained.,8.2.3.2,0.43
+8.2.3.2,"Documented information shall be available as applicable, as evidence of:",8.2.3.2-01,Input,"Define/determine requirements and criteria for Documented information shall be available as applicable, as evidence of:.",,0.32
+8.2.3.2,"Documented information shall be available as applicable, as evidence of:",8.2.3.2-02,Control,"Implement and maintain controls/activities for Documented information shall be available as applicable, as evidence of: with evidence.",,0.32
+8.2.3.2,"Documented information shall be available as applicable, as evidence of:",8.2.3.2-03,Output,"Review and improve Documented information shall be available as applicable, as evidence of:; ensure records/outputs are retained.",,0.32
+8.2.4,Changes to requirements for products and services,8.2.4-01,Input,Define/determine requirements and criteria for Changes to requirements for products and services.,,0.22
+8.2.4,Changes to requirements for products and services,8.2.4-02,Control,Implement and maintain controls/activities for Changes to requirements for products and services with evidence.,,0.22
+8.2.4,Changes to requirements for products and services,8.2.4-03,Output,Review and improve Changes to requirements for products and services; ensure records/outputs are retained.,,0.22
+8.3.1,General,8.3.1-01,Input,Define/determine requirements and criteria for General.,8.3.2,0.32
+8.3.1,General,8.3.1-02,Control,Implement and maintain controls/activities for General with evidence.,8.3.2,0.32
+8.3.1,General,8.3.1-03,Output,Review and improve General; ensure records/outputs are retained.,8.3.2,0.32
+8.3.2,Design and development planning,8.3.2-01,Input,Define/determine requirements and criteria for Design and development planning.,8.3.3,0.54
+8.3.2,Design and development planning,8.3.2-02,Control,Implement and maintain controls/activities for Design and development planning with evidence.,8.3.3,0.54
+8.3.2,Design and development planning,8.3.2-03,Output,Review and improve Design and development planning; ensure records/outputs are retained.,8.3.3,0.54
+8.3.3,Design and development inputs,8.3.3-01,Input,Define/determine requirements and criteria for Design and development inputs.,8.3.4,0.54
+8.3.3,Design and development inputs,8.3.3-02,Control,Implement and maintain controls/activities for Design and development inputs with evidence.,8.3.4,0.54
+8.3.3,Design and development inputs,8.3.3-03,Output,Review and improve Design and development inputs; ensure records/outputs are retained.,8.3.4,0.54
+8.3.4,Design and development controls,8.3.4-01,Input,Define/determine requirements and criteria for Design and development controls.,8.3.5,0.54
+8.3.4,Design and development controls,8.3.4-02,Control,Implement and maintain controls/activities for Design and development controls with evidence.,8.3.5,0.54
+8.3.4,Design and development controls,8.3.4-03,Output,Review and improve Design and development controls; ensure records/outputs are retained.,8.3.5,0.54
+8.3.5,Design and development outputs,8.3.5-01,Input,Define/determine requirements and criteria for Design and development outputs.,8.3.6,0.43
+8.3.5,Design and development outputs,8.3.5-02,Control,Implement and maintain controls/activities for Design and development outputs with evidence.,8.3.6,0.43
+8.3.5,Design and development outputs,8.3.5-03,Output,Review and improve Design and development outputs; ensure records/outputs are retained.,8.3.6,0.43
+8.3.6,Design and development changes,8.3.6-01,Input,Define/determine requirements and criteria for Design and development changes.,,0.32
+8.3.6,Design and development changes,8.3.6-02,Control,Implement and maintain controls/activities for Design and development changes with evidence.,,0.32
+8.3.6,Design and development changes,8.3.6-03,Output,Review and improve Design and development changes; ensure records/outputs are retained.,,0.32
+8.4.1,General,8.4.1-01,Input,Define/determine requirements and criteria for General.,"8.4.2, 9.1.3",0.65
+8.4.1,General,8.4.1-02,Control,Implement and maintain controls/activities for General with evidence.,"8.4.2, 9.1.3",0.65
+8.4.1,General,8.4.1-03,Output,Review and improve General; ensure records/outputs are retained.,"8.4.2, 9.1.3",0.65
+8.4.2,Type and extent of control,8.4.2-01,Input,Define/determine requirements and criteria for Type and extent of control.,8.4.3,0.54
+8.4.2,Type and extent of control,8.4.2-02,Control,Implement and maintain controls/activities for Type and extent of control with evidence.,8.4.3,0.54
+8.4.2,Type and extent of control,8.4.2-03,Output,Review and improve Type and extent of control; ensure records/outputs are retained.,8.4.3,0.54
+8.4.3,Information for external providers,8.4.3-01,Input,Define/determine requirements and criteria for Information for external providers.,,0.43
+8.4.3,Information for external providers,8.4.3-02,Control,Implement and maintain controls/activities for Information for external providers with evidence.,,0.43
+8.4.3,Information for external providers,8.4.3-03,Output,Review and improve Information for external providers; ensure records/outputs are retained.,,0.43
+8.5.1,Control of production and service provision,8.5.1-01,Input,Define/determine requirements and criteria for Control of production and service provision.,"8.5.2, 8.6",0.76
+8.5.1,Control of production and service provision,8.5.1-02,Control,Implement and maintain controls/activities for Control of production and service provision with evidence.,"8.5.2, 8.6",0.76
+8.5.1,Control of production and service provision,8.5.1-03,Output,Review and improve Control of production and service provision; ensure records/outputs are retained.,"8.5.2, 8.6",0.76
+8.5.2,Identification and traceability,8.5.2-01,Input,Define/determine requirements and criteria for Identification and traceability.,8.5.3,0.65
+8.5.2,Identification and traceability,8.5.2-02,Control,Implement and maintain controls/activities for Identification and traceability with evidence.,8.5.3,0.65
+8.5.2,Identification and traceability,8.5.2-03,Output,Review and improve Identification and traceability; ensure records/outputs are retained.,8.5.3,0.65
+8.5.3,Property belonging to customers or external providers,8.5.3-01,Input,Define/determine requirements and criteria for Property belonging to customers or external providers.,8.5.4,0.76
+8.5.3,Property belonging to customers or external providers,8.5.3-02,Control,Implement and maintain controls/activities for Property belonging to customers or external providers with evidence.,8.5.4,0.76
+8.5.3,Property belonging to customers or external providers,8.5.3-03,Output,Review and improve Property belonging to customers or external providers; ensure records/outputs are retained.,8.5.4,0.76
+8.5.4,Preservation,8.5.4-01,Input,Define/determine requirements and criteria for Preservation.,8.5.5,0.65
+8.5.4,Preservation,8.5.4-02,Control,Implement and maintain controls/activities for Preservation with evidence.,8.5.5,0.65
+8.5.4,Preservation,8.5.4-03,Output,Review and improve Preservation; ensure records/outputs are retained.,8.5.5,0.65
+8.5.5,Post-delivery activities,8.5.5-01,Input,Define/determine requirements and criteria for Post-delivery activities.,"8.5.6, 9.1.2",0.97
+8.5.5,Post-delivery activities,8.5.5-02,Control,Implement and maintain controls/activities for Post-delivery activities with evidence.,"8.5.6, 9.1.2",0.97
+8.5.5,Post-delivery activities,8.5.5-03,Output,Review and improve Post-delivery activities; ensure records/outputs are retained.,"8.5.6, 9.1.2",0.97
+8.5.6,Control of changes,8.5.6-01,Input,Define/determine requirements and criteria for Control of changes.,,0.54
+8.5.6,Control of changes,8.5.6-02,Control,Implement and maintain controls/activities for Control of changes with evidence.,,0.54
+8.5.6,Control of changes,8.5.6-03,Output,Review and improve Control of changes; ensure records/outputs are retained.,,0.54
+8.6,Release of products and services,8.6-01,Input,Define/determine requirements and criteria for Release of products and services.,8.7.1,0.32
+8.6,Release of products and services,8.6-02,Control,Implement and maintain controls/activities for Release of products and services with evidence.,8.7.1,0.32
+8.6,Release of products and services,8.6-03,Output,Review and improve Release of products and services; ensure records/outputs are retained.,8.7.1,0.32
+8.7.1,The organization shall ensure that outputs that do not conform to requirements are identified and,8.7.1-01,Control,Identify and control nonconforming outputs to prevent unintended use/delivery.,"8.7.2, 10.2.1",0.65
+8.7.1,The organization shall ensure that outputs that do not conform to requirements are identified and,8.7.1-02,Control,Decide disposition and take actions (correction/segregation/return/stop).,"8.7.2, 10.2.1",0.65
+8.7.1,The organization shall ensure that outputs that do not conform to requirements are identified and,8.7.1-03,Output,Trigger nonconformity handling inputs for corrective action (10.2.1).,"8.7.2, 10.2.1",0.65
+8.7.2,Documented information shall be available as evidence to:,8.7.2-01,Input,Define/determine requirements and criteria for Documented information shall be available as evidence to:.,,0.11
+8.7.2,Documented information shall be available as evidence to:,8.7.2-02,Control,Implement and maintain controls/activities for Documented information shall be available as evidence to: with evidence.,,0.11
+8.7.2,Documented information shall be available as evidence to:,8.7.2-03,Output,Review and improve Documented information shall be available as evidence to:; ensure records/outputs are retained.,,0.11
+9.1.1,General,9.1.1-01,Input,Define/determine requirements and criteria for General.,"8.7.1, 9.1.2, 9.1.3",0.86
+9.1.1,General,9.1.1-02,Control,Implement and maintain controls/activities for General with evidence.,"8.7.1, 9.1.2, 9.1.3",0.86
+9.1.1,General,9.1.1-03,Output,Review and improve General; ensure records/outputs are retained.,"8.7.1, 9.1.2, 9.1.3",0.86
+9.1.2,Customer satisfaction,9.1.2-01,Input,Define/determine requirements and criteria for Customer satisfaction.,"8.5.5, 9.1.3",0.76
+9.1.2,Customer satisfaction,9.1.2-02,Control,Implement and maintain controls/activities for Customer satisfaction with evidence.,"8.5.5, 9.1.3",0.76
+9.1.2,Customer satisfaction,9.1.2-03,Output,Review and improve Customer satisfaction; ensure records/outputs are retained.,"8.5.5, 9.1.3",0.76
+9.1.3,Analysis and evaluation,9.1.3-01,Control,Analyze effectiveness of actions (incl. 6.1) using collected data.,"9.3.2, 10.1, 10.2.1",1.19
+9.1.3,Analysis and evaluation,9.1.3-02,Control,Evaluate trends and system performance against objectives and criteria.,"9.3.2, 10.1, 10.2.1",1.19
+9.1.3,Analysis and evaluation,9.1.3-03,Output,Identify improvement needs/opportunities and provide inputs to MR (9.3).,"9.3.2, 10.1, 10.2.1",1.19
+9.2.1,General,9.2.1-01,Input,Define/determine requirements and criteria for General.,9.2.2,0.43
+9.2.1,General,9.2.1-02,Control,Implement and maintain controls/activities for General with evidence.,9.2.2,0.43
+9.2.1,General,9.2.1-03,Output,Review and improve General; ensure records/outputs are retained.,9.2.2,0.43
+9.2.2,Internal audit programme,9.2.2-01,Input,Define/determine requirements and criteria for Internal audit programme.,"9.3.2, 10.2.1",0.76
+9.2.2,Internal audit programme,9.2.2-02,Control,Implement and maintain controls/activities for Internal audit programme with evidence.,"9.3.2, 10.2.1",0.76
+9.2.2,Internal audit programme,9.2.2-03,Output,Review and improve Internal audit programme; ensure records/outputs are retained.,"9.3.2, 10.2.1",0.76
+9.3.1,General,9.3.1-01,Input,Define/determine requirements and criteria for General.,9.3.2,0.32
+9.3.1,General,9.3.1-02,Control,Implement and maintain controls/activities for General with evidence.,9.3.2,0.32
+9.3.1,General,9.3.1-03,Output,Review and improve General; ensure records/outputs are retained.,9.3.2,0.32
+9.3.2,Management review inputs,9.3.2-01,Input,Include changes in 4.1/4.2 and relevant performance information in MR inputs.,9.3.3,0.97
+9.3.2,Management review inputs,9.3.2-02,Input,Include evaluation of effectiveness of actions for risks/opportunities (6.1).,9.3.3,0.97
+9.3.2,Management review inputs,9.3.2-03,Output,Record MR inputs with evidence completeness and timeliness.,9.3.3,0.97
+9.3.3,Management review results,9.3.3-01,Input,Define/determine requirements and criteria for Management review results.,10.1,0.43
+9.3.3,Management review results,9.3.3-02,Control,Implement and maintain controls/activities for Management review results with evidence.,10.1,0.43
+9.3.3,Management review results,9.3.3-03,Output,Review and improve Management review results; ensure records/outputs are retained.,10.1,0.43
+10.1,Continual improvement,10.1-01,Control,Select continual improvement opportunities based on 9.1 and 9.3 outputs.,,0.22
+10.1,Continual improvement,10.1-02,Control,Plan and implement improvement actions (system/process/product/service).,,0.22
+10.1,Continual improvement,10.1-03,Output,Monitor effectiveness of improvement actions and feed back to planning.,,0.22
+10.2.1,"When a nonconformity occurs, the organization shall:",10.2.1-01,Control,React to nonconformity and take correction/containment as appropriate.,10.2.2,0.54
+10.2.1,"When a nonconformity occurs, the organization shall:",10.2.1-02,Control,Perform root cause analysis and determine corrective actions.,10.2.2,0.54
+10.2.1,"When a nonconformity occurs, the organization shall:",10.2.1-03,Output,Verify effectiveness of corrective actions and update risks/opportunities.,10.2.2,0.54
+10.2.2,Documented information shall be available as evidence of:,10.2.2-01,Input,Define/determine requirements and criteria for Documented information shall be available as evidence of:.,,0.11
+10.2.2,Documented information shall be available as evidence of:,10.2.2-02,Control,Implement and maintain controls/activities for Documented information shall be available as evidence of: with evidence.,,0.11
+10.2.2,Documented information shall be available as evidence of:,10.2.2-03,Output,Review and improve Documented information shall be available as evidence of:; ensure records/outputs are retained.,,0.11

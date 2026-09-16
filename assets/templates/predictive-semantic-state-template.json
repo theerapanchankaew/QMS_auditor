@@ -1,0 +1,15 @@
+{
+  "case_id": "QMS-TEST-001",
+  "clause": "6.1.3",
+  "atomic_requirement_ids": [],
+  "process": "",
+  "observed_states": [],
+  "expected_states": [],
+  "evidence_classes": [],
+  "support_relations": [],
+  "contradiction_relations": [],
+  "missing_state_candidates": [],
+  "confidence": 0.0,
+  "epistemic_class": "prediction_only",
+  "evidence_status": "not_audit_evidence"
+}

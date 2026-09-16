@@ -1,0 +1,34 @@
+{
+  "boundary_id": "approved-source-boundaries",
+  "version": "2026.0-rag-ready-1",
+  "allowed_roots": [
+    "references",
+    "assets",
+    "scripts"
+  ],
+  "allowed_asset_subroots": [
+    "assets/standards",
+    "assets/templates",
+    "assets/manifests",
+    "assets/rag_indexes"
+  ],
+  "forbidden_roots": [
+    "http://",
+    "https://",
+    "ftp://",
+    "s3://",
+    "gs://",
+    "drive://",
+    "sharepoint://",
+    "slack://"
+  ],
+  "forbidden_actions": [
+    "web_search",
+    "browse",
+    "connector_lookup",
+    "official_website_check",
+    "latest_update_check",
+    "internet_definition_lookup"
+  ],
+  "on_violation": "blocked_pending_controlled_source"
+}

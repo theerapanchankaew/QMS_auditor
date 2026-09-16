@@ -1,0 +1,119 @@
+{
+  "$defs": {
+    "CandidateState": {
+      "enum": [
+        "RAW",
+        "CANDIDATE",
+        "PRESENTED",
+        "CORROBORATED",
+        "VERIFIED",
+        "REJECTED"
+      ],
+      "title": "CandidateState",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "candidate_id": {
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "organization_id": {
+      "title": "Organization Id",
+      "type": "string"
+    },
+    "audit_case_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Audit Case Id"
+    },
+    "source_id": {
+      "title": "Source Id",
+      "type": "string"
+    },
+    "span_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Span Ids",
+      "type": "array"
+    },
+    "assertion": {
+      "title": "Assertion",
+      "type": "string"
+    },
+    "normalized_fact": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Normalized Fact"
+    },
+    "candidate_state": {
+      "$ref": "#/$defs/CandidateState",
+      "default": "CANDIDATE"
+    },
+    "evidence_type": {
+      "default": "document",
+      "title": "Evidence Type",
+      "type": "string"
+    },
+    "related_requirement_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Related Requirement Ids",
+      "type": "array"
+    },
+    "extraction_confidence": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Extraction Confidence",
+      "type": "number"
+    },
+    "extractor": {
+      "title": "Extractor",
+      "type": "string"
+    },
+    "extractor_version": {
+      "title": "Extractor Version",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    }
+  },
+  "required": [
+    "candidate_id",
+    "organization_id",
+    "source_id",
+    "span_ids",
+    "assertion",
+    "extraction_confidence",
+    "extractor",
+    "extractor_version",
+    "created_at"
+  ],
+  "title": "EvidenceCandidate",
+  "type": "object"
+}
