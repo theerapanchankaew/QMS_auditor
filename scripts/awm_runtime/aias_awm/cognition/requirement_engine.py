@@ -24,11 +24,16 @@ class RequirementStateEngine:
 
     This is the canonical requirement-atomization + sufficiency + breach
     engine (see AtomicRequirement in domain/models.py for the AR schema).
-    `applicability` is currently a caller-supplied input — no evaluator yet
-    resolves `AtomicRequirement.applicability_rule_id` (the L7 conditional-
-    qualifier / "as applicable" exception test). That is a confirmed real
-    gap; see ../../../../docs/eei-blueprint-crosswalk.md before building it
-    as a standalone module instead of extending this engine.
+    Two confirmed gaps belong near this engine, and are distinct from each
+    other (see docs/eei-blueprint-crosswalk.md before building either as a
+    standalone module):
+      1. `applicability` is a caller-supplied input — no evaluator yet
+         resolves `AtomicRequirement.applicability_rule_id` (the L7
+         conditional-qualifier / "as applicable" gate).
+      2. `breach_proven` is read directly from evidence metadata
+         (`proves_breach`) — there is no expected-vs-observed breach test
+         with an exception/exemption check in between (EEI deck slides
+         17-18: `breach_status = EXEMPTED | CONFIRMED`).
     """
 
     def assess(
