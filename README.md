@@ -33,11 +33,17 @@ docker-compose.yml       Ollama + OpenWebUI + Pipelines stack
 
 ## ⚠️ Licensed standards — do not commit
 
-`assets/standards/*.pdf` (ISO 9001:2026 — bundled as an FDIS-stage text
-file, content sample-verified against the published Sixth edition; ISO
-FDIS 9000:2026, not confirmed published; ISO 9000 glossary) are
-**copyrighted ISO/IEC works**, not open content. They are
-excluded via `.gitignore`. Before running anything that calls
+`assets/standards/*.pdf` are **copyrighted ISO/IEC works**, not open
+content:
+
+- **ISO 9001:2026** — bundled as FDIS-stage text; content sample-verified
+  against the published Sixth edition (2026-09) — see
+  `assets/requirement_profiles/README.md`.
+- **ISO 9000:2026** (vocabulary) — FDIS-stage; publication status not
+  confirmed.
+- **ISO 9000 glossary**.
+
+They are excluded via `.gitignore`. Before running anything that calls
 `scripts/extract_clause.py` or the standard-lookup path:
 
 1. Obtain your own licensed copies of these PDFs.
