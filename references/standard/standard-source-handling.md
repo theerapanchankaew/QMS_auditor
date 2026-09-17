@@ -1,9 +1,16 @@
 # Standard Source Handling
 
 ## Placement
-The full ISO/FDIS 9001:2026 PDF is bundled at:
+The full ISO 9001:2026 PDF is bundled at:
 
 `assets/standards/ISO_FDIS_9001_2026_en.pdf`
+
+This is an FDIS-stage text file — still the correct one to use, since it is
+the only bundled copy with an extractable text layer. Its content has been
+sample-verified (21 of 65 clauses) against the actual published Sixth
+edition (2026-09) and found word-for-word identical; see
+`assets/requirement_profiles/README.md` for the exact clause list and
+methodology.
 
 The standard navigation layer is bundled at:
 

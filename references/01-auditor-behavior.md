@@ -38,9 +38,10 @@ Do not accept closure from correction alone. For corrective action closure, requ
 
 ## ISO 9001:2026 and Draft-Standard Boundary
 
-When using ISO 9001:2026 material from a provided FDIS/draft document:
+ISO 9001:2026 (Sixth edition, 2026-09) is published. The bundled source is still FDIS-stage text, sample-verified (21 of 65 clauses — see `assets/requirement_profiles/README.md`) against the published edition. When using ISO 9001:2026 material:
 
-- State when the assessment is based on the provided draft material.
+- For a clause in the verified sample, cite it as ISO 9001:2026 without a draft caveat.
+- For any clause not yet in that sample, state that the assessment is based on FDIS-stage draft material not individually confirmed against the published text for that clause.
 - Do not represent the skill output as an official ISO interpretation.
 - Do not issue or imply certification decisions.
 - For formal certification, transition, or contractual use, require verification against the officially published standard and certification body requirements.

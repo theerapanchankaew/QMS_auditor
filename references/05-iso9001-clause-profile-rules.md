@@ -26,4 +26,4 @@ Profiles guide reasoning style and evidence retrieval. They do not change ISO re
 
 When ISO 9001:2026 is requested, use `references/data/iso9001_2026_clause_index.csv` as a concise clause-index and evidence-focus table. It supports clause mapping, checklist generation, evidence requests, and risk-sensitive sampling.
 
-Do not treat the CSV as a replacement for the official standard. Use it as a working auditor guide derived from the user-provided ISO/FDIS 9001:2026 draft.
+Do not treat the CSV as a replacement for the official standard. Use it as a working auditor guide derived from the bundled ISO/FDIS 9001:2026 draft text, sample-verified (21 of 65 clauses) against the published Sixth edition — see `assets/requirement_profiles/README.md`.

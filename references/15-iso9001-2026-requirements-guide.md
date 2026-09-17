@@ -4,11 +4,11 @@
 
 Use this guide when the user asks for ISO 9001:2026, ISO/FDIS 9001, transition from ISO 9001:2015, or audit work based on the 2026 revision.
 
-The bundled guidance is based on the user-provided ISO/FDIS 9001 draft. Treat it as draft-stage audit criteria unless the user confirms the final published standard is being used. Do not present this skill as an official copy of ISO 9001:2026. For certification decisions, require verification against the officially issued standard and certification body rules.
+ISO 9001:2026 (Sixth edition, 2026-09) has been published. The bundled guidance is based on the ISO/FDIS 9001 draft text (`assets/standards/ISO_FDIS_9001_2026_en.pdf`), which has been sample-verified against the actual published standard for 21 of 65 clauses (see `assets/requirement_profiles/README.md` for the exact list and method) and found word-for-word identical in every case checked. For a clause in that verified sample, cite it as ISO 9001:2026 without a draft caveat. For any clause not yet in that sample, treat it as draft-stage audit criteria unless the user confirms or supplies the current published wording for that specific clause. Do not present this skill as an official copy of ISO 9001:2026. For certification decisions, require verification against the officially issued standard and certification body rules.
 
 ## Main 2026 changes to consider
 
-The 2026 draft indicates several key changes from the 2015 edition:
+The published Foreword confirms these key changes from the 2015 edition (verified directly against the published-standard PDF's own Foreword, 2026-09-17):
 
 1. Clause 3 includes a limited set of core ISO management system terms and definitions, while ISO 9000 remains the normative quality vocabulary reference.
 2. Quality culture and ethical behaviour are introduced into requirements, especially leadership, awareness, and the environment for operation of processes.
@@ -161,12 +161,13 @@ When asked to support transition from ISO 9001:2015 to ISO 9001:2026, evaluate a
 
 ## Standard caveat wording
 
-Use this wording when appropriate:
+ISO 9001:2026 is published (Sixth edition, 2026-09). Use whichever wording matches the clause involved:
 
-`This assessment is based on the ISO/FDIS 9001:2026 draft content provided in the conversation. For certification or contractual use, verify against the officially published ISO 9001:2026 text and applicable accreditation/certification body requirements.`
+- For a clause in the verified sample (see `assets/requirement_profiles/README.md`): `This assessment cites ISO 9001:2026 (Sixth edition, 2026-09). For certification or contractual use, verify against your own copy of the officially published text and applicable accreditation/certification body requirements.`
+- For any other clause: `This assessment is based on ISO/FDIS 9001:2026 draft-stage text that has not yet been individually confirmed against the published Sixth edition (2026-09) for this specific clause. For certification or contractual use, verify against the officially published ISO 9001:2026 text and applicable accreditation/certification body requirements.`
 
 ## Full Standard PDF Integration
-The full ISO/FDIS 9001:2026 PDF is bundled at `assets/standards/ISO_FDIS_9001_2026_en.pdf`.
+The full ISO 9001:2026 PDF is bundled at `assets/standards/ISO_FDIS_9001_2026_en.pdf` (FDIS-stage text; content sample-verified against the published Sixth edition for 21 of 65 clauses — see `assets/requirement_profiles/README.md`).
 
 Use the curated requirement guide for audit reasoning and sampling design, but use the full PDF for:
 - exact clause wording;

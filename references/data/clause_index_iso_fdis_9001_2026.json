@@ -1,7 +1,7 @@
 {
   "document_id": "ISO_FDIS_9001_2026_en",
-  "document_title": "ISO/FDIS 9001:2026 Quality management systems - Requirements",
-  "document_status": "FDIS stage",
+  "document_title": "ISO 9001:2026 Quality management systems - Requirements",
+  "document_status": "FDIS-stage text (bundled file); content sample-verified against published Sixth edition (2026-09) for 21 of 65 clauses, 2026-09-17 -- see assets/requirement_profiles/README.md",
   "index_note": "Metadata-only clause index. Does not include full ISO standard text.",
   "clauses": {
     "1": {"title": "Scope", "section_type": "requirement", "page_start": 12, "page_end": 12, "parent": null},

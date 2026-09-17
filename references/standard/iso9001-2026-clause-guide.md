@@ -1,6 +1,6 @@
 # ISO 9001:2026 Clause Guide for Audit Reasoning
 
-This guide summarizes audit intent and evidence expectations. It is not a replacement for the full ISO/FDIS 9001:2026 PDF. Use it for planning, checklist generation, and first-pass clause mapping; use the PDF for exact wording.
+This guide summarizes audit intent and evidence expectations. It is not a replacement for the full ISO 9001:2026 PDF. Use it for planning, checklist generation, and first-pass clause mapping; use the PDF for exact wording. The bundled PDF (`assets/standards/ISO_FDIS_9001_2026_en.pdf`) is FDIS-stage text; its content has been sample-verified (21 of 65 clauses) against the published Sixth edition — see `assets/requirement_profiles/README.md`.
 
 ## 2026 audit themes to check
 - **Quality culture and ethical behaviour**: appears in leadership, awareness, and environment-for-process thinking. Audit it through leadership actions, communication, behaviours, training/awareness, decision-making, and process environment evidence.

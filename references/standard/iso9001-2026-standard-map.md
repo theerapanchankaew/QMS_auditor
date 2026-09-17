@@ -1,6 +1,6 @@
 # ISO 9001:2026 Standard Map
 
-Use this file as the first navigation layer before opening or searching the full PDF. It maps likely audit topics to clauses in ISO/FDIS 9001:2026 and tells the auditor when to verify exact wording from `assets/standards/ISO_FDIS_9001_2026_en.pdf`.
+Use this file as the first navigation layer before opening or searching the full PDF. It maps likely audit topics to clauses in ISO 9001:2026 and tells the auditor when to verify exact wording from `assets/standards/ISO_FDIS_9001_2026_en.pdf` (FDIS-stage text; content sample-verified against the published Sixth edition, 21 of 65 clauses — see `assets/requirement_profiles/README.md`).
 
 ## Source hierarchy
 1. **Audit workflow and judgement logic**: use `SKILL.md` and references `01` to `16`.

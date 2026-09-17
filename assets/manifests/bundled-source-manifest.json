@@ -15,9 +15,10 @@
   "sources": [
     {
       "source_id": "iso9001-fdis-2026-en",
-      "title": "ISO/FDIS 9001:2026 Quality management systems — Requirements",
+      "title": "ISO 9001:2026 Quality management systems — Requirements",
       "source_category": "standard",
-      "status": "final_draft",
+      "status": "published_is_content_verified_sample_2026-09-17",
+      "status_note": "ISO 9001:2026 (Sixth edition, 2026-09) was published after this FDIS-stage PDF was bundled. The controlled_location file below still IS the FDIS-stage text (checksum unchanged, still the only text-extractable copy for scripts/extract_clause.py) -- 21 of 65 clauses were sampled against the actual published-standard PDF (a scanned copy, no text layer) by direct visual page comparison on 2026-09-17 and found word-for-word identical; the remaining 44 have not been individually re-verified. See assets/requirement_profiles/README.md.",
       "language": "en",
       "controlled_location": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
       "checksum_sha256": "71252005f9433c063600f9a36fc4d4f0fdecf1c4f97146b026c6e45b2e2bba7a",
