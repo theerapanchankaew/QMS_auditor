@@ -156,3 +156,40 @@ before it was reported, and what was deliberately left untouched
 `bundled-source-manifest.json` entry, and `extract_clause.py`'s
 `DEFAULT_PDF`, which must keep pointing at the FDIS file since it's the
 only one with a working text layer).
+
+## Update 2026-09-18: external patch from a sibling skill, mostly rejected
+
+User supplied a git patch series (`files.zip`) claiming to port an AHP
+engine, an evidence-ambiguity gate, and IG-weighted action ranking from
+**professional-auditor** — a separate, independently-built ISO 9001:2026
+Claude Skill available in this same environment, not this repo. Same
+pattern this file exists to catch, now arriving as an actual patch instead
+of pasted pseudocode: the PR description admitted it was drafted **without
+a live clone of this repo** (`git clone`/`raw.githubusercontent.com` both
+failed — repo is private).
+
+Checked against the real repo before applying anything:
+
+- `git apply --check` **failed** on 3 of the patch's files
+  (`next_best_audit_action.py`, `imagination_engine.py`,
+  `audit_state_canonicalizer.py`) — the patch encoded them as brand-new
+  files (`--- /dev/null`), but all three already exist here with real,
+  working implementations wired into `audit_world_model.py` and this
+  repo's own governance vocabulary. Applying that part would have silently
+  destroyed working code.
+- The patch's `ahp_engine.py` fully duplicates the existing
+  `scripts/ahp_calculator.py` (principal eigenvector method, proper RI
+  table, CI/CR, and a finer-grained 3-tier consistency gate than what the
+  patch claimed to newly add).
+- **One piece checked out and was kept**:
+  `scripts/world_constraint_validator.py` (+ its test file) — no file
+  collision, its `CONSEQUENCE_TABLE` matches SKILL.md BLOCK 3 rules
+  16/17/19 entry-by-entry, and its 7 regression tests were independently
+  re-run after extraction and all passed. See
+  `references/67-world-constraint-validator.md` for the full writeup.
+
+Lesson for next time this happens: a patch file (vs. pasted text) is not
+inherently more trustworthy just because it looks like a formal diff —
+`git apply --check` plus reading the actual diff content is the same
+verification this file already asks for, just applied to a different
+input format.
