@@ -15,17 +15,50 @@ in this session (the dismissed proposal misclassified 8.5.1).
 Status: AI-drafted from the FDIS draft text. NOT SME/human-auditor reviewed.
 Do not treat as certified interpretation; do not present as final until a
 qualified auditor signs off, exactly per this repo's own governance stance.
+
+Cross-references: each clause file also carries a `related_clauses` block
+built from three sources, all attributed so the basis for each relation is
+visible rather than opaque:
+  - "siblings"            -- other corpus clauses sharing the same
+                             immediate parent clause number (e.g. 8.5.2 is
+                             a sibling of 8.5.1); purely mechanical.
+  - "from_related_clause_map" -- reuses the EXISTING, already-curated
+                             references/data/related_clause_map.yaml (the
+                             file the retrieval engine already loads via
+                             retrieval_engine.simple_yaml_map) rather than
+                             inventing a second relationship scheme.
+  - "explicit_text_references" -- clause numbers the real FDIS text itself
+                             cites inline (e.g. clause 6.1.1 explicitly
+                             says "the issues referred to in 4.1"),
+                             re-extracted from the raw PDF text via
+                             scripts/extract_clause.py at generation time
+                             (not from this script's own paraphrased
+                             object/condition text, which may have dropped
+                             an inline citation during paraphrasing).
+This lives OUTSIDE each AtomicRequirement record (sibling to the
+"requirements" list in each clause file), not as a new field on
+AtomicRequirement itself -- extending that Pydantic model would also
+require updating scripts/awm_runtime/schemas/AtomicRequirement.schema.json
+(additionalProperties: false) and the atomic_requirements SQL table/
+SQLAlchemy Table in persistence/tables.py, none of which anything in this
+repo currently populates from this corpus. Keeping cross-references at the
+file level avoids that migration for a field nothing yet consumes.
 """
 from __future__ import annotations
 
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 HARNESS_PY = REPO_ROOT / "scripts" / "harness_gate_executor.py"
+RELATED_CLAUSE_MAP_YAML = REPO_ROOT / "references" / "data" / "related_clause_map.yaml"
 OUT_DIR = REPO_ROOT / "assets" / "requirement_profiles"
+
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+from retrieval_engine import simple_yaml_map  # noqa: E402  (reuse existing parser)
 
 STANDARD_ID = "ISO/FDIS 9001:2026"
 VERSION = "0.1.0-ai-draft-unreviewed"
@@ -432,10 +465,98 @@ CLAUSES = [
 ]
 
 
+CORPUS_CLAUSES = {c for c, _, _ in CLAUSES}
+YAML_MAP = simple_yaml_map(RELATED_CLAUSE_MAP_YAML) if RELATED_CLAUSE_MAP_YAML.exists() else {}
+CLAUSE_NUM_RE = re.compile(r"\b\d{1,2}(?:\.\d+){1,3}\b")
+
+
+def parent_of(clause: str) -> str | None:
+    if "." not in clause:
+        return None
+    return clause.rsplit(".", 1)[0]
+
+
+def expand_clause_ref(ref: str, corpus: set[str]) -> set[str]:
+    """A related-clause reference like '6.1' or '8.7' may denote a whole
+    sub-clause family in the standard even though only 6.1.1/6.1.2/6.1.3 or
+    8.7.1/8.7.2 exist as individual clauses in this corpus. Expand to every
+    corpus clause that IS ref or is nested under it."""
+    if ref in corpus:
+        return {ref}
+    return {c for c in corpus if c == ref or c.startswith(ref + ".")}
+
+
+def compute_siblings(clause: str, corpus: set[str]) -> list[str]:
+    parent = parent_of(clause)
+    if parent is None:
+        return []
+    return sorted(c for c in corpus if c != clause and parent_of(c) == parent)
+
+
+def compute_yaml_related(clause: str, corpus: set[str]) -> list[str]:
+    related: set[str] = set()
+    for group in YAML_MAP.values():
+        if clause in group.get("primary", []):
+            for ref in group.get("related_requirements", []):
+                related |= expand_clause_ref(ref, corpus)
+    related.discard(clause)
+    return sorted(related)
+
+
+# scripts/extract_clause.py's heading-boundary regex mis-triggers on the bare
+# cross-reference "4.1" inline in clause 6.1.1's running text (confirmed the
+# ONLY clause of the 65 affected by re-running this check against all of
+# them), truncating the extracted text before it reaches "4.1"/"4.2". Seed
+# the cache with the verified-correct text (read directly off PDF page 20 in
+# this session) instead of trusting the live extractor for this one clause.
+_TEXT_CACHE: dict[str, str] = {
+    "6.1.1": (
+        "6.1.1 Determining risks and opportunities\n"
+        "When planning for the quality management system, the organization shall consider the issues referred to in "
+        "4.1 and the requirements referred to in 4.2 and determine the risks and opportunities that need to be "
+        "addressed to:\n"
+        "a) give assurance that the quality management system can achieve its intended result(s);\n"
+        "b) prevent, or reduce, undesired effects;\n"
+        "c) achieve continual improvement;\n"
+        "d) enhance desired effects."
+    ),
+}
+
+
+def _raw_clause_text(clause: str) -> str:
+    if clause in _TEXT_CACHE:
+        return _TEXT_CACHE[clause]
+    proc = subprocess.run(
+        [sys.executable, str(REPO_ROOT / "scripts" / "extract_clause.py"), clause, "--json", "--max-chars", "6000"],
+        capture_output=True, text=True, cwd=REPO_ROOT,
+    )
+    text = ""
+    if proc.returncode == 0 and proc.stdout.strip():
+        try:
+            text = json.loads(proc.stdout)["text"]
+        except (json.JSONDecodeError, KeyError):
+            text = ""
+    _TEXT_CACHE[clause] = text
+    return text
+
+
+def compute_explicit_text_refs(clause: str, corpus: set[str]) -> list[str]:
+    text = _raw_clause_text(clause)
+    related: set[str] = set()
+    for m in CLAUSE_NUM_RE.finditer(text):
+        related |= expand_clause_ref(m.group(0), corpus)
+    related.discard(clause)
+    return sorted(related)
+
+
 def build():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     index = []
     total_elements = 0
+    # First pass: element IDs per clause, needed to resolve related_requirement_ids.
+    element_ids_by_clause = {
+        clause: [f"AR-{clause}-{e['suffix']}" for e in elements] for clause, _, elements in CLAUSES
+    }
     for clause, title, elements in CLAUSES:
         category = semantic_category_for(clause)
         records = []
@@ -458,6 +579,15 @@ def build():
                 "version": VERSION,
             })
         total_elements += len(records)
+
+        siblings = compute_siblings(clause, CORPUS_CLAUSES)
+        yaml_related = compute_yaml_related(clause, CORPUS_CLAUSES)
+        explicit_refs = compute_explicit_text_refs(clause, CORPUS_CLAUSES)
+        all_related_clauses = sorted(set(siblings) | set(yaml_related) | set(explicit_refs))
+        related_requirement_ids = sorted(
+            rid for c in all_related_clauses for rid in element_ids_by_clause.get(c, [])
+        )
+
         out_path = OUT_DIR / f"{clause}.json"
         payload = {
             "clause": clause,
@@ -475,10 +605,23 @@ def build():
                 "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
                 "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed.",
             },
+            "related_clauses": {
+                "siblings": siblings,
+                "from_related_clause_map": yaml_related,
+                "explicit_text_references": explicit_refs,
+                "all": all_related_clauses,
+            },
+            "related_requirement_ids": related_requirement_ids,
             "requirements": records,
         }
         out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-        index.append({"clause": clause, "title": title, "semantic_category": category, "element_count": len(records)})
+        index.append({
+            "clause": clause,
+            "title": title,
+            "semantic_category": category,
+            "element_count": len(records),
+            "related_clauses": all_related_clauses,
+        })
 
     index_payload = {
         "standard_id": STANDARD_ID,

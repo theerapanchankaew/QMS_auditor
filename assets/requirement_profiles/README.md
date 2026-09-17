@@ -17,6 +17,45 @@ record in every file has been validated against that real Pydantic model
 
 Coverage: **65 clauses, 155 atomic requirement elements** — clauses 4.1
 through 10.2.2 of ISO/FDIS 9001:2026 (the normative body; Annex A excluded).
+
+Each clause file also carries a `related_clauses` block (and a resolved
+`related_requirement_ids` list of `AR-<clause>-E0N` IDs) — cross-references
+to other clauses in this corpus that have a real relationship to it,
+because ISO 9001 clauses are not independent: 6.1.1's risk/opportunity
+determination feeds 6.1.2/6.1.3, the whole 8.5.x family shares one control
+context, management review (9.3.x) explicitly draws on 6.1.x and 9.1.x,
+etc. `related_clauses` is attributed by source, not a single opaque list:
+
+- **`siblings`** — other corpus clauses under the same immediate parent
+  clause number (e.g. `8.5.2`..`8.5.6` are siblings of `8.5.1`). Purely
+  mechanical, derived from clause numbering only.
+- **`from_related_clause_map`** — reuses the **existing**
+  `references/data/related_clause_map.yaml` (already loaded elsewhere by
+  `retrieval_engine.simple_yaml_map` for RAG expansion) rather than
+  inventing a second, competing relationship scheme. That file only
+  curates ~15 clause-family groups, so most of the 65 clauses get an empty
+  list from this source — that is the map's real, current coverage, not a
+  bug here.
+- **`explicit_text_references`** — clause numbers the real FDIS text cites
+  inline (e.g. clause 6.1.1 literally says "the issues referred to in
+  4.1"), extracted from the raw PDF text via `scripts/extract_clause.py`
+  at generation time — not from this corpus's own paraphrased
+  object/condition fields, which may have dropped an inline citation
+  during paraphrasing. One extractor bug was caught and hand-patched for
+  this specifically: `extract_clause.py`'s heading-boundary regex
+  mis-triggers on clause 6.1.1's inline "4.1" reference (same bug described
+  under Provenance below, hand-patched with a cached correct text so
+  `6.1.1`'s cross-references are also correct); `6.1.1` is the only one of
+  the 65 clauses affected — checked by re-running the extractor against all
+  65 and flagging any clause whose text ended mid-sentence or was
+  suspiciously short, so this isn't an assumption.
+- **`all`** — deduplicated union of the three sources above.
+
+These relations are **not necessarily symmetric** (A referencing B does
+not guarantee a generated file for B lists A back) — each is derived
+independently from its own text/mapping, by design; forcing symmetry
+would have meant inventing relations no source actually states.
+
 `_index.json` lists every clause with its element count and assigned
 `semantic_category`.
 

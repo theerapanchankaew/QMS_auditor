@@ -9,6 +9,36 @@
     "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
     "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
   },
+  "related_clauses": {
+    "siblings": [
+      "9.2.1"
+    ],
+    "from_related_clause_map": [
+      "10.2.1",
+      "10.2.2",
+      "9.3.1",
+      "9.3.2",
+      "9.3.3"
+    ],
+    "explicit_text_references": [],
+    "all": [
+      "10.2.1",
+      "10.2.2",
+      "9.2.1",
+      "9.3.1",
+      "9.3.2",
+      "9.3.3"
+    ]
+  },
+  "related_requirement_ids": [
+    "AR-10.2.1-E01",
+    "AR-10.2.1-E02",
+    "AR-10.2.2-E01",
+    "AR-9.2.1-E01",
+    "AR-9.3.1-E01",
+    "AR-9.3.2-E01",
+    "AR-9.3.3-E01"
+  ],
   "requirements": [
     {
       "requirement_id": "AR-9.2.2-E01",
