@@ -43,6 +43,11 @@ excluded via `.gitignore`. Before running anything that calls
    - `assets/standards/ISO_FDIS_9001_2026_en.pdf`
    - `assets/standards/ISO_FDIS_9000_2026_en.pdf`
    - `assets/standards/ISO9000GlossaryENv5FA2025.pdf`
+   - `assets/standards/ISO_9001_2026_IS_en_scanned.pdf` — the published
+     standard (Sixth edition, 2026-09), used only to spot-check the FDIS
+     text is still current; it has no text layer, so
+     `scripts/extract_clause.py` still runs against the FDIS PDF above, not
+     this one (see `assets/requirement_profiles/README.md`).
 
 Never push these files to GitHub, and never let a public Knowledge base in
 OpenWebUI expose their raw text to other users.

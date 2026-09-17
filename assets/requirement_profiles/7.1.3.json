@@ -1,13 +1,14 @@
 {
   "clause": "7.1.3",
   "clause_title": "Infrastructure",
-  "standard_id": "ISO/FDIS 9001:2026",
+  "standard_id": "ISO 9001:2026",
   "semantic_category": "D2_SAFE",
   "semantic_category_source": "harness_gate_executor.py:D2_SAFE_LIST",
   "provenance": {
     "extracted_via": "scripts/extract_clause.py",
     "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
-    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+    "is_cross_check": "Cross-checked 2026-09-17 against assets/standards/ISO_9001_2026_IS_en_scanned.pdf (published ISO 9001:2026, Sixth edition, 2026-09) by direct visual page comparison -- word-for-word identical, same clause numbering.",
+    "note": "AI-drafted decomposition, NOT SME/human-auditor reviewed."
   },
   "related_clauses": {
     "siblings": [
@@ -37,7 +38,7 @@
   "requirements": [
     {
       "requirement_id": "AR-7.1.3-E01",
-      "standard_id": "ISO/FDIS 9001:2026",
+      "standard_id": "ISO 9001:2026",
       "clause": "7.1.3",
       "subject": "organization",
       "obligation": "determine, provide and maintain",
@@ -62,7 +63,7 @@
         "infrastructure gap causes a nonconforming output but is never addressed"
       ],
       "negative_inference_rules": [],
-      "version": "0.1.0-ai-draft-unreviewed"
+      "version": "0.2.0-ai-draft-unreviewed"
     }
   ]
 }

@@ -1,20 +1,33 @@
 # -*- coding: utf-8 -*-
-"""Generate AtomicRequirement JSON records for all ISO/FDIS 9001:2026 clauses
+"""Generate AtomicRequirement JSON records for all ISO 9001:2026 clauses
 covered by the repo's existing 65-clause / 155-element checklist (derived
 structurally from the zip inventory; NOT its AI-generated scenario/label
 content, which is excluded per the earlier no-SME-attestation finding).
 
-Field values (subject/obligation/object/condition/qualifier) are authored
-from the real ISO/FDIS 9001:2026 PDF text extracted via
-scripts/extract_clause.py in this session. semantic_category is assigned
-programmatically from the exact D2_SAFE_LIST / M4_MANDATORY_LIST /
-AMBIGUOUS_LIST parsed directly out of scripts/harness_gate_executor.py --
-never hand-copied -- to avoid the exact classification error caught earlier
-in this session (the dismissed proposal misclassified 8.5.1).
+Field values (subject/obligation/object/condition/qualifier) were originally
+authored from the ISO/FDIS 9001:2026 draft PDF text extracted via
+scripts/extract_clause.py, then cross-checked against the published IS
+(assets/standards/ISO_9001_2026_IS_en_scanned.pdf -- a scanned, no-text-
+layer copy of the actual ISO 9001:2026 Sixth edition, 2026-09) by visually
+reading its page images. Every clause sampled in that check (4.1, 4.3, 4.4,
+5.2, 5.3, 6.1.1-6.1.3, 6.2.1, 7.1.3-7.1.6, 7.5.1-7.5.3.2, 8.5.6-8.7.2) came
+back word-for-word identical, with identical clause numbering -- so
+extract_clause.py's original FDIS extraction remains the functional source
+of truth (the IS scan has no text layer and cannot be parsed by that
+script), and STANDARD_ID below was updated to drop "FDIS" now that the
+standard is published. This was a SAMPLE, not an exhaustive page-by-page
+re-verification of all 65 clauses against the IS scan -- flag it for a
+fuller check if any specific clause's wording is ever in doubt.
 
-Status: AI-drafted from the FDIS draft text. NOT SME/human-auditor reviewed.
-Do not treat as certified interpretation; do not present as final until a
-qualified auditor signs off, exactly per this repo's own governance stance.
+semantic_category is assigned programmatically from the exact D2_SAFE_LIST
+/ M4_MANDATORY_LIST / AMBIGUOUS_LIST parsed directly out of
+scripts/harness_gate_executor.py -- never hand-copied -- to avoid the exact
+classification error caught earlier in this session (the dismissed
+proposal misclassified 8.5.1).
+
+Status: AI-drafted. NOT SME/human-auditor reviewed. Do not treat as
+certified interpretation; do not present as final until a qualified
+auditor signs off, exactly per this repo's own governance stance.
 
 Cross-references: each clause file also carries a `related_clauses` block
 built from three sources, all attributed so the basis for each relation is
@@ -27,7 +40,7 @@ visible rather than opaque:
                              file the retrieval engine already loads via
                              retrieval_engine.simple_yaml_map) rather than
                              inventing a second relationship scheme.
-  - "explicit_text_references" -- clause numbers the real FDIS text itself
+  - "explicit_text_references" -- clause numbers the real standard text
                              cites inline (e.g. clause 6.1.1 explicitly
                              says "the issues referred to in 4.1"),
                              re-extracted from the raw PDF text via
@@ -60,8 +73,22 @@ OUT_DIR = REPO_ROOT / "assets" / "requirement_profiles"
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 from retrieval_engine import simple_yaml_map  # noqa: E402  (reuse existing parser)
 
-STANDARD_ID = "ISO/FDIS 9001:2026"
-VERSION = "0.1.0-ai-draft-unreviewed"
+STANDARD_ID = "ISO 9001:2026"
+VERSION = "0.2.0-ai-draft-unreviewed"
+
+# Clauses whose IS body text was directly visually compared (page images of
+# assets/standards/ISO_9001_2026_IS_en_scanned.pdf, which has no text layer
+# for automated re-extraction) against this script's FDIS-sourced text, and
+# found word-for-word identical with identical numbering. A SAMPLE across
+# clauses 4-8, not all 65 -- see the module docstring and
+# assets/requirement_profiles/README.md.
+IS_CROSS_CHECKED_CLAUSES = {
+    "4.1", "4.3", "4.4.1", "4.4.2", "5.2.1", "5.2.2", "5.3",
+    "6.1.1", "6.1.2", "6.1.3", "6.2.1",
+    "7.1.3", "7.1.4", "7.1.5.1", "7.1.5.2",
+    "7.5.1", "7.5.2", "7.5.3.1", "7.5.3.2",
+    "8.5.6", "8.6", "8.7.1", "8.7.2",
+}
 
 # ---------------------------------------------------------------------------
 # Parse the canonical severity-ceiling lists directly out of the harness file
@@ -603,7 +630,16 @@ def build():
             "provenance": {
                 "extracted_via": "scripts/extract_clause.py",
                 "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
-                "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed.",
+                "is_cross_check": (
+                    "Cross-checked 2026-09-17 against assets/standards/ISO_9001_2026_IS_en_scanned.pdf "
+                    "(published ISO 9001:2026, Sixth edition, 2026-09) by direct visual page comparison "
+                    "-- word-for-word identical, same clause numbering."
+                    if clause in IS_CROSS_CHECKED_CLAUSES else
+                    "Not individually cross-checked against the published IS scan yet (sourced from the "
+                    "FDIS draft only) -- see IS_CROSS_CHECKED_CLAUSES in this script and "
+                    "assets/requirement_profiles/README.md."
+                ),
+                "note": "AI-drafted decomposition, NOT SME/human-auditor reviewed.",
             },
             "related_clauses": {
                 "siblings": siblings,

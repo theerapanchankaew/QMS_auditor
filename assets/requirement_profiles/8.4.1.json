@@ -1,13 +1,14 @@
 {
   "clause": "8.4.1",
   "clause_title": "Control of externally provided processes, products and services - General",
-  "standard_id": "ISO/FDIS 9001:2026",
+  "standard_id": "ISO 9001:2026",
   "semantic_category": "AMBIGUOUS",
   "semantic_category_source": "default (clause not present in any severity-ceiling list; see docs/eei-blueprint-crosswalk.md gap #4)",
   "provenance": {
     "extracted_via": "scripts/extract_clause.py",
     "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
-    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+    "is_cross_check": "Not individually cross-checked against the published IS scan yet (sourced from the FDIS draft only) -- see IS_CROSS_CHECKED_CLAUSES in this script and assets/requirement_profiles/README.md.",
+    "note": "AI-drafted decomposition, NOT SME/human-auditor reviewed."
   },
   "related_clauses": {
     "siblings": [
@@ -28,7 +29,7 @@
   "requirements": [
     {
       "requirement_id": "AR-8.4.1-E01",
-      "standard_id": "ISO/FDIS 9001:2026",
+      "standard_id": "ISO 9001:2026",
       "clause": "8.4.1",
       "subject": "organization",
       "obligation": "ensure externally provided processes, products and services conform to requirements; determine the controls to apply when incorporation, direct provision, or process outsourcing applies; determine and apply criteria for evaluation, selection, monitoring and re-evaluation of external providers; and ensure documented information is available",
@@ -46,7 +47,7 @@
       ],
       "failure_patterns": [],
       "negative_inference_rules": [],
-      "version": "0.1.0-ai-draft-unreviewed"
+      "version": "0.2.0-ai-draft-unreviewed"
     }
   ]
 }

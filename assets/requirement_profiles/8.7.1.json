@@ -1,13 +1,14 @@
 {
   "clause": "8.7.1",
   "clause_title": "Control of nonconforming outputs",
-  "standard_id": "ISO/FDIS 9001:2026",
+  "standard_id": "ISO 9001:2026",
   "semantic_category": "M4_MANDATORY",
   "semantic_category_source": "harness_gate_executor.py:M4_MANDATORY_LIST",
   "provenance": {
     "extracted_via": "scripts/extract_clause.py",
     "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
-    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+    "is_cross_check": "Cross-checked 2026-09-17 against assets/standards/ISO_9001_2026_IS_en_scanned.pdf (published ISO 9001:2026, Sixth edition, 2026-09) by direct visual page comparison -- word-for-word identical, same clause numbering.",
+    "note": "AI-drafted decomposition, NOT SME/human-auditor reviewed."
   },
   "related_clauses": {
     "siblings": [
@@ -25,7 +26,7 @@
   "requirements": [
     {
       "requirement_id": "AR-8.7.1-E01",
-      "standard_id": "ISO/FDIS 9001:2026",
+      "standard_id": "ISO 9001:2026",
       "clause": "8.7.1",
       "subject": "organization",
       "obligation": "ensure outputs that do not conform to requirements are identified and controlled",
@@ -48,11 +49,11 @@
       ],
       "failure_patterns": [],
       "negative_inference_rules": [],
-      "version": "0.1.0-ai-draft-unreviewed"
+      "version": "0.2.0-ai-draft-unreviewed"
     },
     {
       "requirement_id": "AR-8.7.1-E02",
-      "standard_id": "ISO/FDIS 9001:2026",
+      "standard_id": "ISO 9001:2026",
       "clause": "8.7.1",
       "subject": "organization",
       "obligation": "deal with nonconforming outputs by correction, segregation/containment/return/suspension, informing the customer, or obtaining concession authorization, and verify conformity",
@@ -75,7 +76,7 @@
       ],
       "failure_patterns": [],
       "negative_inference_rules": [],
-      "version": "0.1.0-ai-draft-unreviewed"
+      "version": "0.2.0-ai-draft-unreviewed"
     }
   ]
 }

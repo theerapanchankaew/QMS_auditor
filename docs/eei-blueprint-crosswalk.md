@@ -141,3 +141,18 @@ inventory was reused but whose AI-adjudicated scenario/label content was
 deliberately excluded for lack of SME attestation. Gaps #1, #3, #4, #5
 above are unaffected — this corpus adds requirement content, not the
 missing evaluators/contracts.
+
+## Update 2026-09-17 (cont.): FDIS → published IS
+
+ISO 9001:2026 was published (Sixth edition, 2026-09) after the above. The
+corpus's `standard_id` now reads `"ISO 9001:2026"`; 21 of the 65 clauses
+were sampled against the actual published-standard PDF (a scanned,
+no-text-layer copy) by direct visual page comparison and came back
+word-for-word identical to the FDIS text used above — see
+`assets/requirement_profiles/README.md`'s "IS cross-check" section for the
+exact clause list, the false-positive TOC finding caught and corrected
+before it was reported, and what was deliberately left untouched
+(`SKILL.md`'s source hierarchy, the checksummed
+`bundled-source-manifest.json` entry, and `extract_clause.py`'s
+`DEFAULT_PDF`, which must keep pointing at the FDIS file since it's the
+only one with a working text layer).

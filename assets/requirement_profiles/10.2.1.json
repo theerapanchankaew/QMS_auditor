@@ -1,13 +1,14 @@
 {
   "clause": "10.2.1",
   "clause_title": "Nonconformity and corrective action",
-  "standard_id": "ISO/FDIS 9001:2026",
+  "standard_id": "ISO 9001:2026",
   "semantic_category": "M4_MANDATORY",
   "semantic_category_source": "harness_gate_executor.py:M4_MANDATORY_LIST",
   "provenance": {
     "extracted_via": "scripts/extract_clause.py",
     "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
-    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+    "is_cross_check": "Not individually cross-checked against the published IS scan yet (sourced from the FDIS draft only) -- see IS_CROSS_CHECKED_CLAUSES in this script and assets/requirement_profiles/README.md.",
+    "note": "AI-drafted decomposition, NOT SME/human-auditor reviewed."
   },
   "related_clauses": {
     "siblings": [
@@ -59,7 +60,7 @@
   "requirements": [
     {
       "requirement_id": "AR-10.2.1-E01",
-      "standard_id": "ISO/FDIS 9001:2026",
+      "standard_id": "ISO 9001:2026",
       "clause": "10.2.1",
       "subject": "organization",
       "obligation": "react to the nonconformity by taking action to control and correct it and dealing with the consequences, as applicable, and evaluate the need for action to eliminate its cause(s) by reviewing the nonconformity, determining its causes, and determining if similar nonconformities exist or could occur",
@@ -82,11 +83,11 @@
       ],
       "failure_patterns": [],
       "negative_inference_rules": [],
-      "version": "0.1.0-ai-draft-unreviewed"
+      "version": "0.2.0-ai-draft-unreviewed"
     },
     {
       "requirement_id": "AR-10.2.1-E02",
-      "standard_id": "ISO/FDIS 9001:2026",
+      "standard_id": "ISO 9001:2026",
       "clause": "10.2.1",
       "subject": "organization",
       "obligation": "implement needed action, review the effectiveness of any corrective action taken, update risks and opportunities if necessary, and make QMS changes if necessary, ensuring corrective actions are appropriate to the effects of the nonconformities encountered",
@@ -111,7 +112,7 @@
       "negative_inference_rules": [
         "corrective action disproportionate to (or absent for) the actual effect of the nonconformity"
       ],
-      "version": "0.1.0-ai-draft-unreviewed"
+      "version": "0.2.0-ai-draft-unreviewed"
     }
   ]
 }
