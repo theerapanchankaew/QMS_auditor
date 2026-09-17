@@ -1,0 +1,176 @@
+{
+  "clause": "5.2.1",
+  "clause_title": "Establishing the quality policy",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "D2_SAFE",
+  "semantic_category_source": "harness_gate_executor.py:D2_SAFE_LIST",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-5.2.1-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.2.1",
+      "subject": "top management",
+      "obligation": "establish",
+      "object": "a quality policy",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "D2_SAFE",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.2.1-E02",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.2.1",
+      "subject": "top management",
+      "obligation": "ensure the quality policy is",
+      "object": "appropriate to the purpose of the organization",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "D2_SAFE",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.2.1-E03",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.2.1",
+      "subject": "top management",
+      "obligation": "ensure the quality policy provides",
+      "object": "a framework for setting quality objectives",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "D2_SAFE",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.2.1-E04",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.2.1",
+      "subject": "top management",
+      "obligation": "ensure the quality policy includes",
+      "object": "a commitment to meet applicable requirements",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "D2_SAFE",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.2.1-E05",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.2.1",
+      "subject": "top management",
+      "obligation": "ensure the quality policy includes",
+      "object": "a commitment to continual improvement of the quality management system",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "D2_SAFE",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.2.1-E06",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.2.1",
+      "subject": "top management",
+      "obligation": "ensure the quality policy takes into account",
+      "object": "the context of the organization and supports its strategic direction",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "D2_SAFE",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

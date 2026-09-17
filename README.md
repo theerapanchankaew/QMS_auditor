@@ -23,9 +23,11 @@ references/             60+ clause/rule/governance reference docs (RAG source)
 scripts/                48 deterministic gate/validator scripts (stdlib only)
 scripts/awm_runtime/    Executable Audit World Model v0.7 (FastAPI package, optional)
 assets/standards/       ISO source PDFs — GITIGNORED, see "Licensed standards" below
+assets/requirement_profiles/  AtomicRequirement corpus, 65 clauses/155 elements — AI-drafted, unreviewed
 assets/templates/       Report/schema/regression templates
 assets/tests/           Regression + gate test fixtures
 deploy/openwebui/       OpenWebUI Pipeline filter + setup guide (this deployment)
+docs/                   Maintainer/architecture docs (not loaded at runtime)
 docker-compose.yml       Ollama + OpenWebUI + Pipelines stack
 ```
 

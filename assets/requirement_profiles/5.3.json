@@ -1,0 +1,230 @@
+{
+  "clause": "5.3",
+  "clause_title": "Roles, responsibilities and authorities",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "AMBIGUOUS",
+  "semantic_category_source": "default (clause not present in any severity-ceiling list; see docs/eei-blueprint-crosswalk.md gap #4)",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-5.3-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.3",
+      "subject": "top management",
+      "obligation": "ensure",
+      "object": "the responsibilities and authorities for relevant roles are assigned within the organization",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.3-E02",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.3",
+      "subject": "top management",
+      "obligation": "ensure",
+      "object": "the responsibilities and authorities for relevant roles are communicated within the organization",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.3-E03",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.3",
+      "subject": "top management",
+      "obligation": "assign responsibility and authority for",
+      "object": "ensuring that the quality management system conforms to the requirements of this document",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.3-E04",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.3",
+      "subject": "top management",
+      "obligation": "assign responsibility and authority for",
+      "object": "reporting on the performance of the quality management system to top management",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.3-E05",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.3",
+      "subject": "top management",
+      "obligation": "assign responsibility and authority for",
+      "object": "ensuring that the processes are delivering their intended results",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.3-E06",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.3",
+      "subject": "top management",
+      "obligation": "assign responsibility and authority for",
+      "object": "ensuring the promotion of customer focus throughout the organization",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.3-E07",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.3",
+      "subject": "top management",
+      "obligation": "assign responsibility and authority for",
+      "object": "reporting on opportunities for improvement to top management",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.3-E08",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.3",
+      "subject": "top management",
+      "obligation": "assign responsibility and authority for",
+      "object": "ensuring that the integrity of the quality management system is maintained including when changes to it are planned and implemented",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

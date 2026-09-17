@@ -1,0 +1,36 @@
+{
+  "clause": "8.3.3",
+  "clause_title": "Design and development inputs",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "D2_SAFE",
+  "semantic_category_source": "harness_gate_executor.py:D2_SAFE_LIST",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-8.3.3-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "8.3.3",
+      "subject": "organization",
+      "obligation": "determine requirements essential for the products and services to be designed and developed, considering functional/performance requirements, information from previous similar activities, statutory and regulatory requirements, and applicable standards or codes; ensure inputs are complete, unambiguous and adequate; resolve conflicting inputs; and ensure documented information is available",
+      "object": "as evidence of design and development inputs",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "D2_SAFE",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

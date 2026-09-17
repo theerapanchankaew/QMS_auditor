@@ -1,0 +1,41 @@
+{
+  "clause": "8.5.5",
+  "clause_title": "Post-delivery activities",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "D2_SAFE",
+  "semantic_category_source": "harness_gate_executor.py:D2_SAFE_LIST",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-8.5.5-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "8.5.5",
+      "subject": "organization",
+      "obligation": "meet the requirements for post-delivery activities associated with the products and services, considering statutory and regulatory requirements, potential undesired consequences, nature/use/intended lifetime, customer requirements, and customer feedback",
+      "object": "in determining the extent of post-delivery activities required",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "D2_SAFE",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

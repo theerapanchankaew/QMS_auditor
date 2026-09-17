@@ -1,0 +1,36 @@
+{
+  "clause": "8.5.3",
+  "clause_title": "Property belonging to customers or external providers",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "D2_SAFE",
+  "semantic_category_source": "harness_gate_executor.py:D2_SAFE_LIST",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-8.5.3-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "8.5.3",
+      "subject": "organization",
+      "obligation": "exercise care with, identify, verify, protect and safeguard property belonging to customers or external providers that is under the organization's control or provided for use or incorporation into products and services; report to the owner and ensure documented information is available as evidence of what occurred",
+      "object": "when such property is lost, damaged, or otherwise found unsuitable for use",
+      "condition": "applies throughout custody of the property; reporting/evidence obligation triggers when it is lost, damaged, or found unsuitable for use",
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "D2_SAFE",
+      "evidence_expectations": [
+        {
+          "evidence_type": "record",
+          "minimum_strength": "recorded",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

@@ -1,0 +1,311 @@
+{
+  "clause": "4.4.1",
+  "clause_title": "Quality management system and its processes",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "AMBIGUOUS",
+  "semantic_category_source": "default (clause not present in any severity-ceiling list; see docs/eei-blueprint-crosswalk.md gap #4)",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-4.4.1-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "4.4.1",
+      "subject": "organization",
+      "obligation": "establish and implement",
+      "object": "a quality management system, including the processes needed and their interactions, in accordance with the requirements of this document",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-4.4.1-E02",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "4.4.1",
+      "subject": "organization",
+      "obligation": "maintain and continually improve",
+      "object": "the quality management system, including the processes needed and their interactions",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-4.4.1-E03",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "4.4.1",
+      "subject": "organization",
+      "obligation": "determine",
+      "object": "the processes needed for the quality management system and their application throughout the organization",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-4.4.1-E04",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "4.4.1",
+      "subject": "organization",
+      "obligation": "determine",
+      "object": "the inputs required and the outputs expected from these processes",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-4.4.1-E05",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "4.4.1",
+      "subject": "organization",
+      "obligation": "determine",
+      "object": "the sequence and interaction of these processes",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-4.4.1-E06",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "4.4.1",
+      "subject": "organization",
+      "obligation": "determine and apply",
+      "object": "the criteria and methods needed (including monitoring, measurements and related performance indicators) to ensure the effective operation and control of these processes",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-4.4.1-E07",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "4.4.1",
+      "subject": "organization",
+      "obligation": "determine",
+      "object": "the resources needed for these processes and ensure their availability",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-4.4.1-E08",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "4.4.1",
+      "subject": "organization",
+      "obligation": "assign",
+      "object": "the responsibilities and authorities for these processes",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-4.4.1-E09",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "4.4.1",
+      "subject": "organization",
+      "obligation": "address",
+      "object": "the risks and opportunities as determined in accordance with the requirements of 6.1",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-4.4.1-E10",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "4.4.1",
+      "subject": "organization",
+      "obligation": "evaluate and implement changes to",
+      "object": "these processes to ensure that they achieve their intended results",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-4.4.1-E11",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "4.4.1",
+      "subject": "organization",
+      "obligation": "improve",
+      "object": "the processes and the quality management system",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

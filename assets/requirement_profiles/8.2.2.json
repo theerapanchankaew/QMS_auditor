@@ -1,0 +1,41 @@
+{
+  "clause": "8.2.2",
+  "clause_title": "Determining requirements for products and services",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "M4_MANDATORY",
+  "semantic_category_source": "harness_gate_executor.py:M4_MANDATORY_LIST",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-8.2.2-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "8.2.2",
+      "subject": "organization",
+      "obligation": "ensure",
+      "object": "the requirements for the products and services are defined, including applicable statutory and regulatory requirements and those considered necessary by the organization, and that it can meet the claims it makes for them",
+      "condition": "when determining the requirements for the products and services to be offered to customers",
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "M4_MANDATORY",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

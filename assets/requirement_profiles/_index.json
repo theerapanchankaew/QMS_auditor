@@ -1,0 +1,399 @@
+{
+  "standard_id": "ISO/FDIS 9001:2026",
+  "clause_count": 65,
+  "element_count": 155,
+  "status": "AI-drafted, unreviewed",
+  "requires_sme_approval": true,
+  "clauses": [
+    {
+      "clause": "4.1",
+      "title": "Understanding the organization and its context",
+      "semantic_category": "D2_SAFE",
+      "element_count": 3
+    },
+    {
+      "clause": "4.2",
+      "title": "Understanding the needs and expectations of interested parties",
+      "semantic_category": "D2_SAFE",
+      "element_count": 5
+    },
+    {
+      "clause": "4.3",
+      "title": "Determining the scope of the quality management system",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 9
+    },
+    {
+      "clause": "4.4.1",
+      "title": "Quality management system and its processes",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 11
+    },
+    {
+      "clause": "4.4.2",
+      "title": "Documented information supporting QMS processes",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 3
+    },
+    {
+      "clause": "5.1.1",
+      "title": "General (leadership and commitment)",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 13
+    },
+    {
+      "clause": "5.1.2",
+      "title": "Customer focus",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 4
+    },
+    {
+      "clause": "5.2.1",
+      "title": "Establishing the quality policy",
+      "semantic_category": "D2_SAFE",
+      "element_count": 6
+    },
+    {
+      "clause": "5.2.2",
+      "title": "Communicating the quality policy",
+      "semantic_category": "D2_SAFE",
+      "element_count": 5
+    },
+    {
+      "clause": "5.3",
+      "title": "Roles, responsibilities and authorities",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 8
+    },
+    {
+      "clause": "6.1.1",
+      "title": "Determining risks and opportunities",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 5
+    },
+    {
+      "clause": "6.1.2",
+      "title": "Actions to address risks",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 5
+    },
+    {
+      "clause": "6.1.3",
+      "title": "Actions to address opportunities",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 3
+    },
+    {
+      "clause": "6.2.1",
+      "title": "Quality objectives",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 2
+    },
+    {
+      "clause": "6.2.2",
+      "title": "Planning to achieve quality objectives",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    },
+    {
+      "clause": "6.3",
+      "title": "Planning of changes",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 2
+    },
+    {
+      "clause": "7.1.1",
+      "title": "Resources - General",
+      "semantic_category": "D2_SAFE",
+      "element_count": 2
+    },
+    {
+      "clause": "7.1.2",
+      "title": "People",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    },
+    {
+      "clause": "7.1.3",
+      "title": "Infrastructure",
+      "semantic_category": "D2_SAFE",
+      "element_count": 1
+    },
+    {
+      "clause": "7.1.4",
+      "title": "Environment for the operation of processes",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    },
+    {
+      "clause": "7.1.5.1",
+      "title": "Monitoring and measuring resources - General",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 3
+    },
+    {
+      "clause": "7.1.5.2",
+      "title": "Traceability of measurement results",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 2
+    },
+    {
+      "clause": "7.1.6",
+      "title": "Organizational knowledge",
+      "semantic_category": "D2_SAFE",
+      "element_count": 3
+    },
+    {
+      "clause": "7.2",
+      "title": "Competence",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 2
+    },
+    {
+      "clause": "7.3",
+      "title": "Awareness",
+      "semantic_category": "D2_SAFE",
+      "element_count": 1
+    },
+    {
+      "clause": "7.4",
+      "title": "Communication",
+      "semantic_category": "D2_SAFE",
+      "element_count": 1
+    },
+    {
+      "clause": "7.5.1",
+      "title": "Documented information - General",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 1
+    },
+    {
+      "clause": "7.5.2",
+      "title": "Creating and updating documented information",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 1
+    },
+    {
+      "clause": "7.5.3.1",
+      "title": "Control of documented information - General",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    },
+    {
+      "clause": "7.5.3.2",
+      "title": "Control of documented information - activities",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 3
+    },
+    {
+      "clause": "8.1",
+      "title": "Operational planning and control",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 5
+    },
+    {
+      "clause": "8.2.1",
+      "title": "Customer communication",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    },
+    {
+      "clause": "8.2.2",
+      "title": "Determining requirements for products and services",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 1
+    },
+    {
+      "clause": "8.2.3.1",
+      "title": "Review of requirements for products and services",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    },
+    {
+      "clause": "8.2.3.2",
+      "title": "Documented information on review of requirements",
+      "semantic_category": "D2_SAFE",
+      "element_count": 1
+    },
+    {
+      "clause": "8.2.4",
+      "title": "Changes to requirements for products and services",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 1
+    },
+    {
+      "clause": "8.3.1",
+      "title": "Design and development - General",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    },
+    {
+      "clause": "8.3.2",
+      "title": "Design and development planning",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 1
+    },
+    {
+      "clause": "8.3.3",
+      "title": "Design and development inputs",
+      "semantic_category": "D2_SAFE",
+      "element_count": 1
+    },
+    {
+      "clause": "8.3.4",
+      "title": "Design and development controls",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 1
+    },
+    {
+      "clause": "8.3.5",
+      "title": "Design and development outputs",
+      "semantic_category": "D2_SAFE",
+      "element_count": 1
+    },
+    {
+      "clause": "8.3.6",
+      "title": "Design and development changes",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 1
+    },
+    {
+      "clause": "8.4.1",
+      "title": "Control of externally provided processes, products and services - General",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    },
+    {
+      "clause": "8.4.2",
+      "title": "Type and extent of control",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    },
+    {
+      "clause": "8.4.3",
+      "title": "Information for external providers",
+      "semantic_category": "D2_SAFE",
+      "element_count": 1
+    },
+    {
+      "clause": "8.5.1",
+      "title": "Control of production and service provision",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 1
+    },
+    {
+      "clause": "8.5.2",
+      "title": "Identification and traceability",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    },
+    {
+      "clause": "8.5.3",
+      "title": "Property belonging to customers or external providers",
+      "semantic_category": "D2_SAFE",
+      "element_count": 1
+    },
+    {
+      "clause": "8.5.4",
+      "title": "Preservation",
+      "semantic_category": "D2_SAFE",
+      "element_count": 1
+    },
+    {
+      "clause": "8.5.5",
+      "title": "Post-delivery activities",
+      "semantic_category": "D2_SAFE",
+      "element_count": 1
+    },
+    {
+      "clause": "8.5.6",
+      "title": "Control of changes",
+      "semantic_category": "D2_SAFE",
+      "element_count": 1
+    },
+    {
+      "clause": "8.6",
+      "title": "Release of products and services",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 3
+    },
+    {
+      "clause": "8.7.1",
+      "title": "Control of nonconforming outputs",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 2
+    },
+    {
+      "clause": "8.7.2",
+      "title": "Documented information on nonconforming outputs",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 1
+    },
+    {
+      "clause": "9.1.1",
+      "title": "Monitoring, measurement, analysis and evaluation - General",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 2
+    },
+    {
+      "clause": "9.1.2",
+      "title": "Customer satisfaction",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 1
+    },
+    {
+      "clause": "9.1.3",
+      "title": "Analysis and evaluation",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    },
+    {
+      "clause": "9.2.1",
+      "title": "Internal audit - General",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 1
+    },
+    {
+      "clause": "9.2.2",
+      "title": "Internal audit programme",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 2
+    },
+    {
+      "clause": "9.3.1",
+      "title": "Management review - General",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 1
+    },
+    {
+      "clause": "9.3.2",
+      "title": "Management review inputs",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    },
+    {
+      "clause": "9.3.3",
+      "title": "Management review results",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    },
+    {
+      "clause": "10.1",
+      "title": "Continual improvement",
+      "semantic_category": "D2_SAFE",
+      "element_count": 3
+    },
+    {
+      "clause": "10.2.1",
+      "title": "Nonconformity and corrective action",
+      "semantic_category": "M4_MANDATORY",
+      "element_count": 2
+    },
+    {
+      "clause": "10.2.2",
+      "title": "Documented information on nonconformity and corrective action",
+      "semantic_category": "AMBIGUOUS",
+      "element_count": 1
+    }
+  ]
+}

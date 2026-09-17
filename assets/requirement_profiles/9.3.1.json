@@ -1,0 +1,41 @@
+{
+  "clause": "9.3.1",
+  "clause_title": "Management review - General",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "M4_MANDATORY",
+  "semantic_category_source": "harness_gate_executor.py:M4_MANDATORY_LIST",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-9.3.1-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "9.3.1",
+      "subject": "top management",
+      "obligation": "review",
+      "object": "the organization's quality management system, at planned intervals, to ensure its continuing suitability, adequacy, effectiveness, and alignment with the strategic direction of the organization",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "M4_MANDATORY",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

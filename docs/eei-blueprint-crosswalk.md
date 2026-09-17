@@ -125,3 +125,19 @@ before concluding it's a code gap, not just a documentation gap.
 
 All five gaps above are deferred pending explicit user sign-off before
 writing new code for any of them.
+
+## Update 2026-09-17: full AtomicRequirement corpus authored
+
+`assets/requirement_profiles/` now holds 155 `AtomicRequirement` records
+across all 65 clauses tracked by this crosswalk (4.1–10.2.2), authored from
+the real FDIS PDF text and validated against the real Pydantic schema. This
+makes gap #2 (applicability) and the `semantic_category` question above
+concrete with real numbers instead of a hypothetical: **25 of 65 clauses**
+(6.1.3 among them) fall outside both `D2_SAFE_LIST` and `M4_MANDATORY_LIST`
+and default to `AMBIGUOUS`. See `assets/requirement_profiles/README.md` for
+full provenance, including a second AI-content source (the training-data
+zip discussed elsewhere in project history) whose structural clause/element
+inventory was reused but whose AI-adjudicated scenario/label content was
+deliberately excluded for lack of SME attestation. Gaps #1, #3, #4, #5
+above are unaffected — this corpus adds requirement content, not the
+missing evaluators/contracts.

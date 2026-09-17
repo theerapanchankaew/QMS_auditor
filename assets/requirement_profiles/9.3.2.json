@@ -1,0 +1,41 @@
+{
+  "clause": "9.3.2",
+  "clause_title": "Management review inputs",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "AMBIGUOUS",
+  "semantic_category_source": "default (clause not present in any severity-ceiling list; see docs/eei-blueprint-crosswalk.md gap #4)",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-9.3.2-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "9.3.2",
+      "subject": "organization",
+      "obligation": "ensure the management review includes",
+      "object": "status of actions from previous reviews, changes in external/internal issues, changes in interested-party needs/expectations, QMS performance information and trends (nonconformities/corrective actions, monitoring and measurement results, audit results, customer satisfaction and feedback, achievement of quality objectives, process performance and product/service conformity, external-provider performance), opportunities for improvement, adequacy of resources, and the effectiveness of actions taken to address risks and opportunities",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

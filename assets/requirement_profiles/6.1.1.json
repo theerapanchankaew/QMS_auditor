@@ -1,0 +1,149 @@
+{
+  "clause": "6.1.1",
+  "clause_title": "Determining risks and opportunities",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "M4_MANDATORY",
+  "semantic_category_source": "harness_gate_executor.py:M4_MANDATORY_LIST",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-6.1.1-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "6.1.1",
+      "subject": "organization",
+      "obligation": "consider",
+      "object": "the issues referred to in 4.1",
+      "condition": "when planning for the quality management system",
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "M4_MANDATORY",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-6.1.1-E02",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "6.1.1",
+      "subject": "organization",
+      "obligation": "consider",
+      "object": "the requirements referred to in 4.2",
+      "condition": "when planning for the quality management system",
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "M4_MANDATORY",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-6.1.1-E03",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "6.1.1",
+      "subject": "organization",
+      "obligation": "determine risks and opportunities to",
+      "object": "give assurance that the quality management system can achieve its intended result(s)",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "M4_MANDATORY",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-6.1.1-E04",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "6.1.1",
+      "subject": "organization",
+      "obligation": "determine risks and opportunities to",
+      "object": "prevent or reduce undesired effects and to achieve continual improvement",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "M4_MANDATORY",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-6.1.1-E05",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "6.1.1",
+      "subject": "organization",
+      "obligation": "determine risks and opportunities to",
+      "object": "enhance desired effects",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "M4_MANDATORY",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

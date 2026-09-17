@@ -1,0 +1,63 @@
+{
+  "clause": "7.1.5.2",
+  "clause_title": "Traceability of measurement results",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "AMBIGUOUS",
+  "semantic_category_source": "default (clause not present in any severity-ceiling list; see docs/eei-blueprint-crosswalk.md gap #4)",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-7.1.5.2-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "7.1.5.2",
+      "subject": "organization",
+      "obligation": "ensure measuring equipment is",
+      "object": "calibrated or verified at specified intervals or prior to use against traceable measurement standards, identified to determine calibration/verification status, and safeguarded from adjustments, damage or deterioration",
+      "condition": "when traceability of measurement results is a requirement or is considered essential for confidence in measurement validity",
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "record",
+          "minimum_strength": "recorded",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-7.1.5.2-E02",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "7.1.5.2",
+      "subject": "organization",
+      "obligation": "determine whether validity of previous measurement results has been adversely affected and take appropriate action",
+      "object": "as necessary",
+      "condition": "when measuring equipment is found to be unfit for its intended purpose",
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

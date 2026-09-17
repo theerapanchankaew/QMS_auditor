@@ -1,0 +1,139 @@
+{
+  "clause": "8.1",
+  "clause_title": "Operational planning and control",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "AMBIGUOUS",
+  "semantic_category_source": "default (clause not present in any severity-ceiling list; see docs/eei-blueprint-crosswalk.md gap #4)",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-8.1-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "8.1",
+      "subject": "organization",
+      "obligation": "plan, implement and control",
+      "object": "the processes needed to meet requirements for the provision of products and services and to implement the actions determined in clause 6, by determining product/service requirements, establishing acceptance and process criteria, implementing process control, and determining needed resources",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-8.1-E02",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "8.1",
+      "subject": "organization",
+      "obligation": "ensure documented information is available",
+      "object": "to the extent necessary to have confidence that the processes have been carried out as planned",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-8.1-E03",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "8.1",
+      "subject": "organization",
+      "obligation": "control planned changes and review the consequences of unintended changes, taking action to mitigate any adverse effects",
+      "object": "as necessary",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-8.1-E04",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "8.1",
+      "subject": "organization",
+      "obligation": "ensure",
+      "object": "externally provided processes, products or services that are relevant to the quality management system are controlled",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-8.1-E05",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "8.1",
+      "subject": "organization",
+      "obligation": "ensure documented information is available",
+      "object": "to the extent necessary as evidence of the conformity of products and services",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "record",
+          "minimum_strength": "recorded",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

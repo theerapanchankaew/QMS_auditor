@@ -1,0 +1,41 @@
+{
+  "clause": "8.4.3",
+  "clause_title": "Information for external providers",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "D2_SAFE",
+  "semantic_category_source": "harness_gate_executor.py:D2_SAFE_LIST",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-8.4.3-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "8.4.3",
+      "subject": "organization",
+      "obligation": "ensure the adequacy of requirements before communicating them to the external provider, and communicate its requirements for processes/products/services, approvals, competence, interactions, control/monitoring, and verification or validation activities",
+      "object": "as appropriate",
+      "condition": null,
+      "qualifier": "as appropriate",
+      "applicability_rule_id": null,
+      "semantic_category": "D2_SAFE",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

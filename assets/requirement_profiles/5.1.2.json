@@ -1,0 +1,122 @@
+{
+  "clause": "5.1.2",
+  "clause_title": "Customer focus",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "M4_MANDATORY",
+  "semantic_category_source": "harness_gate_executor.py:M4_MANDATORY_LIST",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-5.1.2-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.1.2",
+      "subject": "top management",
+      "obligation": "demonstrate",
+      "object": "leadership and commitment with respect to customer focus",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "M4_MANDATORY",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.1.2-E02",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.1.2",
+      "subject": "top management",
+      "obligation": "ensure",
+      "object": "customer and applicable statutory and regulatory requirements are determined, understood and consistently met",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "M4_MANDATORY",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.1.2-E03",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.1.2",
+      "subject": "top management",
+      "obligation": "ensure",
+      "object": "the risks and opportunities that can affect conformity of products and services and the ability to enhance customer satisfaction are determined and addressed",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "M4_MANDATORY",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    },
+    {
+      "requirement_id": "AR-5.1.2-E04",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "5.1.2",
+      "subject": "top management",
+      "obligation": "ensure",
+      "object": "the focus on enhancing customer satisfaction is maintained",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "M4_MANDATORY",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}

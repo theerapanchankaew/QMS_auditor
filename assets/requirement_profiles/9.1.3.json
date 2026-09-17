@@ -1,0 +1,41 @@
+{
+  "clause": "9.1.3",
+  "clause_title": "Analysis and evaluation",
+  "standard_id": "ISO/FDIS 9001:2026",
+  "semantic_category": "AMBIGUOUS",
+  "semantic_category_source": "harness_gate_executor.py:AMBIGUOUS_LIST",
+  "provenance": {
+    "extracted_via": "scripts/extract_clause.py",
+    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+    "note": "FDIS draft text -- may differ from the final published IS. AI-drafted decomposition, NOT SME/human-auditor reviewed."
+  },
+  "requirements": [
+    {
+      "requirement_id": "AR-9.1.3-E01",
+      "standard_id": "ISO/FDIS 9001:2026",
+      "clause": "9.1.3",
+      "subject": "organization",
+      "obligation": "analyse and evaluate relevant data and information arising from monitoring and measurement, using the results to evaluate",
+      "object": "conformity of products and services, customer satisfaction, QMS performance and effectiveness, effectiveness of planning implementation, effectiveness of risk and opportunity actions, performance of external providers, and the need for QMS improvements",
+      "condition": null,
+      "qualifier": null,
+      "applicability_rule_id": null,
+      "semantic_category": "AMBIGUOUS",
+      "evidence_expectations": [
+        {
+          "evidence_type": "document",
+          "minimum_strength": "documented",
+          "mandatory": false
+        },
+        {
+          "evidence_type": "observation",
+          "minimum_strength": "implemented",
+          "mandatory": true
+        }
+      ],
+      "failure_patterns": [],
+      "negative_inference_rules": [],
+      "version": "0.1.0-ai-draft-unreviewed"
+    }
+  ]
+}
