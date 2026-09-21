@@ -46,6 +46,7 @@ the `deploy/openwebui/` gateway already built in this repo.
 | Evidence taxonomy (DIRECT/INDIRECT/CORROBORATED/CONFLICTING) + corroboration engine | [`domain/models.py`](../scripts/awm_runtime/aias_awm/domain/models.py) `EpistemicState` enum (11 values, including `CORROBORATED`/`CONTRADICTORY`) + `EvidenceItem.evidence_type` + `EvidenceExpectation.minimum_strength` (6-level ordinal: claim→documented→implemented→recorded→verified→effectiveness) + [`cognition/evidence_reconciliation.py`](../scripts/awm_runtime/aias_awm/cognition/evidence_reconciliation.py) `EvidenceReconciliationEngine` | **Implemented, at higher fidelity than the 4-bucket EEI taxonomy.** `CORROBORATED`/`CONTRADICTORY` already exist as literal states. There is no code gap here — at most a presentation-layer question (does a human-facing report need to print the literal words "DIRECT"/"INDIRECT"?), which is a rendering concern, not new reasoning logic. |
 | Requirement atomization (AR schema) + sufficiency test (Q1–Q5) + breach detector | [`domain/models.py`](../scripts/awm_runtime/aias_awm/domain/models.py) `AtomicRequirement` (`requirement_id, clause, subject, obligation, object, condition, qualifier, semantic_category, evidence_expectations, failure_patterns, negative_inference_rules`) + [`cognition/requirement_engine.py`](../scripts/awm_runtime/aias_awm/cognition/requirement_engine.py) `RequirementStateEngine.assess()` | **Implemented.** `semantic_category` is literally `D2_SAFE \| M4_MANDATORY \| AMBIGUOUS` — the same severity-ceiling categories `harness_gate_executor.py` enforces. `assess()` already does not infer breach from mere absence of evidence (`breach_proven` requires explicit `proves_breach` metadata) — this is the same "missing evidence is not proven non-fulfilment" invariant SKILL.md BLOCK 9 states. |
 | Bounded Imagination / Simulation Firewall (Ch.11, `AIAS_Theory_Technology_Stack_Textbook_v1.0.pdf`) — simulated trajectories tagged `simulation=true`, cannot set `breach_proven`/severity/verdict | Two implementations: [`scripts/imagination_engine.py`](../scripts/imagination_engine.py) + [`scripts/audit_world_model.py`](../scripts/audit_world_model.py) (older, dict-based) **and** [`scripts/awm_runtime/aias_awm/cognition/imagination.py`](../scripts/awm_runtime/aias_awm/cognition/imagination.py) (`BoundedImaginationEngine`, added 2026-09-21) | **Both implemented and tested; still two disconnected systems, now both closing the same practical gap.** The older one was re-verified by actually running it. The `aias_awm` one is a fresh implementation (not a port — `RequirementAssessment` is `extra="forbid"` and cannot carry the older system's loose dict markers), wired into `AuditWorldRuntime.imagine_actions()` as a read-only method (never calls `.upsert()`, verified by a test asserting assessment/hypothesis/action counts are unchanged before/after). See `references/69-bounded-imagination.md` and "Update 2026-09-21 (cont., 2)" below. |
+| **Decision/harness seam between the two systems** — asked directly to merge them | [`scripts/awm_runtime/aias_awm/adapters/production_harness.py`](../scripts/awm_runtime/aias_awm/adapters/production_harness.py) (`ProductionHarnessAdapter`, pre-existing but never used) + [`control/decision_adapter.py`](../scripts/awm_runtime/aias_awm/control/decision_adapter.py) (`WorldToDecisionAdapter`, pre-existing but never called) + [`control/gate_trace_deriver.py`](../scripts/awm_runtime/aias_awm/control/gate_trace_deriver.py) (`GateTraceDeriver`, added 2026-09-21) | **Fully wired end-to-end, 2026-09-21**: `RequirementAssessment` → real `gate_execution_trace` candidate → real `WG6` readiness check → real, unmodified G0–G7 harness → result, via `AuditWorldRuntime.make_decision_for_requirement()`. See "Update 2026-09-21 (cont., 4)" below and `references/71-gate-trace-derivation.md`. **Still not a structural merge**: the derivation is fail-closed and conservative by construction (documented field-by-field), `process_enforcer.py`'s S0–S11 machine remains unwired, and Bounded Imagination's two implementations remain separate (`references/69-bounded-imagination.md`). |
 | Hartley measure / expected information gain (Ch.9–10, `AIAS_Theory_Technology_Stack_Textbook_v1.0.pdf`) — `H(X)=log2\|X\|`, `IG(a)=H(Xt)-E[H(Xt+1)\|a]` | [`scripts/hartley_uncertainty.py`](../scripts/hartley_uncertainty.py) + [`scripts/awm_runtime/aias_awm/hartley.py`](../scripts/awm_runtime/aias_awm/hartley.py) (port) + [`scripts/requirement_profile_loader.py`](../scripts/requirement_profile_loader.py) | **Was a confirmed gap, closed 2026-09-21, wired into the planner the same day, then wired into the LIVE `reason()` pipeline the same day** after directly re-checking whether it actually reached that path (it didn't, at first — see "Update 2026-09-21 (cont.)" below). All 65 clauses carry mechanically-derived `possible_worlds_dimensions`; `AuditWorldRuntime.reason(..., dimensions_by_requirement=...)` now threads them from the real corpus through to a persisted, real `log2(k)`-bit `expected_information_gain`, proven by a live end-to-end test with zero evidence ingested (the realistic first-run case) — which also caught and fixed a real bug (planner only handled one of two unresolved-question string shapes `requirement_engine.py` actually emits). `known_facts` is still never auto-populated from evidence — remains deferred. |
 
 ## Naming collisions to watch for
@@ -378,3 +379,100 @@ undecided question.
 
 Full suite re-run: `assets/tests/awm_v07/` **46/46** (35 + 11 new, all in
 the new `test_imagination.py`).
+
+## Update 2026-09-21 (cont., 3): merged the decision/harness seam — real G0–G7 harness now reachable from `aias_awm`
+
+User asked directly to merge the two Audit World Model systems documented
+above. Rather than rewriting either system (both have real, tested,
+working code — the old harness's 155-case-style corpus discipline and the
+new `aias_awm` package's SQL/event-sourcing), checked first whether an
+integration seam already existed before building a new one.
+
+It did: `aias_awm/adapters/production_harness.py`
+(`ProductionHarnessAdapter`) and `control/decision_adapter.py`
+(`WorldToDecisionAdapter`) were **already written**, with a docstring on
+the stub it was meant to replace saying so explicitly ("Replace with the
+production AIAS G0-G13 deterministic harness") — but grep confirmed
+**zero call-sites anywhere** in the repo, including every test and example
+script. This was designed-but-never-wired integration code, not a gap
+requiring new architecture.
+
+Closed by:
+
+- Constructing a real `ProductionHarnessAdapter` pointed at the real,
+  unmodified `scripts/harness_gate_executor.py` and driving real
+  `gate_execution_trace` candidates through it — both directly and through
+  the full `AuditWorldRuntime.make_decision()` path (register a real
+  requirement, ingest real evidence, `reason()` to a real `SATISFIED`
+  state, then `make_decision()`).
+- Proving the layering `WG0–WG6 → real G0–G7 harness` actually holds: when
+  the world isn't decision-ready, the harness is never invoked at all (the
+  early-return result carries no `gate_validation` key — the one field the
+  real harness always sets); once ready, the real harness runs and its
+  real rejections come through unchanged (verified against the actual
+  `D2_SAFE_LIST`, not a re-typed copy of it).
+- New test file `assets/tests/awm_v07/test_harness_integration.py` (6
+  tests, all passing). Full suite: **52/52** (46 + 6 new).
+
+**Explicitly NOT done, to avoid inventing an unreviewed semantic mapping**:
+nothing auto-derives a `gate_execution_trace` (`G0_preflight`/
+`G2_ie_chain`/`G3_severity_ceiling`/`G4_m4_conditions`/
+`G6_complied_check`/`G7_trace`) from a `RequirementAssessment` — the
+caller still builds that dict by hand. Doing so would require deciding,
+for example, what `aias_awm` evidence corresponds to
+`G6_complied_check.C3_elements_covered`, which is a judgement call about
+the real standard's requirements, not a mechanical translation — exactly
+the kind of AI-authored semantic decision this repo's own governance
+stance requires a human auditor to sign off on before treating as
+authoritative. `process_enforcer.py`'s S0–S11 machine and the older
+Bounded Imagination pair also remain unwired by this change — see
+`references/70-harness-integration.md`, "What is still NOT merged".
+
+## Update 2026-09-21 (cont., 4): auto-derivation built, on explicit reasoning that H1/H2/H3 remain final authority
+
+User asked to build the auto-derivation "Update 2026-09-21 (cont., 3)"
+explicitly declined, on the grounds that Textbook Ch.14's human
+authorities (H1 Action Authorization, H2 Escalation Review, H3 Final
+Release) remain the final word regardless of what any candidate proposes —
+`gate_validation` is an input to human review, not a replacement for it.
+Sound reasoning, but it doesn't make an overclaiming derivation harmless
+(a misleading candidate can still bias a reviewer), so the module built —
+`control/gate_trace_deriver.py::GateTraceDeriver` — stays fail-closed
+throughout: every field defaults to the most conservative value unless a
+precise, already-real, mechanical signal justifies otherwise (see
+`references/71-gate-trace-derivation.md` for the full field-by-field
+mapping table).
+
+Key design choices worth flagging for future maintainers:
+
+- `G0_preflight.closed_source_confirmed` maps to
+  `WorldSnapshot.source_manifest_hash` being a real value — and
+  `AuditWorldRuntime`'s own dev-mode default (`"DEV-SOURCE"`) deliberately
+  does **not** count as confirmed. Proven meaningful, not just plausible:
+  `test_derived_dev_placeholder_source_hash_is_rejected_by_real_g0` shows
+  the real harness genuinely rejects it.
+- The M4 test's A/B/C conditions have no clean mechanical equivalent in
+  `aias_awm`'s existing fields (they describe systemic process absence, a
+  different claim from "evidence exists proving a violation"). Rather than
+  inferring them from an aggregate count, the deriver reads three new,
+  **explicit opt-in** `EvidenceItem.metadata` keys
+  (`process_entirely_absent`, `zero_records_in_sample`,
+  `interview_confirms_absence`) that an upstream LLM/human step must set.
+  Missing any one silently falls back to `Minor` — proven by two separate
+  tests (all-three-present → real `Major` through the real `G4`; any
+  subset → `Minor`, `G4` never even asked).
+- `G2_ie_chain` (Thai-linguistic triggers) and `G3_severity_ceiling` are
+  both deliberately left empty — the former because no equivalent data
+  exists anywhere in `aias_awm`'s evidence model, the latter because the
+  real harness already auto-detects it from `predicted_clause` against its
+  own real lists, so filling it here would just be a second copy to keep
+  in sync.
+
+Every derived candidate in the test suite is submitted to the real,
+unmodified `scripts/harness_gate_executor.py` and checked against its real
+`gate_validation` result — including real rejections (an incomplete-
+coverage `Complied` candidate is genuinely rejected by the real `G6`) — not
+just checked against this module's own logic in isolation.
+
+Full suite re-run: `assets/tests/awm_v07/` **73/73** (52 + 21 new, all in
+the new `test_gate_trace_deriver.py`).

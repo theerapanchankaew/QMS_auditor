@@ -7,6 +7,7 @@ from aias_awm.cognition.events import cognition_events
 from aias_awm.cognition.imagination import BoundedImaginationEngine
 from aias_awm.cognition.pipeline import AuditCognitionPipeline
 from aias_awm.control.decision_adapter import WorldToDecisionAdapter
+from aias_awm.control.gate_trace_deriver import GateTraceDeriver
 from aias_awm.control.world_gates import WorldGateEngine
 from aias_awm.domain.models import AuditCase, AtomicRequirement, EvidenceItem, WorldEvent, WorldSnapshot
 from aias_awm.graph import AuditWorldGraph
@@ -48,6 +49,7 @@ class AuditWorldRuntime:
         self.planner = AutonomousAuditPlanningPolicy()
         self.planning_runs = PlanningDecisionRepository(db)
         self.imagination = BoundedImaginationEngine()
+        self.gate_trace_deriver = GateTraceDeriver()
 
     def create_case(self, case: AuditCase) -> AuditCase:
         self.cases.upsert(case)
@@ -198,6 +200,32 @@ class AuditWorldRuntime:
             "world_snapshot_id": snapshot.snapshot_id,
             "trajectories": [t.to_dict() for t in trajectories],
         }
+
+    def make_decision_for_requirement(self, case_id: str, requirement_id: str) -> dict[str, Any]:
+        """Convenience wrapper around make_decision(): loads the real,
+        persisted assessment/requirement/evidence for one requirement_id,
+        derives a candidate gate_execution_trace via GateTraceDeriver
+        (references/71-gate-trace-derivation.md -- conservative by
+        construction), and submits it to the real harness through
+        make_decision(). The derived candidate is echoed back under
+        'derived_candidate' for transparency: gate_validation is an input
+        to human review (H1/H2/H3), never a replacement for it."""
+        case = self._require_case(case_id)
+        assessments = [a for a in self.assessments.list_for_case(case_id) if a.requirement_id == requirement_id]
+        if not assessments:
+            raise KeyError(f"no assessment yet for requirement_id={requirement_id!r} in case {case_id!r}")
+        requirements = self.requirements.get_many([requirement_id])
+        if not requirements:
+            raise KeyError(f"unknown requirement: {requirement_id}")
+        evidence_items = self.evidence.list_for_case(case_id)
+        snapshot = self.rebuild_world(case.organization_id)
+        candidate = self.gate_trace_deriver.derive(
+            assessment=assessments[0], requirement=requirements[0],
+            evidence_items=evidence_items, snapshot=snapshot,
+        )
+        decision = self.make_decision(case_id, candidate)
+        decision["derived_candidate"] = candidate
+        return decision
 
     def list_actions(self, case_id: str):
         self._require_case(case_id)
