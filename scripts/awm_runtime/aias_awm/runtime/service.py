@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from typing import Any
 
 from aias_awm.cognition.events import cognition_events
+from aias_awm.cognition.imagination import BoundedImaginationEngine
 from aias_awm.cognition.pipeline import AuditCognitionPipeline
 from aias_awm.control.decision_adapter import WorldToDecisionAdapter
 from aias_awm.control.world_gates import WorldGateEngine
@@ -46,6 +47,7 @@ class AuditWorldRuntime:
         self.decision = WorldToDecisionAdapter(WorldGateEngine(), harness)
         self.planner = AutonomousAuditPlanningPolicy()
         self.planning_runs = PlanningDecisionRepository(db)
+        self.imagination = BoundedImaginationEngine()
 
     def create_case(self, case: AuditCase) -> AuditCase:
         self.cases.upsert(case)
@@ -168,6 +170,33 @@ class AuditWorldRuntime:
             "planning_run_id": run_id,
             "context": ctx.model_dump(mode="json"),
             "decision": result.model_dump(mode="json"),
+        }
+
+    def imagine_actions(
+        self,
+        case_id: str,
+        *,
+        actions: list | None = None,
+        predicted_deltas: dict[str, dict] | None = None,
+    ) -> dict[str, Any]:
+        """Bounded Imagination (Textbook Ch.11): predicts what each
+        candidate action's resulting RequirementAssessment could look like,
+        WITHOUT executing anything or writing to any repository -- this
+        method never calls .upsert() on anything and never emits a
+        WorldEvent. `actions` defaults to this case's real pending actions
+        (self.actions.list_for_case) if not supplied. See
+        cognition/imagination.py for the Simulation Firewall this relies
+        on, and references/69-bounded-imagination.md for what this can and
+        cannot do."""
+        case = self._require_case(case_id)
+        if actions is None:
+            actions = self.actions.list_for_case(case_id)
+        snapshot = self.rebuild_world(case.organization_id)
+        trajectories = self.imagination.imagine(snapshot, actions, predicted_deltas)
+        return {
+            "audit_case_id": case_id,
+            "world_snapshot_id": snapshot.snapshot_id,
+            "trajectories": [t.to_dict() for t in trajectories],
         }
 
     def list_actions(self, case_id: str):

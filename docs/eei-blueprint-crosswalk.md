@@ -45,6 +45,7 @@ the `deploy/openwebui/` gateway already built in this repo.
 | A second, world-model-facing state/gate pair (not named in the EEI summary, but adjacent) | [`scripts/awm_runtime/aias_awm/control/world_fsm.py`](../scripts/awm_runtime/aias_awm/control/world_fsm.py) (`W0_UNINITIALIZED`...`W9_AUDIT_READY`) and [`control/world_gates.py`](../scripts/awm_runtime/aias_awm/control/world_gates.py) (`WG0`...`WG6`) | **Implemented — a separate, intentionally distinct numbering scheme** for the predictive/planning side (see SKILL.md BLOCK 3A). Do not conflate with S0–S11/G0–G7 (the assurance boundary), and do not add a third parallel scheme. |
 | Evidence taxonomy (DIRECT/INDIRECT/CORROBORATED/CONFLICTING) + corroboration engine | [`domain/models.py`](../scripts/awm_runtime/aias_awm/domain/models.py) `EpistemicState` enum (11 values, including `CORROBORATED`/`CONTRADICTORY`) + `EvidenceItem.evidence_type` + `EvidenceExpectation.minimum_strength` (6-level ordinal: claim→documented→implemented→recorded→verified→effectiveness) + [`cognition/evidence_reconciliation.py`](../scripts/awm_runtime/aias_awm/cognition/evidence_reconciliation.py) `EvidenceReconciliationEngine` | **Implemented, at higher fidelity than the 4-bucket EEI taxonomy.** `CORROBORATED`/`CONTRADICTORY` already exist as literal states. There is no code gap here — at most a presentation-layer question (does a human-facing report need to print the literal words "DIRECT"/"INDIRECT"?), which is a rendering concern, not new reasoning logic. |
 | Requirement atomization (AR schema) + sufficiency test (Q1–Q5) + breach detector | [`domain/models.py`](../scripts/awm_runtime/aias_awm/domain/models.py) `AtomicRequirement` (`requirement_id, clause, subject, obligation, object, condition, qualifier, semantic_category, evidence_expectations, failure_patterns, negative_inference_rules`) + [`cognition/requirement_engine.py`](../scripts/awm_runtime/aias_awm/cognition/requirement_engine.py) `RequirementStateEngine.assess()` | **Implemented.** `semantic_category` is literally `D2_SAFE \| M4_MANDATORY \| AMBIGUOUS` — the same severity-ceiling categories `harness_gate_executor.py` enforces. `assess()` already does not infer breach from mere absence of evidence (`breach_proven` requires explicit `proves_breach` metadata) — this is the same "missing evidence is not proven non-fulfilment" invariant SKILL.md BLOCK 9 states. |
+| Bounded Imagination / Simulation Firewall (Ch.11, `AIAS_Theory_Technology_Stack_Textbook_v1.0.pdf`) — simulated trajectories tagged `simulation=true`, cannot set `breach_proven`/severity/verdict | Two implementations: [`scripts/imagination_engine.py`](../scripts/imagination_engine.py) + [`scripts/audit_world_model.py`](../scripts/audit_world_model.py) (older, dict-based) **and** [`scripts/awm_runtime/aias_awm/cognition/imagination.py`](../scripts/awm_runtime/aias_awm/cognition/imagination.py) (`BoundedImaginationEngine`, added 2026-09-21) | **Both implemented and tested; still two disconnected systems, now both closing the same practical gap.** The older one was re-verified by actually running it. The `aias_awm` one is a fresh implementation (not a port — `RequirementAssessment` is `extra="forbid"` and cannot carry the older system's loose dict markers), wired into `AuditWorldRuntime.imagine_actions()` as a read-only method (never calls `.upsert()`, verified by a test asserting assessment/hypothesis/action counts are unchanged before/after). See `references/69-bounded-imagination.md` and "Update 2026-09-21 (cont., 2)" below. |
 | Hartley measure / expected information gain (Ch.9–10, `AIAS_Theory_Technology_Stack_Textbook_v1.0.pdf`) — `H(X)=log2\|X\|`, `IG(a)=H(Xt)-E[H(Xt+1)\|a]` | [`scripts/hartley_uncertainty.py`](../scripts/hartley_uncertainty.py) + [`scripts/awm_runtime/aias_awm/hartley.py`](../scripts/awm_runtime/aias_awm/hartley.py) (port) + [`scripts/requirement_profile_loader.py`](../scripts/requirement_profile_loader.py) | **Was a confirmed gap, closed 2026-09-21, wired into the planner the same day, then wired into the LIVE `reason()` pipeline the same day** after directly re-checking whether it actually reached that path (it didn't, at first — see "Update 2026-09-21 (cont.)" below). All 65 clauses carry mechanically-derived `possible_worlds_dimensions`; `AuditWorldRuntime.reason(..., dimensions_by_requirement=...)` now threads them from the real corpus through to a persisted, real `log2(k)`-bit `expected_information_gain`, proven by a live end-to-end test with zero evidence ingested (the realistic first-run case) — which also caught and fixed a real bug (planner only handled one of two unresolved-question string shapes `requirement_engine.py` actually emits). `known_facts` is still never auto-populated from evidence — remains deferred. |
 
 ## Naming collisions to watch for
@@ -292,3 +293,88 @@ none exists yet) — the planner wiring only handled the colon form,
 silently falling back to the heuristic for the realistic zero-evidence
 first-run case. Fixed in `cognition/planner.py`. Full suite re-run:
 `assets/tests/awm_v07/` **35/35** (34 + 1 new).
+
+## Update 2026-09-21 (cont.): two separate "Audit World Model" systems exist -- Bounded Imagination only lives in one of them
+
+Asked directly whether audit state + audit world model can do Bounded
+Imagination (textbook Ch.11). Checked by actually running both candidate
+implementations, not just reading them:
+
+- `scripts/audit_world_model.py`'s `step()` + `scripts/imagination_engine.py`
+  (root `scripts/`, dict/JSON-based, no Pydantic, no SQL): ran a real
+  state through both, end to end. Confirmed working: `FORBIDDEN_FIELDS =
+  {'verdict','nc_class','trigger_or_anchor','breach_proven'}` are stripped
+  from the top level of any derived state, every simulated state and
+  trajectory is tagged `simulation:true` /
+  `epistemic_class:prediction_only` / `evidence_status:not_audit_evidence`
+  / `release_authority:none`, and `assurance_state` is explicitly
+  deep-copied unchanged from the real input rather than derived by the
+  simulation step — a real, working Simulation Firewall.
+- `scripts/awm_runtime/aias_awm/` (the Pydantic/SQL-backed `WorldSnapshot`
+  system this crosswalk has otherwise treated as *the* Audit World Model,
+  and that all the Hartley-measure work above was wired into): grepped for
+  `simulat|imagin|counterfactual|trajectory|bounded` across the whole
+  package — **zero matches**. `cognition/planner.py` only proposes real
+  next audit actions to actually take; nothing in this package generates
+  or firewalls a counterfactual/simulated trajectory.
+
+Cross-checked with a second grep in both directions: nothing under
+`scripts/awm_runtime/` references `audit_world_model.py` or
+`imagination_engine.py`, and nothing outside `scripts/awm_runtime/`
+(besides this session's own new Hartley files, which only reference it in
+doc comments, never a live import) references `aias_awm`. **These are two
+fully disconnected systems**, not two views onto the same state. See the
+new crosswalk table row above.
+
+Practical consequence: a live audit run through
+`AuditWorldRuntime.reason()` (the path this whole session's Hartley work
+was wired into) has **no** bounded-imagination capability today. Getting
+it would mean either (a) porting the older system's firewall pattern into
+`aias_awm` as a new module, wired to real `WorldSnapshot`/`AuditAction`
+types instead of the older loose dicts, or (b) formally documenting the two
+systems as intentionally separate (root scripts = deterministic gate/
+harness layer including this one capability; `aias_awm` = the stateful,
+persisted, Hartley-aware planning layer) and deciding whether that split is
+acceptable long-term. Neither decision was made here — this is a finding,
+not yet a fix, pending the user's direction.
+
+## Update 2026-09-21 (cont., 2): Bounded Imagination added to `aias_awm` (option (a) above, chosen)
+
+User asked to actually build option (a): a real bounded-imagination module
+inside `aias_awm`, not just documentation of the gap.
+
+Added `cognition/imagination.py` — `BoundedImaginationEngine`,
+`ImaginedNode`/`ImaginedTrajectory` (plain frozen dataclasses, not
+`StrictModel`s, so they are never accepted by any repository's `upsert()`
+by construction) and `reject_if_simulated()`. Firewall markers
+(`simulation`, `epistemic_class`, `evidence_status`, `release_authority`)
+are `dataclass` fields with `init=False`, matching the older system's
+vocabulary exactly so a human or downstream tool sees the same four words
+regardless of which system produced them. `imagine_one()`'s
+`predicted_delta` is checked against `FIREWALLED_FIELDS =
+{breach_proven, effectiveness_proven, state}` and raises `ValueError`
+immediately if a caller tries to set one — verified by tests, including
+through the live runtime call
+(`test_imagine_actions_through_runtime_rejects_firewalled_predicted_delta`).
+
+Wired into `AuditWorldRuntime` as `imagine_actions(case_id, actions=None,
+predicted_deltas=None)` — read-only, defaults `actions` to the case's real
+persisted pending actions, calls `rebuild_world()` for the real current
+snapshot, and **never calls any repository's `.upsert()` or emits a
+`WorldEvent`**. Proven, not just claimed:
+`test_imagine_actions_through_runtime_has_no_side_effects_on_real_state`
+asserts assessment/hypothesis/action counts are byte-identical before and
+after calling it.
+
+This is a **fresh implementation of the same pattern**, not a port of
+`scripts/audit_world_model.py` — `RequirementAssessment` is `extra="forbid"`
+and cannot carry the older system's loose dict-shaped markers directly.
+The two systems remain disconnected; only the practical gap (a live audit
+through `aias_awm` can now do bounded imagination) is closed, not the
+architectural duplication itself — see
+`references/69-bounded-imagination.md`, "Relationship to the older
+system", for the explicit statement that unifying them is still an open,
+undecided question.
+
+Full suite re-run: `assets/tests/awm_v07/` **46/46** (35 + 11 new, all in
+the new `test_imagination.py`).
