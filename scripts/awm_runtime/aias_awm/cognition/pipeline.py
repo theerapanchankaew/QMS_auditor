@@ -32,7 +32,18 @@ class AuditCognitionPipeline:
         atomic_requirements: list[AtomicRequirement],
         evidence_items: list[EvidenceItem],
         now: datetime | None = None,
+        dimensions_by_requirement: dict[str, dict[str, list[str]]] | None = None,
     ) -> CognitionResult:
+        """dimensions_by_requirement is optional and defaults to None for full
+        backward compatibility. When supplied (keyed by requirement_id), it is
+        passed straight through to the hypothesis engine so the resulting
+        hypotheses -- and, downstream, the planner's info_gain -- use a real
+        Hartley measure instead of the fallback heuristic constant. See
+        cognition/hypothesis_engine.py, cognition/planner.py, and
+        references/68-hartley-uncertainty.md. This package does not load
+        assets/requirement_profiles/ itself (it stays independently
+        installable -- see aias_awm/hartley.py's own docstring); the caller
+        is responsible for loading that corpus and building this dict."""
         bundles = self.reconciler.reconcile(evidence_items)
         assessments = [
             self.requirements.assess(
@@ -43,7 +54,7 @@ class AuditCognitionPipeline:
             )
             for req in atomic_requirements
         ]
-        hypotheses = self.hypotheses.update(audit_case_id, assessments)
+        hypotheses = self.hypotheses.update(audit_case_id, assessments, dimensions_by_requirement)
         actions = self.planner.propose(hypotheses)
         decision_ready = all(a.state.value in {"SATISFIED", "BREACH_PROVEN", "NOT_APPLICABLE"} for a in assessments)
         return CognitionResult(tuple(assessments), tuple(hypotheses), tuple(actions), decision_ready)

@@ -84,7 +84,18 @@ class AuditWorldRuntime:
         ))
         return self.rebuild_world(case.organization_id)
 
-    def reason(self, case_id: str, requirement_ids: list[str]) -> dict[str, Any]:
+    def reason(
+        self,
+        case_id: str,
+        requirement_ids: list[str],
+        *,
+        dimensions_by_requirement: dict[str, dict[str, list[str]]] | None = None,
+    ) -> dict[str, Any]:
+        """dimensions_by_requirement is optional (default None, unchanged
+        behavior). Pass it to give the resulting hypotheses a real Hartley
+        possible-worlds set -- see AuditCognitionPipeline.run()'s docstring
+        for what this does and why this runtime doesn't load
+        assets/requirement_profiles/ itself."""
         case = self._require_case(case_id)
         requirements = self.requirements.get_many(requirement_ids)
         missing = sorted(set(requirement_ids) - {r.requirement_id for r in requirements})
@@ -96,6 +107,7 @@ class AuditWorldRuntime:
             atomic_requirements=requirements,
             evidence_items=evidence,
             now=datetime.now(timezone.utc),
+            dimensions_by_requirement=dimensions_by_requirement,
         )
         for item in result.assessments: self.assessments.upsert(item)
         for item in result.hypotheses: self.hypotheses.upsert(item)

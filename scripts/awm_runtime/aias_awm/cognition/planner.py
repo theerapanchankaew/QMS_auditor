@@ -48,7 +48,17 @@ class HeuristicAuditPlanner:
                         action_type = mapped
                         break
                 info_gain = 0.95 if "effectiveness" in ql else 0.80
-                if h.possible_worlds_dimensions and h.requirement_ids and ":" in q:
+                if h.possible_worlds_dimensions and h.requirement_ids:
+                    # requirement_engine.py is the sole real producer of a
+                    # machine-formatted unresolved_question when dimensions
+                    # are involved, in one of two exact shapes:
+                    # "evidence_type:min_strength" (_missing_expectations(),
+                    # when some evidence exists but doesn't fully satisfy an
+                    # expectation) or bare "evidence_type"
+                    # (_insufficient(), when no evidence exists at all yet).
+                    # A free-text question (e.g. from the no-dimensions test
+                    # fixtures) simply won't match any real dimension name,
+                    # so ig_result below falls back to the heuristic safely.
                     evidence_type = q.split(":", 1)[0].strip()
                     target_dim = f"{h.requirement_ids[0]}_{evidence_type}"
                     ig_result = information_gain_from_resolving_dimension(

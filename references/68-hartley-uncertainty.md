@@ -79,6 +79,69 @@ full via PyMuPDF text extraction — not a paraphrase). That check found:
   every wired hypothesis starts from the clause's *full* raw uncertainty
   (`H(Xt)` with no facts narrowing it), not its true current state.
 
+## Update 2026-09-21 (cont.): wired into the LIVE pipeline, not just tests
+
+The wiring described in the section below was, at first, only proven via
+hypotheses **manually constructed** in unit tests — the real
+`register_requirement() -> ingest_evidence() -> reason()` path
+(`aias_awm/runtime/service.py`) never actually passed
+`possible_worlds_dimensions` through, because nothing in that path loaded
+`assets/requirement_profiles/` at all. Asked directly whether audit-state
+tracking and Hartley measure both work, re-checking the real call chain
+(`reason()` -> `AuditCognitionPipeline.run()` ->
+`RuleBasedHypothesisEngine.update()`) confirmed this gap before it was
+fixed — see `docs/eei-blueprint-crosswalk.md` for that finding.
+
+Closed by:
+
+- `AuditCognitionPipeline.run()` and `AuditWorldRuntime.reason()` both
+  gained an optional `dimensions_by_requirement` parameter (default `None`,
+  passed straight through — existing callers unaffected).
+- New `scripts/requirement_profile_loader.py`: caller-side glue (kept
+  outside `scripts/awm_runtime` deliberately, same reason `aias_awm/hartley.py`
+  is a port and not an import — the package stays independently
+  installable and never reads `assets/` itself). Given a list of
+  `requirement_id`s, it loads each one's clause file and returns **only
+  that element's own dimensions**, not its whole clause's — a
+  `RequirementAssessment`/`AuditHypothesis` is scoped to one element (e.g.
+  `AR-6.1.3-E02`), and attaching the whole clause's combined dimension set
+  (all of `AR-6.1.3-E01/E02/E03`'s dimensions) would inflate `H(Xt)` to
+  reflect the entire clause for a question about only one element of it.
+- **Bug found and fixed while wiring this real path**:
+  `cognition/requirement_engine.py` emits an unresolved-question string in
+  **two different shapes** depending on whether any evidence exists yet —
+  `"evidence_type:min_strength"` (`_missing_expectations()`, used when some
+  evidence exists but doesn't fully satisfy an expectation) or a **bare**
+  `"evidence_type"` with no colon at all (`_insufficient()`, used when no
+  evidence has been ingested yet — the actual first-run case). The initial
+  planner wiring only handled the colon form and required `":" in q`,
+  silently falling back to the old heuristic for every case with zero
+  evidence — caught by writing a live end-to-end test with no evidence
+  ingested (the realistic starting state of a real audit) rather than only
+  hand-built hypothesis fixtures, and fixed by deriving `evidence_type` as
+  "the part before the colon, or the whole string if there is no colon."
+- New live end-to-end test,
+  `test_reason_wires_real_hartley_dimensions_end_to_end` in
+  `assets/tests/awm_v07/test_persistence_api.py`: registers a real
+  `AtomicRequirement`, ingests **zero** evidence, calls the real `reason()`
+  with dimensions loaded via `requirement_profile_loader.py` against the
+  real committed `6.1.3.json`, and asserts the resulting action's
+  `expected_information_gain == 1.0` (this element has exactly one binary
+  dimension, so resolving it is worth its entire `H(Xt)=1` bit) — then
+  re-reads the hypothesis back from the SQL database to confirm it was
+  actually persisted, not just returned in-memory.
+
+Full suite re-run: `assets/tests/awm_v07/` **35/35** (34 + 1 new),
+`scripts/hartley_uncertainty_tests.py` unaffected at **12/12**.
+
+**Still unchanged from the section below**: nothing calls
+`requirement_profile_loader.py` automatically — a caller (an OpenWebUI
+pipeline step, a CLI wrapper, a test) must still explicitly build and pass
+`dimensions_by_requirement`. And `known_facts` is still never
+auto-populated from evidence (see "What this does NOT do" above) — a live
+hypothesis today reflects its *raw* dimension cardinality, not how much of
+that has already been resolved by real evidence.
+
 ## Update 2026-09-21: wired into the runtime planner + all 65 clauses
 
 Both items originally listed as deferred below are now done:

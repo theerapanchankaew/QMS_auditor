@@ -45,7 +45,7 @@ the `deploy/openwebui/` gateway already built in this repo.
 | A second, world-model-facing state/gate pair (not named in the EEI summary, but adjacent) | [`scripts/awm_runtime/aias_awm/control/world_fsm.py`](../scripts/awm_runtime/aias_awm/control/world_fsm.py) (`W0_UNINITIALIZED`...`W9_AUDIT_READY`) and [`control/world_gates.py`](../scripts/awm_runtime/aias_awm/control/world_gates.py) (`WG0`...`WG6`) | **Implemented — a separate, intentionally distinct numbering scheme** for the predictive/planning side (see SKILL.md BLOCK 3A). Do not conflate with S0–S11/G0–G7 (the assurance boundary), and do not add a third parallel scheme. |
 | Evidence taxonomy (DIRECT/INDIRECT/CORROBORATED/CONFLICTING) + corroboration engine | [`domain/models.py`](../scripts/awm_runtime/aias_awm/domain/models.py) `EpistemicState` enum (11 values, including `CORROBORATED`/`CONTRADICTORY`) + `EvidenceItem.evidence_type` + `EvidenceExpectation.minimum_strength` (6-level ordinal: claim→documented→implemented→recorded→verified→effectiveness) + [`cognition/evidence_reconciliation.py`](../scripts/awm_runtime/aias_awm/cognition/evidence_reconciliation.py) `EvidenceReconciliationEngine` | **Implemented, at higher fidelity than the 4-bucket EEI taxonomy.** `CORROBORATED`/`CONTRADICTORY` already exist as literal states. There is no code gap here — at most a presentation-layer question (does a human-facing report need to print the literal words "DIRECT"/"INDIRECT"?), which is a rendering concern, not new reasoning logic. |
 | Requirement atomization (AR schema) + sufficiency test (Q1–Q5) + breach detector | [`domain/models.py`](../scripts/awm_runtime/aias_awm/domain/models.py) `AtomicRequirement` (`requirement_id, clause, subject, obligation, object, condition, qualifier, semantic_category, evidence_expectations, failure_patterns, negative_inference_rules`) + [`cognition/requirement_engine.py`](../scripts/awm_runtime/aias_awm/cognition/requirement_engine.py) `RequirementStateEngine.assess()` | **Implemented.** `semantic_category` is literally `D2_SAFE \| M4_MANDATORY \| AMBIGUOUS` — the same severity-ceiling categories `harness_gate_executor.py` enforces. `assess()` already does not infer breach from mere absence of evidence (`breach_proven` requires explicit `proves_breach` metadata) — this is the same "missing evidence is not proven non-fulfilment" invariant SKILL.md BLOCK 9 states. |
-| Hartley measure / expected information gain (Ch.9–10, `AIAS_Theory_Technology_Stack_Textbook_v1.0.pdf`) — `H(X)=log2\|X\|`, `IG(a)=H(Xt)-E[H(Xt+1)\|a]` | [`scripts/hartley_uncertainty.py`](../scripts/hartley_uncertainty.py) + [`scripts/awm_runtime/aias_awm/hartley.py`](../scripts/awm_runtime/aias_awm/hartley.py) (port) | **Was a confirmed gap (repo-wide search for `hartley`/`log2`/`entropy` found zero hits), closed 2026-09-21, then wired into the runtime planner the same day.** All 65 clauses now carry mechanically-derived `possible_worlds_dimensions`; `cognition/planner.py` and `scripts/next_best_audit_action.py` use a real `log2(k)`-bit measure when a hypothesis/action supplies dimensions, falling back to the original heuristic otherwise. See "Update 2026-09-21" below and `references/68-hartley-uncertainty.md`. `known_facts` is still never auto-populated from evidence — remains deferred. |
+| Hartley measure / expected information gain (Ch.9–10, `AIAS_Theory_Technology_Stack_Textbook_v1.0.pdf`) — `H(X)=log2\|X\|`, `IG(a)=H(Xt)-E[H(Xt+1)\|a]` | [`scripts/hartley_uncertainty.py`](../scripts/hartley_uncertainty.py) + [`scripts/awm_runtime/aias_awm/hartley.py`](../scripts/awm_runtime/aias_awm/hartley.py) (port) + [`scripts/requirement_profile_loader.py`](../scripts/requirement_profile_loader.py) | **Was a confirmed gap, closed 2026-09-21, wired into the planner the same day, then wired into the LIVE `reason()` pipeline the same day** after directly re-checking whether it actually reached that path (it didn't, at first — see "Update 2026-09-21 (cont.)" below). All 65 clauses carry mechanically-derived `possible_worlds_dimensions`; `AuditWorldRuntime.reason(..., dimensions_by_requirement=...)` now threads them from the real corpus through to a persisted, real `log2(k)`-bit `expected_information_gain`, proven by a live end-to-end test with zero evidence ingested (the realistic first-run case) — which also caught and fixed a real bug (planner only handled one of two unresolved-question string shapes `requirement_engine.py` actually emits). `known_facts` is still never auto-populated from evidence — remains deferred. |
 
 ## Naming collisions to watch for
 
@@ -263,3 +263,32 @@ full file-by-file writeup, including why `aias_awm/hartley.py` is a small
 port rather than an import (a `cognition`<->`planning` circular import
 otherwise), and what remains deferred (`known_facts` auto-population from
 evidence; a per-state `S4_SUFFICIENCY` contract).
+
+## Update 2026-09-21 (cont.): Hartley wiring only reached unit tests, not the live pipeline
+
+Asked directly whether this repo's audit-state tracking and Hartley measure
+both actually work, re-checking the real call chain (not just the tests
+above) found that `reason()` (`aias_awm/runtime/service.py`) ->
+`AuditCognitionPipeline.run()` -> `RuleBasedHypothesisEngine.update()` never
+passed `dimensions_by_requirement` through — nothing in the live path
+loaded `assets/requirement_profiles/` at all, so every real audit run would
+still fall back to the old heuristic constant despite the wiring above.
+
+Closed the same day: `AuditCognitionPipeline.run()` and
+`AuditWorldRuntime.reason()` both gained an optional
+`dimensions_by_requirement` parameter (default `None`), and new
+`scripts/requirement_profile_loader.py` provides the caller-side glue —
+kept outside `scripts/awm_runtime` for the same self-containment reason as
+`aias_awm/hartley.py`, and filtering each requirement_id down to **only its
+own element's dimensions** (not its whole clause's, which would inflate
+`H(Xt)` for a question about one element of a multi-element clause).
+
+Writing a live end-to-end test (real `register_requirement` ->
+zero-evidence `reason()`, not a hand-built hypothesis fixture) caught a
+real bug: `requirement_engine.py` emits an unresolved-question string in
+two different shapes (`"evidence_type:min_strength"` when some evidence
+exists but is insufficient, vs. a bare `"evidence_type"` with no colon when
+none exists yet) — the planner wiring only handled the colon form,
+silently falling back to the heuristic for the realistic zero-evidence
+first-run case. Fixed in `cognition/planner.py`. Full suite re-run:
+`assets/tests/awm_v07/` **35/35** (34 + 1 new).

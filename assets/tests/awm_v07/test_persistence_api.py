@@ -158,6 +158,61 @@ def test_hypothesis_possible_worlds_dimensions_round_trip_through_sql():
     assert loaded[0].known_facts == facts
 
 
+def test_reason_wires_real_hartley_dimensions_end_to_end():
+    """references/68-hartley-uncertainty.md, last remaining gap: the live
+    register_requirement -> ingest_evidence -> reason() path can now carry a
+    real Hartley possible-worlds set all the way through, when the caller
+    supplies dimensions_by_requirement -- built here via the real
+    scripts/requirement_profile_loader.py against the real, committed
+    assets/requirement_profiles/6.1.3.json corpus file, not a hand-
+    constructed fixture. Proves AuditWorldRuntime.reason() ->
+    AuditCognitionPipeline.run() -> RuleBasedHypothesisEngine.update() ->
+    HeuristicAuditPlanner.propose() all pass the dict through correctly."""
+    # requirement_profile_loader.py lives in scripts/, put on PYTHONPATH by
+    # the same invocation this whole suite already requires -- see
+    # scripts/hartley_uncertainty_tests.py and references/68-hartley-uncertainty.md
+    # ("PYTHONPATH=scripts/awm_runtime;scripts").
+    from requirement_profile_loader import load_possible_worlds_dimensions
+
+    rt = build_runtime()
+    rt.create_case(AuditCase(
+        audit_case_id="CASE-HARTLEY", organization_id="ORG-HARTLEY", standard_ids=["ISO9001-2026"],
+        audit_type="document_review", scope={}, created_at=datetime(2026, 9, 21, tzinfo=timezone.utc),
+    ))
+    rt.register_requirement(AtomicRequirement(
+        requirement_id="AR-6.1.3-E02", standard_id="ISO 9001:2026", clause="6.1.3",
+        subject="organization", obligation="plan",
+        object="actions to address these opportunities",
+        semantic_category="AMBIGUOUS",
+        evidence_expectations=[
+            EvidenceExpectation(evidence_type="document", minimum_strength="documented", mandatory=False),
+            EvidenceExpectation(evidence_type="observation", minimum_strength="implemented", mandatory=True),
+        ],
+        version="0.2.0-ai-draft-unreviewed",
+    ))
+    # No evidence ingested for this case -> the mandatory "observation"
+    # expectation is missing -> hypothesis_engine produces an
+    # unresolved_questions entry "observation:implemented".
+    dims = load_possible_worlds_dimensions(["AR-6.1.3-E02"])
+    assert dims == {"AR-6.1.3-E02": {"AR-6.1.3-E02_observation": ["YES", "NO"]}}, dims
+
+    result = rt.reason("CASE-HARTLEY", ["AR-6.1.3-E02"], dimensions_by_requirement=dims)
+
+    assert len(result["hypotheses"]) == 1
+    assert result["hypotheses"][0]["possible_worlds_dimensions"] == {"AR-6.1.3-E02_observation": ["YES", "NO"]}
+
+    assert len(result["actions"]) == 1
+    # This element's own dimension set is a single binary dimension
+    # (H(Xt)=log2(2)=1 bit); resolving its only dimension is worth the
+    # entire 1 bit -> normalized_information_gain = 1.0, not the old
+    # 0.80/0.95 heuristic constant.
+    assert result["actions"][0]["expected_information_gain"] == 1.0
+
+    # Persisted, not just returned in-memory: re-load from the DB directly.
+    persisted = rt.hypotheses.list_for_case("CASE-HARTLEY")
+    assert persisted[0].possible_worlds_dimensions == {"AR-6.1.3-E02_observation": ["YES", "NO"]}
+
+
 def test_hypothesis_without_dimensions_still_round_trips():
     """The common case today (no clause has been wired to supply dimensions
     yet) must keep working exactly as before this change."""
