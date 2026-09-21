@@ -63,6 +63,29 @@
     "AR-7.3-E01",
     "AR-7.4-E01"
   ],
+  "possible_worlds_dimensions": {
+    "AR-5.2.2-E01_document": [
+      "YES",
+      "NO"
+    ],
+    "AR-5.2.2-E02_observation": [
+      "YES",
+      "NO"
+    ],
+    "AR-5.2.2-E03_observation": [
+      "YES",
+      "NO"
+    ],
+    "AR-5.2.2-E04_observation": [
+      "YES",
+      "NO"
+    ],
+    "AR-5.2.2-E05_observation": [
+      "YES",
+      "NO"
+    ]
+  },
+  "possible_worlds_dimensions_source": "Mechanically derived: one binary dimension per MANDATORY evidence_expectation already authored above for this clause's elements (see compute_possible_worlds_dimensions() in scripts/build_requirement_profiles.py). Not an SME-reviewed decomposition -- see references/68-hartley-uncertainty.md.",
   "requirements": [
     {
       "requirement_id": "AR-5.2.2-E01",

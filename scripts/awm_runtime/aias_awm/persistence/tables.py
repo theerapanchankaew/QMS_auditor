@@ -68,6 +68,8 @@ hypotheses = Table(
     Column("contradicting_evidence_ids", JSON, nullable=False, default=list),
     Column("status", String(24), nullable=False),
     Column("unresolved_questions", JSON, nullable=False, default=list),
+    Column("possible_worlds_dimensions", JSON, nullable=True),
+    Column("known_facts", JSON, nullable=False, default=dict),
 )
 
 audit_actions = Table(

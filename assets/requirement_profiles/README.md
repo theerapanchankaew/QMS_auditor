@@ -62,6 +62,35 @@ would have meant inventing relations no source actually states.
 `_index.json` lists every clause with its element count and assigned
 `semantic_category`.
 
+### `possible_worlds_dimensions` (added 2026-09-21)
+
+Each clause file also carries a `possible_worlds_dimensions` block (and a
+`possible_worlds_dimensions_source` note) — the Hartley-measure input
+consumed by `scripts/hartley_uncertainty.py` and, when supplied to a
+hypothesis, `scripts/awm_runtime`'s planner (see
+`references/68-hartley-uncertainty.md` and
+`docs/eei-blueprint-crosswalk.md`, "Update 2026-09-21").
+
+**This is mechanically derived, not hand-authored per clause**: one binary
+dimension per `mandatory: true` evidence expectation already attached to
+that clause's elements (e.g. `"AR-6.1.3-E02_observation": ["YES", "NO"]`),
+using the same PRESENT/ABSENT vs YES/NO vocabulary the textbook's own
+worked example uses per evidence type. Given the same evidence
+expectations, anyone can regenerate the same dimensions — it carries no
+additional AI judgement call beyond what was already made when authoring
+`evidence_expectations` above. `_index.json` records each clause's
+resulting `possible_worlds_dimension_count` and `raw_hartley_bits` (the
+full, unconstrained `H(Xt)` before any evidence narrows it).
+
+**Caveat**: this mechanical rule is a first, traceable approximation of a
+clause's possible-worlds structure, not an SME-reviewed decomposition. A
+human auditor might identify materially different or additional
+distinguishing axes for a given clause (the textbook's own worked example
+for 6.1.3 — "Implementation? / Effectiveness evaluated? / Objective
+record?" — happens to also cardinality-match this corpus's 3 mechanically
+derived dimensions for that clause, but the two are not claimed to be the
+same axes, only the same count by coincidence).
+
 ## Provenance
 
 - **Clause boundaries and element counts** come from the 65-clause /

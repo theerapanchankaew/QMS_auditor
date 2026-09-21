@@ -13,7 +13,8 @@ from aias_awm.domain.models import (
     ReasoningProposal,
 )
 from aias_awm.llm import StructuredReasoningAdapter
-from aias_awm.persistence import Database
+from aias_awm.domain.models import AuditHypothesis
+from aias_awm.persistence import Database, HypothesisRepository
 from aias_awm.runtime import AuditWorldRuntime
 
 
@@ -133,3 +134,40 @@ def test_obsolete_planner_action_is_cancelled_after_requirement_resolves():
     summary = rt.graph_summary("CASE-TII-613")
     assert summary["pending_actions"] == []
     assert summary["unresolved_hypotheses"] == []
+
+
+def test_hypothesis_possible_worlds_dimensions_round_trip_through_sql():
+    """references/68-hartley-uncertainty.md wiring: possible_worlds_dimensions
+    and known_facts must survive a real insert+select through the
+    'hypotheses' SQL table (scripts/awm_runtime/aias_awm/persistence/tables.py),
+    not just pass pydantic validation in memory."""
+    db = Database("sqlite+pysqlite:///:memory:")
+    db.create_schema()
+    repo = HypothesisRepository(db)
+    dims = {"AR-6.1.3-E02_record": ["PRESENT", "ABSENT"], "AR-6.1.3-E02_observation": ["YES", "NO"]}
+    facts = {"AR-6.1.3-E02_observation": "YES"}
+    repo.upsert(AuditHypothesis(
+        hypothesis_id="H-ROUNDTRIP", audit_case_id="CASE-RT", hypothesis_type="INSUFFICIENT_EVIDENCE",
+        statement="round-trip check", requirement_ids=["AR-6.1.3-E02"], status="UNRESOLVED",
+        unresolved_questions=["record:recorded"],
+        possible_worlds_dimensions=dims, known_facts=facts,
+    ))
+    loaded = repo.list_for_case("CASE-RT")
+    assert len(loaded) == 1
+    assert loaded[0].possible_worlds_dimensions == dims
+    assert loaded[0].known_facts == facts
+
+
+def test_hypothesis_without_dimensions_still_round_trips():
+    """The common case today (no clause has been wired to supply dimensions
+    yet) must keep working exactly as before this change."""
+    db = Database("sqlite+pysqlite:///:memory:")
+    db.create_schema()
+    repo = HypothesisRepository(db)
+    repo.upsert(AuditHypothesis(
+        hypothesis_id="H-PLAIN", audit_case_id="CASE-PLAIN", hypothesis_type="CONFORMITY",
+        statement="no dimensions here", requirement_ids=["AR-1"], status="SUPPORTED",
+    ))
+    loaded = repo.list_for_case("CASE-PLAIN")
+    assert loaded[0].possible_worlds_dimensions is None
+    assert loaded[0].known_facts == {}

@@ -19,7 +19,9 @@
         "6.1.2",
         "6.1.3",
         "9.3.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 3,
+      "raw_hartley_bits": 3.0
     },
     {
       "clause": "4.2",
@@ -33,7 +35,9 @@
         "6.1.2",
         "6.1.3",
         "9.3.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 5,
+      "raw_hartley_bits": 5.0
     },
     {
       "clause": "4.3",
@@ -45,7 +49,9 @@
         "4.2",
         "4.4.1",
         "4.4.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 9,
+      "raw_hartley_bits": 9.0
     },
     {
       "clause": "4.4.1",
@@ -57,7 +63,9 @@
         "6.1.1",
         "6.1.2",
         "6.1.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 11,
+      "raw_hartley_bits": 11.0
     },
     {
       "clause": "4.4.2",
@@ -66,7 +74,9 @@
       "element_count": 3,
       "related_clauses": [
         "4.4.1"
-      ]
+      ],
+      "possible_worlds_dimension_count": 3,
+      "raw_hartley_bits": 3.0
     },
     {
       "clause": "5.1.1",
@@ -75,7 +85,9 @@
       "element_count": 13,
       "related_clauses": [
         "5.1.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 13,
+      "raw_hartley_bits": 13.0
     },
     {
       "clause": "5.1.2",
@@ -84,7 +96,9 @@
       "element_count": 4,
       "related_clauses": [
         "5.1.1"
-      ]
+      ],
+      "possible_worlds_dimension_count": 4,
+      "raw_hartley_bits": 4.0
     },
     {
       "clause": "5.2.1",
@@ -99,7 +113,9 @@
         "6.2.2",
         "7.3",
         "7.4"
-      ]
+      ],
+      "possible_worlds_dimension_count": 6,
+      "raw_hartley_bits": 6.0
     },
     {
       "clause": "5.2.2",
@@ -114,14 +130,18 @@
         "6.2.2",
         "7.3",
         "7.4"
-      ]
+      ],
+      "possible_worlds_dimension_count": 5,
+      "raw_hartley_bits": 5.0
     },
     {
       "clause": "5.3",
       "title": "Roles, responsibilities and authorities",
       "semantic_category": "AMBIGUOUS",
       "element_count": 8,
-      "related_clauses": []
+      "related_clauses": [],
+      "possible_worlds_dimension_count": 8,
+      "raw_hartley_bits": 8.0
     },
     {
       "clause": "6.1.1",
@@ -140,7 +160,9 @@
         "8.1",
         "9.1.3",
         "9.3.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 5,
+      "raw_hartley_bits": 5.0
     },
     {
       "clause": "6.1.2",
@@ -159,7 +181,9 @@
         "8.1",
         "9.1.3",
         "9.3.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 5,
+      "raw_hartley_bits": 5.0
     },
     {
       "clause": "6.1.3",
@@ -178,7 +202,9 @@
         "8.1",
         "9.1.3",
         "9.3.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 3,
+      "raw_hartley_bits": 3.0
     },
     {
       "clause": "6.2.1",
@@ -193,7 +219,9 @@
         "9.1.1",
         "9.1.2",
         "9.1.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 2,
+      "raw_hartley_bits": 2.0
     },
     {
       "clause": "6.2.2",
@@ -208,7 +236,9 @@
         "9.1.1",
         "9.1.2",
         "9.1.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "6.3",
@@ -220,7 +250,9 @@
         "8.1",
         "8.5.6",
         "9.3.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 2,
+      "raw_hartley_bits": 2.0
     },
     {
       "clause": "7.1.1",
@@ -232,7 +264,9 @@
         "7.1.3",
         "7.1.4",
         "7.1.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 2,
+      "raw_hartley_bits": 2.0
     },
     {
       "clause": "7.1.2",
@@ -244,7 +278,9 @@
         "7.1.3",
         "7.1.4",
         "7.1.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "7.1.3",
@@ -256,7 +292,9 @@
         "7.1.2",
         "7.1.4",
         "7.1.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "7.1.4",
@@ -268,7 +306,9 @@
         "7.1.2",
         "7.1.3",
         "7.1.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "7.1.5.1",
@@ -277,7 +317,9 @@
       "element_count": 3,
       "related_clauses": [
         "7.1.5.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 3,
+      "raw_hartley_bits": 3.0
     },
     {
       "clause": "7.1.5.2",
@@ -286,7 +328,9 @@
       "element_count": 2,
       "related_clauses": [
         "7.1.5.1"
-      ]
+      ],
+      "possible_worlds_dimension_count": 2,
+      "raw_hartley_bits": 2.0
     },
     {
       "clause": "7.1.6",
@@ -298,7 +342,9 @@
         "7.1.2",
         "7.1.3",
         "7.1.4"
-      ]
+      ],
+      "possible_worlds_dimension_count": 3,
+      "raw_hartley_bits": 3.0
     },
     {
       "clause": "7.2",
@@ -308,7 +354,9 @@
       "related_clauses": [
         "7.3",
         "7.4"
-      ]
+      ],
+      "possible_worlds_dimension_count": 2,
+      "raw_hartley_bits": 2.0
     },
     {
       "clause": "7.3",
@@ -322,7 +370,9 @@
         "6.2.2",
         "7.2",
         "7.4"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "7.4",
@@ -332,7 +382,9 @@
       "related_clauses": [
         "7.2",
         "7.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "7.5.1",
@@ -341,7 +393,9 @@
       "element_count": 1,
       "related_clauses": [
         "7.5.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "7.5.2",
@@ -350,7 +404,9 @@
       "element_count": 1,
       "related_clauses": [
         "7.5.1"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "7.5.3.1",
@@ -359,7 +415,9 @@
       "element_count": 1,
       "related_clauses": [
         "7.5.3.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "7.5.3.2",
@@ -368,7 +426,9 @@
       "element_count": 3,
       "related_clauses": [
         "7.5.3.1"
-      ]
+      ],
+      "possible_worlds_dimension_count": 3,
+      "raw_hartley_bits": 3.0
     },
     {
       "clause": "8.1",
@@ -396,7 +456,9 @@
         "8.4.2",
         "8.4.3",
         "8.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 5,
+      "raw_hartley_bits": 5.0
     },
     {
       "clause": "8.2.1",
@@ -406,7 +468,9 @@
       "related_clauses": [
         "8.2.2",
         "8.2.4"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.2.2",
@@ -416,7 +480,9 @@
       "related_clauses": [
         "8.2.1",
         "8.2.4"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.2.3.1",
@@ -425,7 +491,9 @@
       "element_count": 1,
       "related_clauses": [
         "8.2.3.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.2.3.2",
@@ -434,7 +502,9 @@
       "element_count": 1,
       "related_clauses": [
         "8.2.3.1"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.2.4",
@@ -444,7 +514,9 @@
       "related_clauses": [
         "8.2.1",
         "8.2.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.3.1",
@@ -457,7 +529,9 @@
         "8.3.4",
         "8.3.5",
         "8.3.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.3.2",
@@ -470,7 +544,9 @@
         "8.3.4",
         "8.3.5",
         "8.3.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.3.3",
@@ -483,7 +559,9 @@
         "8.3.4",
         "8.3.5",
         "8.3.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.3.4",
@@ -496,7 +574,9 @@
         "8.3.3",
         "8.3.5",
         "8.3.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.3.5",
@@ -509,7 +589,9 @@
         "8.3.3",
         "8.3.4",
         "8.3.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.3.6",
@@ -522,7 +604,9 @@
         "8.3.3",
         "8.3.4",
         "8.3.5"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.4.1",
@@ -532,7 +616,9 @@
       "related_clauses": [
         "8.4.2",
         "8.4.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.4.2",
@@ -542,7 +628,9 @@
       "related_clauses": [
         "8.4.1",
         "8.4.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.4.3",
@@ -552,7 +640,9 @@
       "related_clauses": [
         "8.4.1",
         "8.4.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.5.1",
@@ -565,7 +655,9 @@
         "8.5.4",
         "8.5.5",
         "8.5.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 2,
+      "raw_hartley_bits": 2.0
     },
     {
       "clause": "8.5.2",
@@ -578,7 +670,9 @@
         "8.5.4",
         "8.5.5",
         "8.5.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.5.3",
@@ -591,7 +685,9 @@
         "8.5.4",
         "8.5.5",
         "8.5.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.5.4",
@@ -604,7 +700,9 @@
         "8.5.3",
         "8.5.5",
         "8.5.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.5.5",
@@ -617,7 +715,9 @@
         "8.5.3",
         "8.5.4",
         "8.5.6"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.5.6",
@@ -630,7 +730,9 @@
         "8.5.3",
         "8.5.4",
         "8.5.5"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "8.6",
@@ -639,7 +741,9 @@
       "element_count": 3,
       "related_clauses": [
         "8.1"
-      ]
+      ],
+      "possible_worlds_dimension_count": 3,
+      "raw_hartley_bits": 3.0
     },
     {
       "clause": "8.7.1",
@@ -648,7 +752,9 @@
       "element_count": 2,
       "related_clauses": [
         "8.7.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 2,
+      "raw_hartley_bits": 2.0
     },
     {
       "clause": "8.7.2",
@@ -657,7 +763,9 @@
       "element_count": 1,
       "related_clauses": [
         "8.7.1"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "9.1.1",
@@ -676,7 +784,9 @@
         "9.3.1",
         "9.3.2",
         "9.3.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 2,
+      "raw_hartley_bits": 2.0
     },
     {
       "clause": "9.1.2",
@@ -695,7 +805,9 @@
         "9.3.1",
         "9.3.2",
         "9.3.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "9.1.3",
@@ -714,7 +826,9 @@
         "9.3.1",
         "9.3.2",
         "9.3.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "9.2.1",
@@ -728,7 +842,9 @@
         "9.3.1",
         "9.3.2",
         "9.3.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "9.2.2",
@@ -742,7 +858,9 @@
         "9.3.1",
         "9.3.2",
         "9.3.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 2,
+      "raw_hartley_bits": 2.0
     },
     {
       "clause": "9.3.1",
@@ -761,7 +879,9 @@
         "9.1.3",
         "9.3.2",
         "9.3.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "9.3.2",
@@ -780,7 +900,9 @@
         "9.1.3",
         "9.3.1",
         "9.3.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "9.3.3",
@@ -799,7 +921,9 @@
         "9.1.3",
         "9.3.1",
         "9.3.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     },
     {
       "clause": "10.1",
@@ -813,7 +937,9 @@
         "9.3.1",
         "9.3.2",
         "9.3.3"
-      ]
+      ],
+      "possible_worlds_dimension_count": 3,
+      "raw_hartley_bits": 3.0
     },
     {
       "clause": "10.2.1",
@@ -829,7 +955,9 @@
         "8.7.2",
         "9.2.1",
         "9.2.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 2,
+      "raw_hartley_bits": 2.0
     },
     {
       "clause": "10.2.2",
@@ -845,7 +973,9 @@
         "8.7.2",
         "9.2.1",
         "9.2.2"
-      ]
+      ],
+      "possible_worlds_dimension_count": 1,
+      "raw_hartley_bits": 1.0
     }
   ]
 }

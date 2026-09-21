@@ -6,7 +6,24 @@ from aias_awm.domain.models import AuditHypothesis, RequirementAssessment, Requi
 class RuleBasedHypothesisEngine:
     """Produces explicit, inspectable audit hypotheses from requirement states."""
 
-    def update(self, case_id: str, assessments: list[RequirementAssessment]) -> list[AuditHypothesis]:
+    def update(
+        self,
+        case_id: str,
+        assessments: list[RequirementAssessment],
+        dimensions_by_requirement: dict[str, dict[str, list[str]]] | None = None,
+    ) -> list[AuditHypothesis]:
+        """dimensions_by_requirement is optional and defaults to None for full
+        backward compatibility with existing callers. When supplied (keyed by
+        requirement_id, e.g. loaded from a clause's
+        assets/requirement_profiles/<clause>.json possible_worlds_dimensions
+        block), the resulting hypothesis carries the real Hartley dimension
+        set so scripts/awm_runtime's planner can compute an exact
+        log2(k)-bit information gain instead of its hand-picked heuristic
+        constant -- see cognition/planner.py and
+        references/68-hartley-uncertainty.md. known_facts is left empty here
+        (no evidence-to-dimension mapping exists yet); it is the caller's
+        responsibility to update it as evidence is confirmed."""
+        dimensions_by_requirement = dimensions_by_requirement or {}
         out: list[AuditHypothesis] = []
         for index, a in enumerate(assessments, start=1):
             hid = f"HYP-{case_id}-{index:03d}"
@@ -41,5 +58,6 @@ class RuleBasedHypothesisEngine:
                 contradicting_evidence_ids=list(a.contradictory_evidence_ids),
                 status=status,
                 unresolved_questions=questions,
+                possible_worlds_dimensions=dimensions_by_requirement.get(a.requirement_id),
             ))
         return out

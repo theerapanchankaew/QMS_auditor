@@ -45,6 +45,7 @@ the `deploy/openwebui/` gateway already built in this repo.
 | A second, world-model-facing state/gate pair (not named in the EEI summary, but adjacent) | [`scripts/awm_runtime/aias_awm/control/world_fsm.py`](../scripts/awm_runtime/aias_awm/control/world_fsm.py) (`W0_UNINITIALIZED`...`W9_AUDIT_READY`) and [`control/world_gates.py`](../scripts/awm_runtime/aias_awm/control/world_gates.py) (`WG0`...`WG6`) | **Implemented — a separate, intentionally distinct numbering scheme** for the predictive/planning side (see SKILL.md BLOCK 3A). Do not conflate with S0–S11/G0–G7 (the assurance boundary), and do not add a third parallel scheme. |
 | Evidence taxonomy (DIRECT/INDIRECT/CORROBORATED/CONFLICTING) + corroboration engine | [`domain/models.py`](../scripts/awm_runtime/aias_awm/domain/models.py) `EpistemicState` enum (11 values, including `CORROBORATED`/`CONTRADICTORY`) + `EvidenceItem.evidence_type` + `EvidenceExpectation.minimum_strength` (6-level ordinal: claim→documented→implemented→recorded→verified→effectiveness) + [`cognition/evidence_reconciliation.py`](../scripts/awm_runtime/aias_awm/cognition/evidence_reconciliation.py) `EvidenceReconciliationEngine` | **Implemented, at higher fidelity than the 4-bucket EEI taxonomy.** `CORROBORATED`/`CONTRADICTORY` already exist as literal states. There is no code gap here — at most a presentation-layer question (does a human-facing report need to print the literal words "DIRECT"/"INDIRECT"?), which is a rendering concern, not new reasoning logic. |
 | Requirement atomization (AR schema) + sufficiency test (Q1–Q5) + breach detector | [`domain/models.py`](../scripts/awm_runtime/aias_awm/domain/models.py) `AtomicRequirement` (`requirement_id, clause, subject, obligation, object, condition, qualifier, semantic_category, evidence_expectations, failure_patterns, negative_inference_rules`) + [`cognition/requirement_engine.py`](../scripts/awm_runtime/aias_awm/cognition/requirement_engine.py) `RequirementStateEngine.assess()` | **Implemented.** `semantic_category` is literally `D2_SAFE \| M4_MANDATORY \| AMBIGUOUS` — the same severity-ceiling categories `harness_gate_executor.py` enforces. `assess()` already does not infer breach from mere absence of evidence (`breach_proven` requires explicit `proves_breach` metadata) — this is the same "missing evidence is not proven non-fulfilment" invariant SKILL.md BLOCK 9 states. |
+| Hartley measure / expected information gain (Ch.9–10, `AIAS_Theory_Technology_Stack_Textbook_v1.0.pdf`) — `H(X)=log2\|X\|`, `IG(a)=H(Xt)-E[H(Xt+1)\|a]` | [`scripts/hartley_uncertainty.py`](../scripts/hartley_uncertainty.py) + [`scripts/awm_runtime/aias_awm/hartley.py`](../scripts/awm_runtime/aias_awm/hartley.py) (port) | **Was a confirmed gap (repo-wide search for `hartley`/`log2`/`entropy` found zero hits), closed 2026-09-21, then wired into the runtime planner the same day.** All 65 clauses now carry mechanically-derived `possible_worlds_dimensions`; `cognition/planner.py` and `scripts/next_best_audit_action.py` use a real `log2(k)`-bit measure when a hypothesis/action supplies dimensions, falling back to the original heuristic otherwise. See "Update 2026-09-21" below and `references/68-hartley-uncertainty.md`. `known_facts` is still never auto-populated from evidence — remains deferred. |
 
 ## Naming collisions to watch for
 
@@ -193,3 +194,72 @@ inherently more trustworthy just because it looks like a formal diff —
 `git apply --check` plus reading the actual diff content is the same
 verification this file already asks for, just applied to a different
 input format.
+
+## Update 2026-09-21: Hartley measure — confirmed gap, now closed
+
+User supplied `AIAS_Theory_Technology_Stack_Textbook_v1.0.pdf` (29 pages,
+MASCI internal technical reference) and asked whether this repo has any
+algorithm inconsistent with it, specifically naming the Hartley measure and
+clause profile. Read in full via PyMuPDF text extraction (not a paraphrase)
+before answering.
+
+**Clause profile**: no real gap. The textbook's abstract "R — Requirement"
+world component (clause, atomic ID, applicability) matches the existing
+`AtomicRequirement` schema and `assets/requirement_profiles/` corpus
+already covered above, and `applicability` is already read by
+`WorldGateEngine.evaluate()`'s `WG6` check.
+
+**Hartley measure**: real, confirmed gap. `H(X)=log2|X|` and
+`IG(a)=H(Xt)-E[H(Xt+1)|a]` (Ch.9–10) are the textbook's formal uncertainty
+mechanism, worked through the *same* clause 6.1.3 example already used
+elsewhere in this repo as an architecture-walkthrough case (`|X|=8` ->
+`H=3 bits`; `IG(REQUEST_RECORD)=2 bits`). A repo-wide search for `hartley`,
+`log2`, `entropy`, `cardinality`, `possible_worlds`, `bits` found nothing —
+the closest existing mechanism, `expected_information_gain`, is a bounded
+`[0,1]` heuristic (flat default, keyword-matched constant, or externally
+supplied) with no cardinality/log2 computation anywhere behind it, in
+`scripts/awm_runtime/aias_awm/planning/scoring.py`,
+`cognition/planner.py`, and `scripts/next_best_audit_action.py`.
+
+Closed by adding `scripts/hartley_uncertainty.py` (+ its 9-case regression
+suite, which reproduces the textbook's own `H=3 bits`/`IG=2 bits` numbers
+exactly) and `references/68-hartley-uncertainty.md`. Initially deliberately
+additive-only (did not touch the three existing scorer files, did not
+author dimensions beyond 6.1.3, did not merge with
+`world_constraint_validator.py`).
+
+**Same-day follow-up, explicitly requested**: the user asked to complete
+the two items above ("wire the existing scorers" and "author dimensions
+for the remaining 64 clauses"), plus re-quoted the reasoning for *not*
+touching `world_constraint_validator.py` back as part of the same message —
+read as context (it directly restates why that file is a different
+question), not as a new instruction, since it would otherwise contradict
+itself; `world_constraint_validator.py` was left unmodified.
+
+Done:
+- `scripts/build_requirement_profiles.py` gained
+  `compute_possible_worlds_dimensions()` (one binary dimension per
+  `mandatory: true` evidence expectation already authored per element — a
+  mechanical rule, not new per-clause judgement) and now emits
+  `possible_worlds_dimensions` for all 65 clauses. Regenerated corpus
+  diffed as purely additive.
+- `AuditHypothesis` gained `possible_worlds_dimensions`/`known_facts`,
+  migrated through the SQL table, the JSON schema mirror (verified
+  byte-identical to `model_json_schema()`), and a real SQLite round-trip
+  test.
+- `cognition/hypothesis_engine.py` and `cognition/planner.py` now compute a
+  real `log2(k)`-bit gain when dimensions are present, falling back to the
+  original heuristic otherwise (existing test unmodified and still
+  passing, proving the fallback path).
+- `planning/scoring.py` needed no change (already prefers the action's own
+  `expected_information_gain`).
+- `scripts/next_best_audit_action.py` gained an optional `"hartley"` block
+  per candidate action, backward compatible when absent.
+- Full suite re-run: `assets/tests/awm_v07/` **34/34** (32 pre-existing + 2
+  new), `scripts/hartley_uncertainty_tests.py` **12/12**.
+
+See `references/68-hartley-uncertainty.md` ("Update 2026-09-21") for the
+full file-by-file writeup, including why `aias_awm/hartley.py` is a small
+port rather than an import (a `cognition`<->`planning` circular import
+otherwise), and what remains deferred (`known_facts` auto-population from
+evidence; a per-state `S4_SUFFICIENCY` contract).

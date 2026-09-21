@@ -56,10 +56,33 @@ require updating scripts/awm_runtime/schemas/AtomicRequirement.schema.json
 SQLAlchemy Table in persistence/tables.py, none of which anything in this
 repo currently populates from this corpus. Keeping cross-references at the
 file level avoids that migration for a field nothing yet consumes.
+
+Possible-worlds dimensions (2026-09-21 addition): each clause file also now
+carries a `possible_worlds_dimensions` block -- the Hartley-measure input
+consumed by scripts/hartley_uncertainty.py and (when present)
+scripts/awm_runtime's planner (see references/68-hartley-uncertainty.md and
+docs/eei-blueprint-crosswalk.md, "Update 2026-09-21"). This is deliberately
+kept at the file level too, for the same reason as related_clauses above.
+Unlike related_clauses (three curated sources), these dimensions are
+MECHANICALLY DERIVED from data this script already authored: one binary
+dimension per MANDATORY evidence_expectation already attached to each
+element (see compute_possible_worlds_dimensions()) -- not new hand-picked
+domain judgement per clause. This is intentional: inventing bespoke
+Q1..Qn axes for 65 clauses by hand would be exactly the kind of
+unreviewed AI content-authoring judgement this repo's own governance
+stance (see the "Status" line above) requires an SME to sign off on before
+being presented as authoritative. The mechanical rule is auditable and
+reproducible instead: given the same evidence_expectations, anyone can
+regenerate the same dimensions. See
+assets/requirement_profiles/README.md for the caveat this implies (a
+clause's "true" possible-worlds structure may have fewer or more
+meaningful axes than this mechanical rule surfaces -- it is a first,
+traceable approximation, not an SME-reviewed decomposition).
 """
 from __future__ import annotations
 
 import json
+import math
 import re
 import subprocess
 import sys
@@ -72,6 +95,7 @@ OUT_DIR = REPO_ROOT / "assets" / "requirement_profiles"
 
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 from retrieval_engine import simple_yaml_map  # noqa: E402  (reuse existing parser)
+from hartley_uncertainty import hartley_measure  # noqa: E402  (reuse the real log2|X| implementation, not a re-derived copy)
 
 STANDARD_ID = "ISO 9001:2026"
 VERSION = "0.2.0-ai-draft-unreviewed"
@@ -567,6 +591,38 @@ def _raw_clause_text(clause: str) -> str:
     return text
 
 
+# Value vocabulary per evidence_type, chosen to mirror the same wording the
+# textbook's own worked example uses (Q1/Q2 "Implementation?"/"Effectiveness
+# evaluated?" -> YES/NO; Q3 "Objective record?" -> PRESENT/ABSENT) rather
+# than inventing a fourth vocabulary. Falls back to YES/NO for any
+# evidence_type not listed here.
+_DIMENSION_VALUES_BY_EVIDENCE_TYPE = {
+    "record": ["PRESENT", "ABSENT"],
+    "document": ["YES", "NO"],
+    "observation": ["YES", "NO"],
+}
+
+
+def compute_possible_worlds_dimensions(clause: str, elements: list[dict]) -> dict:
+    """One binary dimension per MANDATORY evidence_expectation already
+    attached to this clause's elements -- mechanically derived from the
+    'evidence' data this same script authors for every element, not new
+    per-clause domain judgement. Dimension names are
+    '<requirement_id>_<evidence_type>' so each one is directly traceable
+    back to the exact expectation it represents. Consumed by
+    scripts/hartley_uncertainty.py and, optionally, scripts/awm_runtime's
+    planner -- see references/68-hartley-uncertainty.md."""
+    dims: dict[str, list[str]] = {}
+    for e in elements:
+        req_id = f"AR-{clause}-{e['suffix']}"
+        for ev in e["evidence"]:
+            if not ev.get("mandatory"):
+                continue
+            dim_name = f"{req_id}_{ev['evidence_type']}"
+            dims[dim_name] = _DIMENSION_VALUES_BY_EVIDENCE_TYPE.get(ev["evidence_type"], ["YES", "NO"])
+    return dims
+
+
 def compute_explicit_text_refs(clause: str, corpus: set[str]) -> list[str]:
     text = _raw_clause_text(clause)
     related: set[str] = set()
@@ -614,6 +670,7 @@ def build():
         related_requirement_ids = sorted(
             rid for c in all_related_clauses for rid in element_ids_by_clause.get(c, [])
         )
+        possible_worlds_dimensions = compute_possible_worlds_dimensions(clause, elements)
 
         out_path = OUT_DIR / f"{clause}.json"
         payload = {
@@ -648,6 +705,13 @@ def build():
                 "all": all_related_clauses,
             },
             "related_requirement_ids": related_requirement_ids,
+            "possible_worlds_dimensions": possible_worlds_dimensions,
+            "possible_worlds_dimensions_source": (
+                "Mechanically derived: one binary dimension per MANDATORY evidence_expectation "
+                "already authored above for this clause's elements (see compute_possible_worlds_dimensions() "
+                "in scripts/build_requirement_profiles.py). Not an SME-reviewed decomposition -- "
+                "see references/68-hartley-uncertainty.md."
+            ),
             "requirements": records,
         }
         out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -657,6 +721,11 @@ def build():
             "semantic_category": category,
             "element_count": len(records),
             "related_clauses": all_related_clauses,
+            "possible_worlds_dimension_count": len(possible_worlds_dimensions),
+            "raw_hartley_bits": (
+                round(hartley_measure(math.prod(len(v) for v in possible_worlds_dimensions.values())), 6)
+                if possible_worlds_dimensions else 0.0
+            ),
         })
 
     index_payload = {

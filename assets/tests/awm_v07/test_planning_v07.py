@@ -35,6 +35,34 @@ def test_information_gain_ranking_prioritizes_effectiveness():
     assert d.selected_action_id == d.ranked_actions[0].action.action_id
 
 
+def test_information_gain_uses_real_hartley_measure_when_dimensions_present():
+    """references/68-hartley-uncertainty.md wiring: a hypothesis carrying
+    possible_worlds_dimensions (as loaded from a clause's
+    assets/requirement_profiles/<clause>.json corpus entry) gets an exact
+    log2(k)-bit info_gain instead of the hand-picked 0.80/0.95 constant used
+    by test_information_gain_ranking_prioritizes_effectiveness above (which
+    has no dimensions and must keep using the old heuristic unchanged)."""
+    h = AuditHypothesis(
+        hypothesis_id="H1", audit_case_id="C1", hypothesis_type="INSUFFICIENT_EVIDENCE",
+        statement="objective record unresolved", requirement_ids=["AR-6.1.3-E02"], status="UNRESOLVED",
+        unresolved_questions=["record:recorded"],
+        possible_worlds_dimensions={
+            "AR-6.1.3-E02_implementation": ["YES", "NO"],
+            "AR-6.1.3-E02_effectiveness_evaluated": ["YES", "NO"],
+            "AR-6.1.3-E02_record": ["PRESENT", "ABSENT"],
+        },
+    )
+    ctx = PlanningContext(
+        audit_case_id="C1", unresolved_requirement_ids=["AR-6.1.3-E02"], unresolved_hypothesis_ids=["H1"],
+        created_at=NOW,
+    )
+    d = AutonomousAuditPlanningPolicy().plan(context=ctx, hypotheses=[h])
+    action = d.ranked_actions[0].action
+    assert action.action_type == "REQUEST_RECORD"
+    # H(Xt)=log2(8)=3 bits; resolving 'record' (k=2 surviving values) -> log2(2)=1 bit -> normalized 1/3
+    assert abs(action.expected_information_gain - (1.0 / 3.0)) < 1e-6, action.expected_information_gain
+
+
 def test_contradiction_forces_cross_check_candidate():
     h = AuditHypothesis(
         hypothesis_id="H1", audit_case_id="C1", hypothesis_type="BREACH", statement="conflict",

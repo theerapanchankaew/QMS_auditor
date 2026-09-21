@@ -191,6 +191,8 @@ class AuditHypothesis(StrictModel):
     contradicting_evidence_ids: list[str] = Field(default_factory=list)
     status: Literal["PROPOSED", "SUPPORTED", "WEAKENED", "REFUTED", "UNRESOLVED"]
     unresolved_questions: list[str] = Field(default_factory=list)
+    possible_worlds_dimensions: dict[str, list[str]] | None = None
+    known_facts: dict[str, str] = Field(default_factory=dict)
 
 
 class AuditAction(StrictModel):

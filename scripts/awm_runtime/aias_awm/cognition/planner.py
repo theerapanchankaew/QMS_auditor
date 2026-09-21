@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from aias_awm.domain.models import AuditAction, AuditHypothesis
+from aias_awm.hartley import information_gain_from_resolving_dimension
 
 
 _ACTION_BY_MISSING = {
@@ -19,6 +20,15 @@ class HeuristicAuditPlanner:
 
     v0.3 uses transparent heuristics, not reinforcement learning. Priority approximates
     information gain while preserving auditable decision logic.
+
+    v0.8: when a hypothesis carries `possible_worlds_dimensions` (populated
+    from a clause's assets/requirement_profiles/<clause>.json corpus entry,
+    see cognition/hypothesis_engine.py), info_gain is a real, exact
+    log2(k)-bit Hartley measure (references/68-hartley-uncertainty.md)
+    instead of the hand-picked 0.95/0.80 constant below. Hypotheses without
+    dimensions (the common case today -- only clauses whose corpus entry
+    has been consumed by a caller carry them) fall back to the original
+    heuristic unchanged, so existing behavior and tests are unaffected.
     """
 
     def propose(self, hypotheses: list[AuditHypothesis]) -> list[AuditAction]:
@@ -38,6 +48,14 @@ class HeuristicAuditPlanner:
                         action_type = mapped
                         break
                 info_gain = 0.95 if "effectiveness" in ql else 0.80
+                if h.possible_worlds_dimensions and h.requirement_ids and ":" in q:
+                    evidence_type = q.split(":", 1)[0].strip()
+                    target_dim = f"{h.requirement_ids[0]}_{evidence_type}"
+                    ig_result = information_gain_from_resolving_dimension(
+                        h.possible_worlds_dimensions, h.known_facts, target_dim,
+                    )
+                    if ig_result["status"] == "OK":
+                        info_gain = ig_result["normalized_information_gain"]
                 cost = 0.30 if action_type in {"REQUEST_RECORD", "REQUEST_DOCUMENT"} else 0.50
                 priority = round(info_gain / (1.0 + cost), 4)
                 actions.append(AuditAction(

@@ -63,6 +63,31 @@
       },
       "title": "Unresolved Questions",
       "type": "array"
+    },
+    "possible_worlds_dimensions": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Possible Worlds Dimensions"
+    },
+    "known_facts": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Known Facts",
+      "type": "object"
     }
   },
   "required": [
