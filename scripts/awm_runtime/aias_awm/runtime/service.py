@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 from datetime import datetime, timezone
 from typing import Any
 
@@ -223,8 +224,20 @@ class AuditWorldRuntime:
             assessment=assessments[0], requirement=requirements[0],
             evidence_items=evidence_items, snapshot=snapshot,
         )
+        # scripts/harness_gate_executor.py::enforce_gates() mutates its
+        # model_output argument in place and returns that SAME object on a
+        # PASS -- so make_decision()'s result can literally be `candidate`
+        # by identity. Echo back a deep copy taken before the call, never
+        # the (possibly-aliased) object make_decision() returns, or
+        # decision["derived_candidate"] = candidate becomes a
+        # self-referential dict that json.dumps()/API serialization chokes
+        # on. Caught by actually running this against a real external
+        # scenario, not by the original hand-built unit tests (which only
+        # asserted via attribute access, which Python allows on a
+        # self-referential dict without erroring).
+        candidate_snapshot = copy.deepcopy(candidate)
         decision = self.make_decision(case_id, candidate)
-        decision["derived_candidate"] = candidate
+        decision["derived_candidate"] = candidate_snapshot
         return decision
 
     def list_actions(self, case_id: str):

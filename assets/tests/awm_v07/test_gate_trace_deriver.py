@@ -9,6 +9,7 @@ See references/71-gate-trace-derivation.md for the full field mapping and
 docs/eei-blueprint-crosswalk.md ("Update ... auto-derivation") for why this
 was built after references/70-harness-integration.md deliberately did not.
 """
+import json
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -355,3 +356,28 @@ def test_make_decision_for_requirement_full_live_path_with_real_breach_evidence(
     assert decision["gate_validation"] == "PASS", decision
     assert decision["nc_class"] == "Major", decision
     assert decision["derived_candidate"]["derivation_provenance"]["requirement_id"] == "AR-6.1.1-E03"
+
+
+def test_make_decision_for_requirement_result_is_json_serializable():
+    """Regression: enforce_gates() mutates its model_output argument in
+    place and returns that SAME object on a PASS, so make_decision()'s
+    result can be `candidate` by identity. Without a deep copy,
+    decision["derived_candidate"] = candidate becomes a self-referential
+    dict -- invisible to plain attribute-access assertions (Python allows
+    that on a self-referential dict) but fatal to json.dumps(), which any
+    real API/log call needs. Found by actually running this against an
+    external real-world scenario document, not by the original tests."""
+    db = Database("sqlite+pysqlite:///:memory:")
+    db.create_schema()
+    rt = AuditWorldRuntime(db, real_harness(), source_manifest_hash="REAL-SHA256-XYZ", rule_pack_hash="RULE1")
+    rt.create_case(AuditCase(
+        audit_case_id="CASE-1", organization_id="ORG-1", standard_ids=["ISO9001-2026"],
+        audit_type="document_review", scope={}, created_at=NOW,
+    ))
+    rt.register_requirement(requirement())
+    rt.ingest_evidence(evidence("E1", "observation", EpistemicState.VERIFIED))
+    rt.reason("CASE-1", ["AR-X-E01"])
+
+    decision = rt.make_decision_for_requirement("CASE-1", "AR-X-E01")
+    json.dumps(decision)  # must not raise ValueError: Circular reference detected
+    assert decision["derived_candidate"] is not decision
