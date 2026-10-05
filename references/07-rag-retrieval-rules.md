@@ -34,11 +34,10 @@ For ISO 9001:2026 tasks, use the layered standard source structure:
 
 1. Start with `references/standard/iso9001-2026-standard-map.md` to locate likely clauses.
 2. Use `references/standard/iso9001-2026-clause-guide.md` for first-pass audit interpretation.
-3. When exact wording is material, search or extract from `assets/standards/ISO_FDIS_9001_2026_en.pdf` using:
+3. When exact wording is material, search or extract from the registered source `assets/standards/ISO_9001_2026.pdf` (resolved and sha256-checked by `scripts/controlled_retrieval.py`) using:
    - `python scripts/search_standard.py "<query>" --max 8`
-   - `python scripts/extract_clause.py <clause>`
-   - `python scripts/extract_clause.py A.<clause> --include-annex` for Annex A clarification.
-4. Preserve the script output fields: source path, page, clause, snippet/text, truncation flag, and limitations.
+   - `python scripts/extract_clause.py <clause>` — normative clauses 4–10 only. The TOC and Annex A are not indexed: `A.<clause>` / `--include-annex` return `ReferenceGap`; read Annex A from the user's own copy.
+4. Preserve the script output fields: `source`, `source_sha256`, `start_page`/`end_page`, `clause`, snippet/`text`, truncation flag, and `text_status`.
 5. Pass the exact requirement elements from the PDF to verification logic; do not let retrieval decide the verdict.
 
 If PDF extraction is incomplete, ambiguous, or conflicts with curated references, return `ReviewRequired` and explain what must be manually checked in the official standard.

@@ -36,26 +36,29 @@ docker-compose.yml       Ollama + OpenWebUI + Pipelines stack
 `assets/standards/*.pdf` are **copyrighted ISO/IEC works**, not open
 content:
 
-- **ISO 9001:2026** — bundled as FDIS-stage text; content sample-verified
-  against the published Sixth edition (2026-09) — see
-  `assets/requirement_profiles/README.md`.
-- **ISO 9000:2026** (vocabulary) — FDIS-stage; publication status not
-  confirmed.
-- **ISO 9000 glossary**.
+- **ISO 9001:2026** — the published Sixth edition (2026-09), supplied as
+  `assets/standards/ISO_9001_2026.pdf` (OCR text layer, sha256
+  `346ce2e96c9d22caacd747c4ad15030d0931b1b363c68b79f178d385c2ca2565`). It
+  is the single registered source (`assets/manifests/runtime-source-registry.json`).
+- **Historical — no longer read by the retrieval scripts**:
+  `ISO_FDIS_9001_2026_en.pdf` (FDIS draft; only
+  `scripts/extract_clause_legacy.py` uses it), `ISO_9001_2026_IS_en_scanned.pdf`
+  (image-only scan of the same published edition), and the ISO 9000
+  vocabulary PDFs (`unavailable_historical_sources` in the manifest).
 
 They are excluded via `.gitignore`. Before running anything that calls
-`scripts/extract_clause.py` or the standard-lookup path:
+`scripts/extract_clause.py`, `scripts/search_standard.py` or the
+standard-lookup path:
 
-1. Obtain your own licensed copies of these PDFs.
-2. Place them at the exact paths already referenced in `SKILL.md` BLOCK 4:
-   - `assets/standards/ISO_FDIS_9001_2026_en.pdf`
-   - `assets/standards/ISO_FDIS_9000_2026_en.pdf`
-   - `assets/standards/ISO9000GlossaryENv5FA2025.pdf`
-   - `assets/standards/ISO_9001_2026_IS_en_scanned.pdf` — the published
-     standard (Sixth edition, 2026-09), used only to spot-check the FDIS
-     text is still current; it has no text layer, so
-     `scripts/extract_clause.py` still runs against the FDIS PDF above, not
-     this one (see `assets/requirement_profiles/README.md`).
+1. Obtain your own licensed copy of ISO 9001:2026.
+2. Place it at the exact path registered in
+   `assets/manifests/runtime-source-registry.json`:
+   - `assets/standards/ISO_9001_2026.pdf`
+
+   `scripts/controlled_retrieval.py` verifies its sha256 against that
+   registry and refuses any other file (`Controlled PDF hash changed`). A
+   different edition or copy needs a reviewed registry update (hash, body
+   page range, heading corrections), not just a rename.
 
 Never push these files to GitHub, and never let a public Knowledge base in
 OpenWebUI expose their raw text to other users.

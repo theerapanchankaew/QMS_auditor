@@ -36,6 +36,9 @@ Annex A clarifies terms that often affect audit interpretation:
 Use Annex A as informative clarification only; do not treat it as adding requirements.
 
 ## ISO 9000:2026 vocabulary source additions
+
+> **Status (2026-10-05):** the ISO 9000 sources named here are listed under `unavailable_historical_sources` in `assets/manifests/bundled-source-manifest.json` and are not part of the active retrieval/RAG boundary. Use them only if the user supplies them as controlled evidence for the current task; otherwise return `ReferenceGap` for terminology that needs them.
+
 The bundled vocabulary source `assets/standards/ISO_FDIS_9000_2026_en.pdf` is allowed for ISO 9000 family definitions and term relationships. Use it before returning `ReferenceGap` for terminology questions.
 
 - **3.1.11 DRP-provider / dispute resolution process provider**: person or organization that supplies and operates an external dispute resolution process. Common user typo/alias: “dispute recovery provider”. For audit dialogue, map the typo to DRP-provider and cite the bundled ISO 9000 source trace rather than searching outside.

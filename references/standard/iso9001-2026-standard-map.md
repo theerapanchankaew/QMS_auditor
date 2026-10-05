@@ -1,11 +1,11 @@
 # ISO 9001:2026 Standard Map
 
-Use this file as the first navigation layer before opening or searching the full PDF. It maps likely audit topics to clauses in ISO 9001:2026 and tells the auditor when to verify exact wording from `assets/standards/ISO_FDIS_9001_2026_en.pdf` (FDIS-stage text; content sample-verified against the published Sixth edition, 21 of 65 clauses — see `assets/requirement_profiles/README.md`).
+Use this file as the first navigation layer before opening or searching the full PDF. It maps likely audit topics to clauses in ISO 9001:2026 and tells the auditor when to verify exact wording from `assets/standards/ISO_9001_2026.pdf` (published Sixth edition, OCR text layer; this map was first written from FDIS-stage text — wording differs in 7.3, 7.5.2, 8.1, 8.3.2, 8.5.6, 8.6, 9.2.2, see `assets/requirement_profiles/README.md`).
 
 ## Source hierarchy
 1. **Audit workflow and judgement logic**: use `SKILL.md` and references `01` to `16`.
 2. **Clause navigation**: use this standard map plus `iso9001-2026-clause-guide.md` and `iso9001-2026-definition-index.md`.
-3. **Authoritative full source for exact requirement wording**: use `assets/standards/ISO_FDIS_9001_2026_en.pdf` through `scripts/search_standard.py` or `scripts/extract_clause.py`.
+3. **Authoritative full source for exact requirement wording**: use the registered `assets/standards/ISO_9001_2026.pdf` through `scripts/search_standard.py` or `scripts/extract_clause.py`.
 
 ## Exact-wording rule
 Use the full PDF when the task needs any of the following:
@@ -60,7 +60,7 @@ Use scripts from the skill root.
 ```bash
 python scripts/search_standard.py "quality culture ethical behaviour" --max 5
 python scripts/extract_clause.py 5.1
-python scripts/extract_clause.py 6.1.3 --include-annex
+python scripts/extract_clause.py 6.1.3   # normative clauses 4-10 only; Annex A is not indexed
 ```
 
 ## Auditor safeguards

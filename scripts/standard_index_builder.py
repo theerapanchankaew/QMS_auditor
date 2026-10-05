@@ -71,7 +71,7 @@ def build_index(output: Path = DEFAULT_OUT) -> dict[str, Any]:
             p = _inside_skill(loc)
             files = [p] if p.is_file() else [x for x in p.rglob("*") if x.is_file()]
             for file in files:
-                rel = str(file.relative_to(SKILL_ROOT))
+                rel = file.relative_to(SKILL_ROOT).as_posix()  # posix separators: index is portable across OSes
                 if file.suffix.lower() in TEXT_EXTS:
                     try:
                         text = file.read_text(encoding="utf-8", errors="ignore")
@@ -100,7 +100,7 @@ def build_index(output: Path = DEFAULT_OUT) -> dict[str, Any]:
                                 "text": chunk,
                             }, ensure_ascii=False) + "\n")
                             count += 1
-    return {"status":"built", "output": str(output.relative_to(SKILL_ROOT)), "chunk_count": count, "external_sources_used": False}
+    return {"status":"built", "output": output.relative_to(SKILL_ROOT).as_posix(), "chunk_count": count, "external_sources_used": False}
 
 
 def main(argv: list[str]) -> int:

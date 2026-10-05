@@ -1,5 +1,7 @@
 # ISO 9000 Vocabulary Source Map
 
+> **Status (2026-10-05):** the ISO 9000 sources named here are listed under `unavailable_historical_sources` in `assets/manifests/bundled-source-manifest.json` and are not part of the active retrieval/RAG boundary. Use them only if the user supplies them as controlled evidence for the current task; otherwise return `ReferenceGap` for terminology that needs them.
+
 This skill includes controlled, bundled vocabulary sources for ISO 9000 family terminology. Use these local sources only. Do not search web, ISO OBP, connector stores, or external websites for definitions.
 
 ## Bundled sources

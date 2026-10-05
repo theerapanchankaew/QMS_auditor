@@ -6,8 +6,8 @@
   "semantic_category_source": "harness_gate_executor.py:D2_SAFE_LIST",
   "provenance": {
     "extracted_via": "scripts/extract_clause.py",
-    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
-    "is_cross_check": "Cross-checked 2026-09-17 against assets/standards/ISO_9001_2026_IS_en_scanned.pdf (published ISO 9001:2026, Sixth edition, 2026-09) by direct visual page comparison -- word-for-word identical, same clause numbering.",
+    "source_pdf": "assets/standards/ISO_9001_2026.pdf",
+    "is_cross_check": "Full-text comparison 2026-10-05, FDIS vs published IS (ISO_9001_2026.pdf OCR text layer), confirmed against IS page images where they differed: IS: 'continuing conformity to requirements' (FDIS: 'conformity with') -- see assets/requirement_profiles/README.md.",
     "note": "AI-drafted decomposition, NOT SME/human-auditor reviewed."
   },
   "related_clauses": {
@@ -49,7 +49,7 @@
       "clause": "8.5.6",
       "subject": "organization",
       "obligation": "review and control",
-      "object": "changes for production or service provision, to the extent necessary to ensure continuing conformity with requirements, and ensure documented information is available as evidence of review results, the person(s) authorizing the change, and any necessary actions arising from the review",
+      "object": "changes for production or service provision, to the extent necessary to ensure continuing conformity to requirements, and ensure documented information is available as evidence of review results, the person(s) authorizing the change, and any necessary actions arising from the review",
       "condition": null,
       "qualifier": null,
       "applicability_rule_id": null,

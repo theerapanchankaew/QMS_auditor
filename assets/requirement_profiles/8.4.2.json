@@ -6,8 +6,8 @@
   "semantic_category_source": "default (clause not present in any severity-ceiling list; see docs/eei-blueprint-crosswalk.md gap #4)",
   "provenance": {
     "extracted_via": "scripts/extract_clause.py",
-    "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
-    "is_cross_check": "Not individually cross-checked against the published IS scan yet (sourced from the FDIS draft only) -- see IS_CROSS_CHECKED_CLAUSES in this script and assets/requirement_profiles/README.md.",
+    "source_pdf": "assets/standards/ISO_9001_2026.pdf",
+    "is_cross_check": "Full-text comparison 2026-10-05, FDIS vs published IS (ISO_9001_2026.pdf OCR text layer), confirmed against IS page images where they differed: identical after whitespace/list-marker normalisation -- see assets/requirement_profiles/README.md.",
     "note": "AI-drafted decomposition, NOT SME/human-auditor reviewed."
   },
   "related_clauses": {

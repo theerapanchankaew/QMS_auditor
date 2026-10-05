@@ -1,6 +1,6 @@
 {
   "policy_id": "local-rag-connection-policy",
-  "version": "2026.0-rag-ready-1",
+  "version": "2026.1-registered-pdf",
   "purpose": "Permit only approved local indexes that are derived from controlled manifest sources.",
   "network_allowed": false,
   "web_fallback_allowed": false,
@@ -33,11 +33,10 @@
       "require_source_trace": true,
       "require_human_auditor_contract": true,
       "allowed_source_ids": [
-        "iso9001-fdis-2026-en",
-        "iso9000-fdis-2026-en",
-        "iso9000-glossary-2025-en",
+        "iso9001-2026-user-pdf",
         "qms-curated-references"
       ]
     }
-  ]
+  ],
+  "deployment_retrieval": "scripts/controlled_retrieval.py; assets/manifests/runtime-source-registry.json"
 }

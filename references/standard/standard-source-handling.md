@@ -1,16 +1,18 @@
 # Standard Source Handling
 
 ## Placement
-The full ISO 9001:2026 PDF is bundled at:
+The published ISO 9001:2026 (Sixth edition, 2026-09) PDF is registered at:
 
-`assets/standards/ISO_FDIS_9001_2026_en.pdf`
+`assets/standards/ISO_9001_2026.pdf`
 
-This is an FDIS-stage text file — still the correct one to use, since it is
-the only bundled copy with an extractable text layer. Its content has been
-sample-verified (21 of 65 clauses) against the actual published Sixth
-edition (2026-09) and found word-for-word identical; see
-`assets/requirement_profiles/README.md` for the exact clause list and
-methodology.
+It has an OCR text layer (`text_status: PDF text layer; not a full OCR
+accuracy certification`). `scripts/controlled_retrieval.py` resolves it
+through `assets/manifests/runtime-source-registry.json`, verifies its sha256,
+and reads only the registered body pages (normative clauses 4–10; TOC and
+Annex excluded). The earlier FDIS draft (`ISO_FDIS_9001_2026_en.pdf`) is a
+historical source; a full-text comparison of all 65 clauses against it
+(2026-10-05) found wording differences in 7 clauses — see
+`assets/requirement_profiles/README.md`.
 
 The standard navigation layer is bundled at:
 
@@ -39,5 +41,5 @@ Return `ReviewRequired` when:
 python scripts/search_standard.py "planning of changes" --max 10
 python scripts/search_standard.py "ethical behaviour" --context 250
 python scripts/extract_clause.py 6.3
-python scripts/extract_clause.py 9.2 --include-annex
+python scripts/extract_clause.py 9.2
 ```

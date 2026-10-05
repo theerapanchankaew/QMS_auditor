@@ -52,7 +52,7 @@ Required Thai dialog:
 
 - `scripts/preflight_request_guard.py` checks user requests and planned assistant actions.
 - `scripts/controlled_source_guardrail.py` contains hard-block detectors for web/current/connector indicators and path checks for out-of-bundle files.
-- `scripts/search_standard.py` and `scripts/extract_clause.py` call path checks before opening any PDF.
+- `scripts/search_standard.py` and `scripts/extract_clause.py` open only the PDF registered in `assets/manifests/runtime-source-registry.json`, verify its sha256 first, and reject any other `--pdf` (`scripts/controlled_retrieval.py`).
 - `scripts/ahp_calculator.py` and `scripts/full_ahp_qms_evaluator.py` scan JSON inputs before calculation.
 
 ## Output if sources are insufficient

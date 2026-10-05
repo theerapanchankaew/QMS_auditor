@@ -1,6 +1,6 @@
 {
   "manifest_id": "qms-bundled-source-manifest",
-  "manifest_version": "ai102-1.0.0",
+  "manifest_version": "2026.0-rag-ready-1",
   "source_boundary": "controlled_sources_only",
   "allow_web_fallback": false,
   "allow_external_connectors": false,
@@ -14,62 +14,11 @@
   "source_registration_rule": "A source is usable for audit substance only if it appears here or is explicitly uploaded in the current task as controlled evidence.",
   "sources": [
     {
-      "source_id": "iso9001-2026-user-pdf",
-      "title": "User supplied ISO 9001:2026 PDF",
-      "source_category": "standard",
-      "status": "user_supplied_controlled_source",
-      "controlled_location": "assets/standards/ISO_9001_2026.pdf",
-      "checksum_sha256": "346ce2e96c9d22caacd747c4ad15030d0931b1b363c68b79f178d385c2ca2565",
-      "knowledge_roles": [
-        "requirements",
-        "clause_lookup",
-        "audit_criteria"
-      ],
-      "external_access_allowed": false,
-      "requires_human_auditor_contract": true
-    },
-    {
-      "source_id": "qms-curated-references",
-      "title": "Bundled curated QMS auditor references and governance files",
-      "source_category": "curated_reference_set",
-      "status": "approved_internal_skill_reference",
-      "language": "mixed",
-      "controlled_location": "references",
-      "checksum_sha256": null,
-      "knowledge_roles": [
-        "audit_workflow",
-        "guardrails",
-        "human_auditor_logic",
-        "output_contract",
-        "AHP"
-      ],
-      "allowed_use": [
-        "workflow guidance",
-        "guardrail enforcement",
-        "output formatting",
-        "AHP scoring"
-      ],
-      "allowed_outputs": [
-        "audit-safe summary",
-        "dialog prompt",
-        "human auditor frame",
-        "score report"
-      ],
-      "prohibited_outputs": [
-        "external source substitution",
-        "uncited interpretation"
-      ],
-      "external_access_allowed": false,
-      "requires_human_auditor_contract": true
-    }
-  ],
-  "unavailable_historical_sources": [
-    {
       "source_id": "iso9001-fdis-2026-en",
       "title": "ISO 9001:2026 Quality management systems — Requirements",
       "source_category": "standard",
-      "status": "superseded_historical",
-      "status_note": "FDIS-stage draft of ISO 9001:2026, superseded by the registered published edition (source_id iso9001-2026-user-pdf, assets/standards/ISO_9001_2026.pdf). A full-text comparison of this FDIS text against the published edition on 2026-10-05 found identical wording for 58 of 65 clauses and wording differences in 7 (7.3, 7.5.2, 8.1, 8.3.2, 8.5.6, 8.6, 9.2.2); the earlier 2026-09-17 visual sample that recorded 'word-for-word identical' was wrong for 7.5.2, 8.5.6 and 8.6. See assets/requirement_profiles/README.md.",
+      "status": "published_is_content_verified_sample_2026-09-17",
+      "status_note": "ISO 9001:2026 (Sixth edition, 2026-09) was published after this FDIS-stage PDF was bundled. The controlled_location file below still IS the FDIS-stage text (checksum unchanged, still the only text-extractable copy for scripts/extract_clause.py) -- 21 of 65 clauses were sampled against the actual published-standard PDF (a scanned copy, no text layer) by direct visual page comparison on 2026-09-17 and found word-for-word identical; the remaining 44 have not been individually re-verified. See assets/requirement_profiles/README.md.",
       "language": "en",
       "controlled_location": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
       "checksum_sha256": "71252005f9433c063600f9a36fc4d4f0fdecf1c4f97146b026c6e45b2e2bba7a",
@@ -165,6 +114,41 @@
       ],
       "external_access_allowed": false,
       "requires_human_auditor_contract": true
+    },
+    {
+      "source_id": "qms-curated-references",
+      "title": "Bundled curated QMS auditor references and governance files",
+      "source_category": "curated_reference_set",
+      "status": "approved_internal_skill_reference",
+      "language": "mixed",
+      "controlled_location": "references",
+      "checksum_sha256": null,
+      "knowledge_roles": [
+        "audit_workflow",
+        "guardrails",
+        "human_auditor_logic",
+        "output_contract",
+        "AHP"
+      ],
+      "allowed_use": [
+        "workflow guidance",
+        "guardrail enforcement",
+        "output formatting",
+        "AHP scoring"
+      ],
+      "allowed_outputs": [
+        "audit-safe summary",
+        "dialog prompt",
+        "human auditor frame",
+        "score report"
+      ],
+      "prohibited_outputs": [
+        "external source substitution",
+        "uncited interpretation"
+      ],
+      "external_access_allowed": false,
+      "requires_human_auditor_contract": true
     }
-  ]
+  ],
+  "historical_note": "Frozen snapshot of bundled-source-manifest.json as it stood before the 2026-10-05 switch to the registered published-edition PDF. Its status_note for iso9001-fdis-2026-en ('word-for-word identical' for a 21-clause sample) was superseded by a full-text comparison of all 65 clauses -- see assets/requirement_profiles/README.md. Not used by any validator or retrieval script."
 }

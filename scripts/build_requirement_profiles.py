@@ -5,19 +5,21 @@ structurally from the zip inventory; NOT its AI-generated scenario/label
 content, which is excluded per the earlier no-SME-attestation finding).
 
 Field values (subject/obligation/object/condition/qualifier) were originally
-authored from the ISO/FDIS 9001:2026 draft PDF text extracted via
-scripts/extract_clause.py, then cross-checked against the published IS
-(assets/standards/ISO_9001_2026_IS_en_scanned.pdf -- a scanned, no-text-
-layer copy of the actual ISO 9001:2026 Sixth edition, 2026-09) by visually
-reading its page images. Every clause sampled in that check (4.1, 4.3, 4.4,
-5.2, 5.3, 6.1.1-6.1.3, 6.2.1, 7.1.3-7.1.6, 7.5.1-7.5.3.2, 8.5.6-8.7.2) came
-back word-for-word identical, with identical clause numbering -- so
-extract_clause.py's original FDIS extraction remains the functional source
-of truth (the IS scan has no text layer and cannot be parsed by that
-script), and STANDARD_ID below was updated to drop "FDIS" now that the
-standard is published. This was a SAMPLE, not an exhaustive page-by-page
-re-verification of all 65 clauses against the IS scan -- flag it for a
-fuller check if any specific clause's wording is ever in doubt.
+authored from the ISO/FDIS 9001:2026 draft PDF text. As of 2026-10-05 the
+registered text source is the published ISO 9001:2026 (Sixth edition,
+2026-09) PDF, assets/standards/ISO_9001_2026.pdf (OCR text layer), read
+through scripts/controlled_retrieval.py::ClauseStore (hash-bound via
+assets/manifests/runtime-source-registry.json) -- scripts/extract_clause.py
+is now a thin wrapper over it. A full, automated comparison of all 65
+clauses (legacy FDIS extraction vs. the IS text layer, normalised for
+whitespace/list markers; the differing spots were then confirmed by reading
+the IS page images) found 7 clauses whose normative text differs between
+the FDIS and the published IS -- see IS_WORDING_DIFFS below. The three that
+changed a phrase quoted in an element (7.3 E01, 8.5.6 E01, 8.6 E03:
+"conformity with" -> "conformity to") were updated here; the rest do not
+touch any element's wording. This supersedes the earlier 2026-09-17 visual
+SAMPLE (21 clauses, recorded as "word-for-word identical"), which was wrong
+for 7.5.2, 8.5.6 and 8.6.
 
 semantic_category is assigned programmatically from the exact D2_SAFE_LIST
 / M4_MANDATORY_LIST / AMBIGUOUS_LIST parsed directly out of
@@ -100,18 +102,20 @@ from hartley_uncertainty import hartley_measure  # noqa: E402  (reuse the real l
 STANDARD_ID = "ISO 9001:2026"
 VERSION = "0.2.0-ai-draft-unreviewed"
 
-# Clauses whose IS body text was directly visually compared (page images of
-# assets/standards/ISO_9001_2026_IS_en_scanned.pdf, which has no text layer
-# for automated re-extraction) against this script's FDIS-sourced text, and
-# found word-for-word identical with identical numbering. A SAMPLE across
-# clauses 4-8, not all 65 -- see the module docstring and
+# Full-text comparison, FDIS (legacy extractor) vs published IS (ClauseStore),
+# 2026-10-05, all 65 clauses; wording differences confirmed against the IS
+# page images. Clauses not listed here compared identical after
+# normalisation. (6.1.1 and 5.1.1 also showed diffs, but those were
+# extractor/footnote artefacts, not wording changes.) See
 # assets/requirement_profiles/README.md.
-IS_CROSS_CHECKED_CLAUSES = {
-    "4.1", "4.3", "4.4.1", "4.4.2", "5.2.1", "5.2.2", "5.3",
-    "6.1.1", "6.1.2", "6.1.3", "6.2.1",
-    "7.1.3", "7.1.4", "7.1.5.1", "7.1.5.2",
-    "7.5.1", "7.5.2", "7.5.3.1", "7.5.3.2",
-    "8.5.6", "8.6", "8.7.1", "8.7.2",
+IS_WORDING_DIFFS = {
+    "7.3": "IS: 'not conforming to' (FDIS: 'not conforming with')",
+    "7.5.2": "IS: '(e.g. a title, date, author, reference number)' (FDIS: '..., author or reference number')",
+    "8.1": "IS: 'actions determined in clause 6' (FDIS: 'actions determined in 6')",
+    "8.3.2": "IS list items carry a leading 'the' (e.g. 'the required process stages'); FDIS does not",
+    "8.5.6": "IS: 'continuing conformity to requirements' (FDIS: 'conformity with')",
+    "8.6": "IS: 'evidence of conformity to the acceptance criteria' (FDIS: 'conformity with')",
+    "9.2.2": "IS NOTE cites 'ISO 19011 [4]' (FDIS cited a different bibliography number)",
 }
 
 # ---------------------------------------------------------------------------
@@ -363,7 +367,7 @@ CLAUSES = [
         elem("E02", ORG, "take actions to acquire the necessary competence and evaluate their effectiveness, and ensure documented information is available", "as evidence of competence", qualifier="where applicable", evidence=doc_info()),
     ]),
     ("7.3", "Awareness", [
-        elem("E01", ORG, "ensure", "persons doing work under the organization's control are aware of the quality policy, their contribution to QMS effectiveness, the implications of not conforming with QMS requirements, relevant quality objectives, and the organizational quality culture and ethical behaviour"),
+        elem("E01", ORG, "ensure", "persons doing work under the organization's control are aware of the quality policy, their contribution to QMS effectiveness, the implications of not conforming to QMS requirements, relevant quality objectives, and the organizational quality culture and ethical behaviour"),
     ]),
     ("7.4", "Communication", [
         elem("E01", ORG, "determine", "the internal and external communications relevant to the quality management system, including what, when, with whom, how and who communicates"),
@@ -458,14 +462,14 @@ CLAUSES = [
         elem("E01", ORG, "meet the requirements for post-delivery activities associated with the products and services, considering statutory and regulatory requirements, potential undesired consequences, nature/use/intended lifetime, customer requirements, and customer feedback", "in determining the extent of post-delivery activities required"),
     ]),
     ("8.5.6", "Control of changes", [
-        elem("E01", ORG, "review and control", "changes for production or service provision, to the extent necessary to ensure continuing conformity with requirements, and ensure documented information is available as evidence of review results, the person(s) authorizing the change, and any necessary actions arising from the review",
+        elem("E01", ORG, "review and control", "changes for production or service provision, to the extent necessary to ensure continuing conformity to requirements, and ensure documented information is available as evidence of review results, the person(s) authorizing the change, and any necessary actions arising from the review",
              evidence=doc_info()),
     ]),
     ("8.6", "Release of products and services", [
         elem("E01", ORG, "implement", "planned arrangements, at appropriate stages, to verify that the product and service requirements have been met"),
         elem("E02", ORG, "ensure release does not proceed", "until the planned arrangements have been satisfactorily completed, unless otherwise approved by a relevant authority and, as applicable, by the customer",
              neg=["output released with an open/failed verification step and no documented authority approval"]),
-        elem("E03", ORG, "ensure documented information is available", "as evidence of the release of products and services, including evidence of conformity with acceptance criteria and traceability to the person(s) authorizing release", evidence=record()),
+        elem("E03", ORG, "ensure documented information is available", "as evidence of the release of products and services, including evidence of conformity to the acceptance criteria and traceability to the person(s) authorizing release", evidence=record()),
     ]),
     ("8.7.1", "Control of nonconforming outputs", [
         elem("E01", ORG, "ensure outputs that do not conform to requirements are identified and controlled", "to prevent their unintended use or delivery, taking appropriate action based on the nature of the nonconformity and its effect, including nonconformities detected after delivery or during/after service provision"),
@@ -554,24 +558,10 @@ def compute_yaml_related(clause: str, corpus: set[str]) -> list[str]:
     return sorted(related)
 
 
-# scripts/extract_clause.py's heading-boundary regex mis-triggers on the bare
-# cross-reference "4.1" inline in clause 6.1.1's running text (confirmed the
-# ONLY clause of the 65 affected by re-running this check against all of
-# them), truncating the extracted text before it reaches "4.1"/"4.2". Seed
-# the cache with the verified-correct text (read directly off PDF page 20 in
-# this session) instead of trusting the live extractor for this one clause.
-_TEXT_CACHE: dict[str, str] = {
-    "6.1.1": (
-        "6.1.1 Determining risks and opportunities\n"
-        "When planning for the quality management system, the organization shall consider the issues referred to in "
-        "4.1 and the requirements referred to in 4.2 and determine the risks and opportunities that need to be "
-        "addressed to:\n"
-        "a) give assurance that the quality management system can achieve its intended result(s);\n"
-        "b) prevent, or reduce, undesired effects;\n"
-        "c) achieve continual improvement;\n"
-        "d) enhance desired effects."
-    ),
-}
+# Memo only. (An earlier hand-patched override for clause 6.1.1 lived here to
+# work around the legacy FDIS extractor's heading-boundary bug; the registered
+# ClauseStore extractor does not have that bug, so the override was removed.)
+_TEXT_CACHE: dict[str, str] = {}
 
 
 def _raw_clause_text(clause: str) -> str:
@@ -686,15 +676,13 @@ def build():
             ),
             "provenance": {
                 "extracted_via": "scripts/extract_clause.py",
-                "source_pdf": "assets/standards/ISO_FDIS_9001_2026_en.pdf",
+                "source_pdf": "assets/standards/ISO_9001_2026.pdf",
                 "is_cross_check": (
-                    "Cross-checked 2026-09-17 against assets/standards/ISO_9001_2026_IS_en_scanned.pdf "
-                    "(published ISO 9001:2026, Sixth edition, 2026-09) by direct visual page comparison "
-                    "-- word-for-word identical, same clause numbering."
-                    if clause in IS_CROSS_CHECKED_CLAUSES else
-                    "Not individually cross-checked against the published IS scan yet (sourced from the "
-                    "FDIS draft only) -- see IS_CROSS_CHECKED_CLAUSES in this script and "
-                    "assets/requirement_profiles/README.md."
+                    "Full-text comparison 2026-10-05, FDIS vs published IS (ISO_9001_2026.pdf OCR text "
+                    "layer), confirmed against IS page images where they differed: "
+                    + (IS_WORDING_DIFFS[clause] if clause in IS_WORDING_DIFFS
+                       else "identical after whitespace/list-marker normalisation")
+                    + " -- see assets/requirement_profiles/README.md."
                 ),
                 "note": "AI-drafted decomposition, NOT SME/human-auditor reviewed.",
             },

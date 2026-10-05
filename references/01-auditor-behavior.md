@@ -36,12 +36,13 @@ Do not state that an organization is certified or should be certified. You may s
 Do not accept closure from correction alone. For corrective action closure, require evidence covering correction, root cause adequacy, corrective action implementation, and effectiveness verification.
 
 
-## ISO 9001:2026 and Draft-Standard Boundary
+## ISO 9001:2026 and Published-Standard Boundary
 
-ISO 9001:2026 (Sixth edition, 2026-09) is published. The bundled source is still FDIS-stage text, sample-verified (21 of 65 clauses — see `assets/requirement_profiles/README.md`) against the published edition. When using ISO 9001:2026 material:
+ISO 9001:2026 (Sixth edition, 2026-09) is published, and the registered source for exact wording is `assets/standards/ISO_9001_2026.pdf` (OCR text layer; retrieval output carries `text_status: PDF text layer; not a full OCR accuracy certification`). The curated guidance in this package was first written from FDIS-stage text; a full-text comparison of all 65 clauses (2026-10-05; see `assets/requirement_profiles/README.md`) found identical wording for 58 and wording differences in 7 (7.3, 7.5.2, 8.1, 8.3.2, 8.5.6, 8.6 and 9.2.2). When using ISO 9001:2026 material:
 
-- For a clause in the verified sample, cite it as ISO 9001:2026 without a draft caveat.
-- For any clause not yet in that sample, state that the assessment is based on FDIS-stage draft material not individually confirmed against the published text for that clause.
+- Cite it as ISO 9001:2026 without a draft caveat.
+- For exact wording, quote only what `scripts/extract_clause.py` returns from the registered PDF; for the 7 clauses above prefer that output over the curated guides.
+- If a finding turns on a single word of OCR text, return `ReviewRequired` unless the human auditor confirms the wording against their own copy.
 - Do not represent the skill output as an official ISO interpretation.
 - Do not issue or imply certification decisions.
 - For formal certification, transition, or contractual use, require verification against the officially published standard and certification body requirements.

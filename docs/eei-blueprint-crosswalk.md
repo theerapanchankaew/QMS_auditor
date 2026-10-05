@@ -147,6 +147,8 @@ missing evaluators/contracts.
 
 ## Update 2026-09-17 (cont.): FDIS → published IS
 
+> **Superseded 2026-10-05** — see the last section of this file. A full-text comparison of all 65 clauses found wording differences in 7 clauses (7.3, 7.5.2, 8.1, 8.3.2, 8.5.6, 8.6, 9.2.2); the "word-for-word identical" conclusion below was wrong for 7.5.2, 8.5.6 and 8.6.
+
 ISO 9001:2026 was published (Sixth edition, 2026-09) after the above. The
 corpus's `standard_id` now reads `"ISO 9001:2026"`; 21 of the 65 clauses
 were sampled against the actual published-standard PDF (a scanned,
@@ -476,3 +478,72 @@ just checked against this module's own logic in isolation.
 
 Full suite re-run: `assets/tests/awm_v07/` **73/73** (52 + 21 new, all in
 the new `test_gate_trace_deriver.py`).
+
+## Update 2026-10-05: registered published-edition PDF replaces the FDIS as the retrieval source
+
+User asked to replace every use of the FDIS filename with `ISO_9001_2026`
+and chose to adopt the retrieval design from their own evolved copy of this
+repo (`QMS_Auditor.rar`, read as data; only the pieces below were taken).
+
+**Why a rename was not enough.** `assets/standards/ISO_9001_2026.pdf` is the
+published Sixth edition (sha256 `346ce2e9…`, 48 pages) with an **OCR** text
+layer. Pointing the old `extract_clause.py` at it returned 13–60 characters
+for 40 of the 65 clauses and nothing for 7.5.3.2 / 8.7.2 (different line
+structure; running headers `ISO 9001:2026(en)`; Annex A starts on page 35,
+not the hard-coded 38). A string replace would also have broken facts: the
+manifest checksum (`71252005…`), the 157 FDIS-paginated RAG chunks and every
+doc sentence saying "the bundled source is FDIS-stage text".
+
+**Taken from the RAR (user's own code/data):**
+`scripts/controlled_retrieval.py` (`ClauseStore`: sha256-bound, registered body
+pages 15–34, coordinate-based header/footer exclusion, heading integrity
+checks), `assets/manifests/runtime-source-registry.json` (incl. the
+`23:7.8.3 → 7.5.3` OCR heading correction), the new thin
+`scripts/extract_clause.py` / `scripts/search_standard.py` (our previous
+extractor is kept as `scripts/extract_clause_legacy.py`, still FDIS-based),
+the manifest layout (`iso9001-2026-user-pdf` active; the FDIS and ISO 9000
+sources under `unavailable_historical_sources`; the pre-switch manifest kept
+as `historical-source-manifest.json`) and the `is_relative_to` fix in
+`source_manifest_validator.py`. **Not taken:** `service/`, `gate_runner.py`,
+`strict_gate_contract.py`, deployment/test scripts, the profile `review`
+structure and approval records — out of scope.
+
+**Decisions to be aware of (all reversible):**
+- ISO 9000 FDIS + glossary are no longer in the active manifest (as in the
+  RAR). The two ISO 9000 reference docs now say so; terminology needing them
+  → `ReferenceGap` unless supplied as controlled evidence.
+- The RAR retires the local-RAG profile (`approved_profiles: []`). Here it
+  was kept **approved** and the index **rebuilt** from the new manifest
+  (`allowed_source_ids`: `iso9001-2026-user-pdf`, `qms-curated-references`;
+  145 + 557 chunks), because the request was for the RAG index to point at
+  the new PDF. `standard_index_builder.py` now writes POSIX paths (a rebuild
+  on Windows had produced backslashes).
+- `extract_clause.py` lost `--allow-external-pdf` / `--approval-text`; it
+  refuses any PDF other than the registered one, and Annex A / TOC are not
+  retrievable (`ReferenceGap`).
+- `references/data/iso9001_2026_pdf_clause_pages.csv` and the clause index
+  (renamed `clause_index_iso_9001_2026.json`) carried FDIS page numbers
+  (clause 4.1 on p.17; it is p.15 in the IS). Both were regenerated from the
+  registered PDF; Annex A sub-entries and clauses 1–3 are located by heading
+  search / approximated (noted in the file).
+
+**Finding — the FDIS and the published text differ.** Full-text comparison of
+all 65 clauses (legacy FDIS extraction vs `ClauseStore`, normalised): 58
+identical, 7 differ in wording (7.3, 7.5.2, 8.1, 8.3.2, 8.5.6, 8.6, 9.2.2;
+4 confirmed on the IS page images, 3 from the OCR layer only). This
+**invalidates** the 2026-09-17 visual sample that recorded 21 clauses as
+word-for-word identical (wrong for 7.5.2, 8.5.6, 8.6). Three requirement
+elements quoted a changed phrase and were updated ("conformity with" →
+"conformity to": AR-7.3-E01, AR-8.5.6-E01, AR-8.6-E03); `9.3.2` gained a
+`6.1.3` explicit reference the old extractor had missed. Curated guides
+(`references/15`, `clause-guide`, `standard-map`, CSV index) were first
+written from the FDIS and now say so, with the 7-clause caveat. Details:
+`assets/requirement_profiles/README.md`.
+
+**Verification:** `assets/tests/test_controlled_retrieval.py` (16 tests: hash
+binding, all 65 clauses retrievable inside the registered pages, annex /
+unregistered-PDF refusal, manifest–registry–index–profile consistency),
+`run_regression_suite.py` 48/48, `assets/tests/awm_v07/` 74/74,
+`source_manifest_validator.py` valid. The OCR layer carries no accuracy
+certification (`text_status`); single-word findings still need a licensed
+copy.

@@ -38,7 +38,7 @@ def _inside_skill(rel: str) -> Path:
     if rel.lower().startswith(FORBIDDEN_PREFIXES):
         raise ValueError(f"forbidden external location: {rel}")
     p = (SKILL_ROOT / rel).resolve()
-    if not str(p).startswith(str(SKILL_ROOT.resolve())):
+    if not p.is_relative_to(SKILL_ROOT.resolve()):
         raise ValueError(f"location escapes skill root: {rel}")
     return p
 

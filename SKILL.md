@@ -373,8 +373,8 @@ A model that predicts plausible audit actions but fails state compression, state
 1. `references/standard/iso9001-2026-standard-map.md`
 2. `references/standard/iso9001-2026-clause-guide.md`
 3. `references/standard/iso9001-2026-definition-index.md` + `references/standard/iso9000-2026-vocabulary-source-map.md`
-4. `assets/standards/ISO_FDIS_9001_2026_en.pdf` (use `scripts/extract_clause.py`)
-5. `assets/standards/ISO_FDIS_9000_2026_en.pdf` + `assets/standards/ISO9000GlossaryENv5FA2025.pdf`
+4. `assets/standards/ISO_9001_2026.pdf` (published Sixth edition; registered, hash-bound; use `scripts/extract_clause.py` / `scripts/search_standard.py`)
+5. ISO 9000 vocabulary sources (`ISO_FDIS_9000_2026_en.pdf`, `ISO9000GlossaryENv5FA2025.pdf`) — historical: not in the active `assets/manifests/bundled-source-manifest.json`; usable only if the user supplies them as controlled evidence for the current task
 
 ---
 

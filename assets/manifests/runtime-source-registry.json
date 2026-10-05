@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "primary_standard": {
+    "source_id": "iso9001-2026-user-pdf",
+    "path": "assets/standards/ISO_9001_2026.pdf",
+    "sha256": "346ce2e96c9d22caacd747c4ad15030d0931b1b363c68b79f178d385c2ca2565",
+    "body_start_page": 15,
+    "body_end_page": 34,
+    "layout_scope": "Registered PDF only; normative clauses 4-10. TOC and Annex excluded.",
+    "heading_corrections": {
+      "23:7.8.3": "7.5.3"
+    },
+    "heading_correction_basis": "Page 23 visually checked against supplied PDF; only heading normalization, body text unchanged."
+  },
+  "assessment_rules": [
+    "37-major-escalation-gate-v2.md",
+    "38-insufficient-evidence-gate-v1.md",
+    "41-severity-anchor-precision-v1.md"
+  ],
+  "external_sources": false,
+  "rule_selection_note": "Compact runtime pack: scope/evidence governance + escalation, evidence sufficiency, severity anchors; original harness and strict contract execute separately. Other references remain available in package; not a claim that every SKILL block is executed."
+}

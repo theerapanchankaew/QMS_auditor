@@ -106,16 +106,19 @@ same axes, only the same count by coincidence).
   (see the `project_openwebui_deployment` session memory for the full
   finding).
 - **Requirement text (subject/obligation/object/condition/qualifier)** was
-  authored from the real clause text extracted via
-  `scripts/extract_clause.py` against
-  `assets/standards/ISO_FDIS_9001_2026_en.pdf` — not from any secondhand
-  summary. One extraction bug was caught and fixed by hand during
-  authoring: `extract_clause.py`'s heading-boundary regex mis-triggered on
-  the bare cross-reference "4.1" inside clause 6.1.1's running text,
-  truncating it; the correct text was recovered by reading the raw PDF
-  page directly.
+  first authored from the real clause text of the ISO/FDIS 9001:2026 draft
+  (extracted with what is now `scripts/extract_clause_legacy.py` against
+  `ISO_FDIS_9001_2026_en.pdf`) — not from any secondhand summary. Since
+  2026-10-05 the registered source is the published edition,
+  `assets/standards/ISO_9001_2026.pdf`, read through
+  `scripts/controlled_retrieval.py` (`scripts/extract_clause.py` is a thin
+  wrapper over it); the generator's explicit-reference extraction now uses
+  that, and the FDIS-vs-IS differences are recorded under "IS cross-check"
+  below. (The legacy extractor's 6.1.1 heading-boundary bug no longer
+  matters: the registered extractor reads 6.1.1 correctly, so the
+  hand-patched 6.1.1 text override was removed from the generator.)
 - Field text is **paraphrased/restructured**, not verbatim reproduction of
-  the FDIS draft, consistent with `extract_clause.py`'s own guidance ("for
+  the standard's text, consistent with the extractor's own guidance ("for
   verification and short audit criteria... avoid long verbatim
   reproduction") and this repo's copyright constraints on the ISO source
   (`NOTICE.md`).
@@ -147,50 +150,61 @@ same axes, only the same count by coincidence).
   should be extended to cover more of them, is an open question for human
   auditor review — not resolved by this dataset.
 
-## IS cross-check (2026-09-17)
+## IS cross-check (full-text, 2026-10-05; supersedes the 2026-09-17 sample)
 
-The standard was published (ISO 9001:2026, Sixth edition, 2026-09) after
-this corpus was first authored from the FDIS draft. The user supplied the
-actual published-standard PDF
-(`assets/standards/ISO_9001_2026_IS_en_scanned.pdf`). Two things about it
-mattered for how this corpus was updated:
+ISO 9001:2026 (Sixth edition, 2026-09) was published after this corpus was
+first authored from the FDIS draft.
 
-1. **It's a scanned, image-only PDF with zero extractable text** (checked
-   with PyMuPDF across all 48 pages) — unlike the FDIS PDF, which has a
-   real text layer. `scripts/extract_clause.py` cannot be pointed at it;
-   it depends on a text layer to find headings and clause boundaries. No
-   OCR tooling is installed in this environment either.
-2. Given that, verification was done by **rendering page images and
-   reading them directly** (this session's own vision, not OCR) rather
-   than installing anything new. 21 of the 65 clauses were sampled this
-   way across sections 4-8 (`IS_CROSS_CHECKED_CLAUSES` in
-   `scripts/build_requirement_profiles.py` has the exact list) — every one
-   came back **word-for-word identical** to the FDIS text, with identical
-   clause numbering. A first pass had incorrectly concluded, from the
-   scanned copy's own Table of Contents alone, that 8 clause pairs (e.g.
-   `4.4.1`+`4.4.2`, `8.7.1`+`8.7.2`, `10.2.1`+`10.2.2`) had been merged in
-   the final IS — that Table of Contents simply omits some sub-clause
-   headings inconsistently; the actual body text still has all of them,
-   confirmed by reading the body pages directly before acting on the TOC
-   alone.
+**2026-09-17 (superseded)** — the first IS copy supplied was an image-only
+scan (`ISO_9001_2026_IS_en_scanned.pdf`, no text layer), so 21 clauses were
+sampled by reading rendered page images, and recorded as "word-for-word
+identical" to the FDIS. **That conclusion was wrong for three of the
+sampled clauses (7.5.2, 8.5.6, 8.6)** — see below — so the sample, the
+`IS_CROSS_CHECKED_CLAUSES` list and the per-profile `is_cross_check` text
+it produced have been replaced.
 
-Because of this: `STANDARD_ID` was updated to `"ISO 9001:2026"` (dropping
-"FDIS", since the standard is now published), but `extract_clause.py`'s
-`DEFAULT_PDF` and this repo's other FDIS-filename references were
-deliberately **left untouched** — the FDIS PDF remains the correct,
-working, text-extractable source for this corpus's content, and its
-content has now been spot-checked against the real published text. Each
-clause file's `provenance.is_cross_check` field records, honestly,
-whether that specific clause was one of the 21 sampled or not — the other
-44 have not been individually re-verified against the IS scan.
+**2026-10-05 (current)** — the user supplied `ISO_9001_2026.pdf` (the same
+published edition, with an OCR text layer; sha256 `346ce2e9…`), now the
+registered source (`assets/manifests/runtime-source-registry.json`,
+`scripts/controlled_retrieval.py`). All 65 clauses were compared
+automatically: the legacy FDIS extraction vs. the registered IS text,
+normalised for whitespace and list markers. Result: **identical for 58
+clauses; normative wording differs in 7** (`IS_WORDING_DIFFS` in
+`scripts/build_requirement_profiles.py`, echoed in each profile's
+`provenance.is_cross_check`):
 
-Left untouched, and flagged rather than changed silently: `SKILL.md`'s
-source hierarchy (BLOCK 4) and `assets/manifests/bundled-source-manifest.json`'s
-`"status": "final_draft"` entry for the FDIS PDF both still describe the
-standard as a draft. Updating those is a larger, more sensitive change
-(the manifest entry is checksum-tracked governance data, and SKILL.md is
-the core governance contract) that needs explicit sign-off before editing,
-separate from this corpus's own relabeling.
+| Clause | Published IS vs FDIS | Confirmed by |
+|---|---|---|
+| 7.3 | "not conforming **to**" (FDIS: "with") | OCR text layer only |
+| 7.5.2 | "(e.g. a title, date, author, reference number)" — no "or" | IS page image |
+| 8.1 | "actions determined in **clause** 6" | OCR text layer only |
+| 8.3.2 | list items carry a leading "the" (e.g. "the required process stages") | OCR text layer only |
+| 8.5.6 | "continuing conformity **to** requirements" (FDIS: "with") | IS page image |
+| 8.6 | "evidence of conformity **to** the acceptance criteria" (FDIS: "with") | IS page image |
+| 9.2.2 | NOTE cites "ISO 19011 [4]" (FDIS cited a different bibliography number) | IS page image |
+
+Two further diffs were extractor/footnote artefacts, not wording changes
+(6.1.1 — the legacy extractor truncated it; 5.1.1 — a footnote marker).
+
+Effect on this corpus: three element texts quoted a changed phrase and were
+updated to the IS wording (**AR-7.3-E01**, **AR-8.5.6-E01**, **AR-8.6-E03**:
+"conformity with" → "conformity to"); no element quotes the other four
+differences. Regenerating with the registered extractor also added `6.1.3`
+to `9.3.2`'s `explicit_text_references` (the legacy extractor missed the
+second cross-reference in "…(see 6.1.2)… (see 6.1.3)"). The OCR text layer
+is not an accuracy certification (`text_status` in the retrieval output) —
+single-word findings should still be confirmed against a licensed copy.
+
+An earlier first pass had also concluded, from the scanned copy's Table of
+Contents alone, that 8 clause pairs (e.g. `4.4.1`+`4.4.2`) had been merged in
+the published edition; that was wrong (the TOC omits some sub-clause
+headings) and was corrected before it was reported — the full-text
+comparison confirms all 65 clauses exist with identical numbering.
+
+`SKILL.md` BLOCK 4, `NOTICE.md`, `README.md`, `references/**` and
+`assets/manifests/` were updated on 2026-10-05 to name
+`ISO_9001_2026.pdf` as the registered source; the FDIS file and the ISO 9000
+sources are retained only as `unavailable_historical_sources`.
 
 ## Regenerating
 
@@ -205,10 +219,11 @@ writing. Re-run it with:
 python scripts/build_requirement_profiles.py
 ```
 
-If the harness's severity lists change, or any of the remaining 44
-not-yet-cross-checked clauses turn out to differ from the published IS
-once verified, edit the `CLAUSES` data in that script (and
-`IS_CROSS_CHECKED_CLAUSES` once a clause is verified) and re-run it — do
-not hand-edit the JSON files directly, since a manual edit would not be
-re-validated against the Pydantic schema or re-checked against the harness
-lists.
+If the harness's severity lists change, or the published wording of any
+clause needs to be re-reflected, edit the `CLAUSES` data (and
+`IS_WORDING_DIFFS` where a clause's FDIS-vs-IS difference changes) in that
+script and re-run it — do not hand-edit the JSON files directly, since a
+manual edit would not be re-validated against the Pydantic schema or
+re-checked against the harness lists. The generator reads clause text
+through `scripts/extract_clause.py` (registered source
+`assets/standards/ISO_9001_2026.pdf`), so that PDF must be present locally.

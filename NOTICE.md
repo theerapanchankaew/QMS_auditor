@@ -5,20 +5,26 @@
 This project references and (locally, outside of git) consumes the following
 copyrighted works. They are **not** distributed with this repository:
 
-- ISO 9001:2026 (Quality management systems — Requirements) — bundled as
-  `ISO_FDIS_9001_2026_en.pdf`, an FDIS-stage text file (still the only
-  text-extractable copy, used by `scripts/extract_clause.py`), plus
-  `ISO_9001_2026_IS_en_scanned.pdf`, a scanned copy of the actual published
-  standard (Sixth edition, 2026-09), added 2026-09-17 to spot-check the
-  bundled text against it. Both are copyrighted ISO works regardless of
-  draft/published status.
-- ISO/FDIS 9000:2026 (Quality management systems — Fundamentals and
-  vocabulary) — **not confirmed published**; still treat as draft-stage.
-- ISO 9000 glossary (`ISO9000GlossaryENv5FA2025.pdf`)
+- ISO 9001:2026 (Quality management systems — Requirements), published Sixth
+  edition (2026-09) — `ISO_9001_2026.pdf` (OCR text layer, sha256
+  `346ce2e96c9d22caacd747c4ad15030d0931b1b363c68b79f178d385c2ca2565`), the
+  single registered source, read through `scripts/controlled_retrieval.py`
+  (used by `scripts/extract_clause.py` and `scripts/search_standard.py`; see
+  `assets/manifests/runtime-source-registry.json`). Earlier copies this repo
+  no longer reads — `ISO_FDIS_9001_2026_en.pdf` (FDIS draft, used only by
+  `scripts/extract_clause_legacy.py` for historical comparison) and
+  `ISO_9001_2026_IS_en_scanned.pdf` (image-only scan of the same published
+  edition) — may still sit locally. All are copyrighted ISO works
+  regardless of draft/published status.
+- ISO/FDIS 9000:2026 (Fundamentals and vocabulary; **not confirmed
+  published**) and the ISO 9000 glossary (`ISO9000GlossaryENv5FA2025.pdf`) —
+  historical sources (`unavailable_historical_sources` in
+  `assets/manifests/bundled-source-manifest.json`), outside the active
+  retrieval boundary.
 
 ISO and IEC hold copyright in these standards. Obtain your own licensed copy
 from ISO, your national standards body, or an authorized reseller. Place the
-files locally at the paths listed in `SKILL.md` BLOCK 4 and `README.md`;
+file locally at the path listed in `SKILL.md` BLOCK 4 and `README.md`;
 `.gitignore` keeps them out of version control. Do not upload their full text
 to a public or shared OpenWebUI Knowledge base — treat any Knowledge
 collection built from them as private to this deployment.
