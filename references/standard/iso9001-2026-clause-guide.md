@@ -44,10 +44,10 @@ This guide summarizes audit intent and evidence expectations. It is not a replac
 ### 8 Operation
 - **8.1**: Verify operational planning and control, product/service requirements, acceptance criteria, process criteria, controls, resources, evidence, planned/unintended changes, and controls for external provision.
 - **8.2**: Verify customer communication, requirement determination, requirement review before commitment, resolution of differences, documented evidence, and communication of changes.
-- **8.3**: Verify design and development process, planning, inputs, controls, outputs, and changes. If excluded/not applicable, verify scope justification and no adverse effect on conformity/satisfaction.
+- **8.3**: Verify design and development process, planning, inputs, controls, outputs, and changes. The 8.3.x text itself has no applicability phrase (only 8.3.5 `as appropriate` and 8.3.6 `to the extent necessary`); if D&D is excluded/not applicable, that rests on the 4.3 scope determination — verify the justification and no adverse effect on conformity/satisfaction/statutory obligations (Annex A.3).
 - **8.4**: Verify external provider controls, evaluation/selection/monitoring/re-evaluation criteria, type and extent of control, provider communication, verification/validation, and evidence.
 - **8.5**: Verify controlled conditions, product/service information, monitoring/measurement, infrastructure/environment, competence, process validation/revalidation, human error prevention, release/delivery/post-delivery, traceability, customer/external provider property, preservation, and production/service change controls.
-- **8.6**: Verify release arrangements, acceptance evidence, authority and customer approval where applicable, and traceability to releaser.
+- **8.6**: Verify release arrangements, acceptance evidence, authority and customer approval as applicable, and traceability to releaser.
 - **8.7**: Verify identification/control of nonconforming outputs, actions based on nature/effect, correction/containment/customer notification/concession, re-verification, and records.
 
 ### 9 Performance evaluation
@@ -58,6 +58,13 @@ This guide summarizes audit intent and evidence expectations. It is not a replac
 ### 10 Improvement
 - **10.1**: Verify continual improvement uses monitoring, measurement, analysis, evaluation, and management review outputs to determine and address opportunities.
 - **10.2**: Verify NC reaction, control/correction/consequences, cause analysis, recurrence/occurrence elsewhere, action implementation, effectiveness review, risks/opportunities updates, QMS changes, proportionality, and records.
+
+## Conditional qualifiers (read before concluding a gap)
+Twenty-two clauses narrow a requirement with a qualifier phrase (`as applicable`, `where/when applicable`, `when relevant`, `as appropriate`, `to the extent necessary`, `as necessary`, `if necessary`); the full list with the exact wording is in `iso9001-2026-standard-map.md` → “Conditional qualifiers in clauses 4–10”. Three points from Annex A that change how an apparent gap should be read:
+- “Applicable” and “appropriate” are different words: “as applicable” can be determined not applicable in some situations; “as appropriate” asks for a suitable, judged approach but the requirement still applies.
+- A “not applicable” determination counts only if it was considered, justified (see 4.3), and does not affect conformity of products and services, customer satisfaction or statutory/regulatory obligations (A.3).
+- Phrases such as `to the extent necessary` leave the extent to the organization's own determination: assess whether that determination exists and is reasonable, not whether a fixed amount was met.
+The verdict consequences (OFI / Complied / Noncomplied) are set by the L7 gate in `SKILL.md` and `references/26-layered-audit-cognition.md`, not by this guide.
 
 ## Output rule
 When using this guide, state: `Clause guide used for navigation; exact wording should be verified from the full PDF for final audit criteria.`

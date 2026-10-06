@@ -547,3 +547,50 @@ unregistered-PDF refusal, manifest–registry–index–profile consistency),
 `source_manifest_validator.py` valid. The OCR layer carries no accuracy
 certification (`text_status`); single-word findings still need a licensed
 copy.
+
+## Update 2026-10-06: conditional-qualifier (L7) documentation reconciled with the published text
+
+Triggered by a review of the L7 “Conditional Qualifier Gate” slide against the
+three `references/standard/` guides. Those guides did not carry the qualifier
+conditions at all (only incidental mentions); the gate itself lives in
+`SKILL.md` rule 3 and refs 26 / 08 / 10 / 19 / 27 / 28.
+
+**Done (documentation only — no verdict logic changed):**
+- `standard-map`: new “Conditional qualifiers in clauses 4–10” section — an
+  inventory of **22 clauses** with the exact phrase as worded in
+  `ISO_9001_2026.pdf`, grouped by Annex A.2/A.3 family (applicability /
+  appropriateness / extent). The earlier count of 21 (given in chat) was
+  wrong: it included 4.4.1 “as determined” (not a qualifier) and missed 8.5.6
+  (OCR hyphenation split the phrase; confirmed on the page image) and 4.3
+  (“if they are applicable”). The two text layers (FDIS, IS) agree on all
+  other clauses.
+- `clause-guide` / `definition-index`: Annex A.2 / A.3 content added
+  (appropriate ≠ applicable; “not applicable” valid only if it does not affect
+  conformity, customer satisfaction or statutory obligations; considered and
+  justified, see 4.3); `8.6` wording corrected (“as applicable”, not “where
+  applicable”); 8.3 now states the text has no applicability phrase.
+- `ref 27`: 8.3 relabelled (conditional by scope, not `where applicable`);
+  cells whose label did not match the text corrected (7.5 rows 2–3, 8.4 rows
+  5–6, 8.5 rows 5–8, 7.1.5 rows 4/5/7), with “by circumstance” used where
+  the text has no qualifier phrase; reconciliation note added. Ref 27 still
+  annotates only part of the 22 clauses.
+- `ref 08`: “common error” clause list kept (L7 still runs for them) but now
+  says which of them actually carry a qualifier phrase.
+
+**Open — needs a decision (governance, not edited):**
+1. L7 (SKILL.md, ref 26, the slide) treats `as appropriate` like `as applicable`
+   (not applicable + reason → Complied). Annex A.2(a) says the two are not
+   interchangeable: “appropriate” still applies and calls for judgement.
+2. L7's “not applicable + justification → Complied” has no check of the A.3
+   precondition (no effect on conformity / customer satisfaction / statutory
+   obligations); `AR-4.3-E09` already encodes it.
+3. The slide drops the “and no objective evidence the condition applies”
+   clause that refs 08/10/19/26 have at the OFI step.
+4. Ref 27's 8.3 block says “OFI at most” for a justified not-applicable, which
+   contradicts L7's “Complied” (flagged in place, not reconciled).
+5. Trigger vocabulary differs across SKILL.md (3 phrases), ref 08 (4), ref 26
+   (10; lacks `when applicable`, `as necessary`, `if necessary`) and the slide.
+6. Only 8 of 65 requirement profiles carry a `qualifier` value; 6 of the
+   slide's 13 clauses (6.2.1, 8.2.1, 8.2.3.1, 8.3.5, 8.6, 9.1.1) have none, so
+   a profile-driven LV1 step would skip L7 for them. L7 has no code
+   evaluator (see gap #2 above).

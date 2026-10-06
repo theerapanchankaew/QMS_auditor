@@ -4,6 +4,8 @@
 > **Implementation-heavy clauses** (policy alone insufficient): 8.3, 8.4, 8.5, 8.6, 8.7, 9.2, 10.2
 > **Index:** 4.1 | 4.2 | 5.1 | 5.2 | 6.1 | 6.2 | 6.3 | 7.1.5 | 7.2 | 7.3 | 7.4 | 7.5 | 8.1 | 8.3 | 8.4 | 8.5 | 8.6 | 8.7 | 9.1 | 9.2 | 9.3 | 10.2
 
+> **Reconciliation note (2026-10-06).** The `Conditional?` column was checked against the registered text of ISO 9001:2026 (`assets/standards/ISO_9001_2026.pdf`). It is a per-element summary and is **not complete**: the full list of clauses whose text carries a qualifier phrase, with the exact wording, is `references/standard/iso9001-2026-standard-map.md` → “Conditional qualifiers in clauses 4–10” (22 clauses; this file annotates only part of them — e.g. 4.3, 4.4.2, 5.2.2, 6.2.1, 7.2, 7.1.6, 8.1, 8.2.x, 8.3.5, 8.3.6, 8.5.1, 8.5.6, 8.6, 9.1.1 and 10.2.1 carry none here). Cells whose label did not match the text were corrected below; cells marked “by circumstance” are conditional only because the activity may not exist or a stated condition may not hold — the text has no qualifier phrase there. The verdict rule for conditional elements is the L7 gate (`SKILL.md`, `references/26-layered-audit-cognition.md`); nothing in this note changes it.
+
 ---
 
 ## Clause 4.1 — Context of the Organization
@@ -94,10 +96,10 @@
 | 1 | Resources determined | Monitoring plan or equipment register | No |
 | 2 | Resources are suitable | Calibration/verification evidence | No |
 | 3 | Resources maintained for fitness for purpose | Maintenance records | No |
-| 4 | Calibration/verification traceable to standards (when required) | Calibration certificate | **`as appropriate`** |
-| 5 | Calibration status identified | Labels, records | **`as appropriate`** |
+| 4 | Calibration/verification traceable to standards (when required) | Calibration certificate | **by circumstance** — 7.1.5.2 lead-in “when traceability … is a requirement or is considered essential” (no `as appropriate` in the text) |
+| 5 | Calibration status identified | Labels, records | **by circumstance** — same 7.1.5.2 lead-in (no `as appropriate` in the text) |
 | 6 | Safeguarded from adjustments, damage, deterioration | Control records | No |
-| 7 | Out-of-tolerance impact assessed | Assessment record | No |
+| 7 | Out-of-tolerance impact assessed | Assessment record | **`as necessary`** (7.1.5.2: appropriate action as necessary) |
 
 **Conditional (element 4):** If equipment NOT used for release or critical measurements and rationale documented → OFI.
 **Major M3:** Equipment used for release decision, calibration record absent.
@@ -144,8 +146,8 @@
 | # | Element | Evidence type | Conditional? |
 |---|---|---|---|
 | 1 | Required documented information maintained | Document register | No |
-| 2 | Documents controlled (creation, update, access, distribution) | Control records | No |
-| 3 | External origin documents identified and controlled | Register | **`as applicable`** |
+| 2 | Documents controlled (creation, update, access, distribution) | Control records | **`as applicable`** (7.5.3.2 lead-in) |
+| 3 | External origin documents identified and controlled | Register | **`as appropriate`** (7.5.3.2) |
 | 4 | Documents protected from unintended alteration or loss | System or physical controls | No |
 | 5 | Obsolete documents controlled | Disposition records | No |
 
@@ -163,9 +165,10 @@
 
 ---
 
-## Clause 8.3 — Design and Development (CONDITIONAL — `where applicable`)
+## Clause 8.3 — Design and Development (CONDITIONAL — by scope, 4.3 / Annex A.3)
 
-**Conditional qualifier:** `where applicable` — if organization assessed D&D as not applicable with documented rationale → OFI at most. If D&D clearly applies (product/service design): entire process required.
+**Conditionality:** the 8.3.x text contains **no** `where applicable` phrase (the phrases that do occur are 8.3.5 `as appropriate` and 8.3.6 `to the extent necessary`). D&D can fall outside the QMS only through the 4.3 scope determination, valid only if it does not affect conformity, customer satisfaction or statutory/regulatory obligations (Annex A.3). If organization assessed D&D as not applicable with documented rationale → OFI at most. If D&D clearly applies (product/service design): entire process required.
+> *Flag (2026-10-06):* the “OFI at most” sentence above predates the L7 wording in `SKILL.md` / ref 26, which returns **Complied** for a justified not-applicable. The two are not reconciled here — pending the gate review noted in `docs/eei-blueprint-crosswalk.md`.
 
 | # | Element | Evidence type |
 |---|---|---|
@@ -192,8 +195,8 @@
 | 2 | Criteria for supplier evaluation established | Evaluation criteria document | No |
 | 3 | Suppliers evaluated before use | Evaluation records | No |
 | 4 | Suppliers re-evaluated periodically | Re-evaluation records | No |
-| 5 | Requirements communicated to suppliers | PO, specification, contract | No |
-| 6 | Verification activities for externally provided items | Inspection/acceptance records | **`as appropriate`** |
+| 5 | Requirements communicated to suppliers | PO, specification, contract | **`as appropriate`** (8.4.3) |
+| 6 | Verification activities for externally provided items | Inspection/acceptance records | **by circumstance** — 8.4.2 “activities necessary to ensure…” (no `as appropriate` in the text) |
 | 7 | Approved supplier list maintained | ASL or register | No |
 
 **Major M4:** No supplier evaluation or control process for any supplier.
@@ -209,10 +212,10 @@
 | 2 | Controlled conditions — suitable monitoring/measuring resources | Equipment records | No |
 | 3 | Controlled conditions — competent persons | Competence records | No |
 | 4 | Controlled conditions — infrastructure | Maintenance records | No |
-| 5 | Unique identification and traceability | Traceability records | **`as appropriate`** |
-| 6 | Customer/external property identified, protected, reported | Records | **`as appropriate`** |
-| 7 | Preservation of outputs | Preservation records | **`as applicable`** |
-| 8 | Post-delivery activities | Activity records | **`as applicable`** |
+| 5 | Unique identification and traceability | Traceability records | **`when it is necessary`** (8.5.2; unique identification also under a “when traceability is a requirement” condition) |
+| 6 | Customer/external property identified, protected, reported | Records | **by circumstance** — only when such property exists (8.5.3 has no qualifier phrase) |
+| 7 | Preservation of outputs | Preservation records | **`to the extent necessary`** (8.5.4) |
+| 8 | Post-delivery activities | Activity records | **by circumstance** — only where post-delivery activities exist (8.5.5 has no qualifier phrase) |
 | 9 | Control of changes | Change control records | No |
 
 ---

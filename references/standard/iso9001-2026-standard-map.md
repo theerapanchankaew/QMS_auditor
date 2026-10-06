@@ -54,6 +54,44 @@ Do not rely only on summary references for certification-critical judgement.
 | 10.2 | Nonconformity and corrective action | reaction, cause, recurrence, implementation, effectiveness, R/O update, QMS changes | CAPA closure or NC classification is assessed |
 | Annex A | Clarification | informative clarification of structure, terminology, clauses | interpreting terms like appropriate/applicable/ensure/documented information |
 
+## Conditional qualifiers in clauses 4–10
+
+Where the text of a requirement is narrowed by a conditional-qualifier phrase. This is an **inventory of wording**, not a verdict rule: how the L7 gate treats these phrases is defined in `SKILL.md` (rule 3) and `references/26-layered-audit-cognition.md`, not here.
+
+Method: all 65 registered clauses were scanned in `assets/standards/ISO_9001_2026.pdf` (through `scripts/extract_clause.py`) and cross-checked against the FDIS text layer; the two agree on every clause except 8.5.6, whose phrase the OCR layer splits across a hyphenated line break (confirmed on the page image). **22 clauses** carry at least one phrase. Item letters are read from an OCR text layer (some list markers are lost) — confirm against a licensed copy before citing a letter. Adjectival uses (“applicable requirements”, “take appropriate action”, “appropriate documented information”, “relevant interested parties”) and event conditions (“when traceability … is a requirement”, “when requirements are changed”, “when nonconforming outputs are corrected”) are **not** listed.
+
+Families (Annex A.2/A.3, ISO 9001:2026):
+- **Applicability / relevance** — a requirement that is generally applicable under 4.3 may be determined *not applicable* in some situations; that determination is valid only if it does not affect the organization's ability to ensure conformity, enhance customer satisfaction or fulfil applicable statutory and regulatory obligations, and reflects a considered decision made with justification (A.2(a), A.3; see 4.3).
+- **Appropriateness** — “appropriate” is **not interchangeable** with “applicable” (A.2(a)): it means suitable for the organization's context and calls for judgement about what meets the requirement; the requirement itself still applies.
+- **Extent / necessity** — Annex A does not define these phrases; the grouping is this file's, and the extent is a matter of auditor judgement against the organization's own determination.
+
+| Clause | Phrase as worded | Attached to | Family |
+|---|---|---|---|
+| 4.3 | if they are applicable | applying the requirements of the document within the determined scope | applicability |
+| 4.4.2 | to the extent necessary | documented information available to support process operation | extent |
+| 5.2.2 | as appropriate (c) | policy available to interested parties | appropriateness |
+| 6.2.1 | as appropriate (f) | quality objectives updated | appropriateness |
+| 7.1.5.2 | as necessary | action when earlier measurement results may be invalid | extent |
+| 7.1.6 | to the extent necessary | retaining, applying and sharing knowledge | extent |
+| 7.2 | where applicable (c) | actions to acquire competence | applicability |
+| 7.5.3.2 | as applicable; as appropriate | the control activities list; identification and control of documents of external origin | applicability; appropriateness |
+| 8.1 | to the extent necessary; as necessary | documented information; mitigating adverse effects of changes | extent |
+| 8.2.1 | when relevant (e) | information on contingency actions | applicability (relevance) |
+| 8.2.3.1 | when applicable (a) | delivery and post-delivery activities in the review | applicability |
+| 8.2.3.2 | as applicable | documented evidence of the review | applicability |
+| 8.3.5 | as appropriate (c) | monitoring and measuring requirements in design outputs | appropriateness |
+| 8.3.6 | to the extent necessary | review and control of design changes | extent |
+| 8.4.3 | as appropriate; as applicable (d) | communicating requirements to external providers; interactions with customers | appropriateness; applicability |
+| 8.5.1 | as applicable | the controlled-conditions list | applicability |
+| 8.5.2 | when it is necessary | identifying outputs | extent |
+| 8.5.4 | to the extent necessary | preservation of outputs | extent |
+| 8.5.6 | to the extent necessary | review and control of changes | extent |
+| 8.6 | as applicable | customer approval to release | applicability |
+| 9.1.1 | as applicable (b) | methods for monitoring, measurement, analysis, evaluation | applicability |
+| 10.2.1 | as applicable (a); if necessary (e), (f) | reaction to a nonconformity; updating risks/opportunities and changing the QMS | applicability; extent |
+
+Not a qualifier phrase: 4.4.1(g) “as determined” (refers to the 6.1 determination).
+
 ## Search examples
 Use scripts from the skill root.
 

@@ -109,7 +109,7 @@ For clauses with `as applicable` / `as appropriate` / `where applicable` / `to t
 3. Assessed not applicable with justification → **Complied, STOP.**
 4. Applies → proceed to L8 breach test.
 
-**Common error (failure layer L7):** OFI vs NC confusion arises when this gate is skipped for clauses 8.3, 8.5.5, 8.5.4, 8.5.3, 7.1.5.
+**Common error (failure layer L7):** OFI vs NC confusion arises when this gate is skipped for clauses 8.3, 8.5.5, 8.5.4, 8.5.3, 7.1.5 — keep running L7 for all of them. Note what the text actually contains: only 8.5.4 (`to the extent necessary`), 7.1.5.2 (`as necessary`, under a “when traceability … is a requirement or is considered essential” lead-in) and 8.3.5 / 8.3.6 (`as appropriate` / `to the extent necessary`) carry a qualifier phrase; 8.3 as a whole is conditional through the 4.3 scope determination, and 8.5.3 / 8.5.5 are conditional by circumstance (no customer property / no post-delivery activity). The complete list of qualifier phrases is `references/standard/iso9001-2026-standard-map.md` → “Conditional qualifiers in clauses 4–10”.
 
 ### OUT_OF_SCOPE verdict (new — v3.0)
 

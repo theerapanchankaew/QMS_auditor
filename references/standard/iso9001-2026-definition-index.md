@@ -25,13 +25,16 @@ Use this file for quick navigation to terms. For exact definitions, run `scripts
 - **3.20 monitoring**: determining the status of a system, process, or activity.
 
 ## Clarification terms from Annex A
-Annex A clarifies terms that often affect audit interpretation:
-- appropriate vs applicable;
-- consider vs take into account;
-- continual vs continuous;
-- ensure;
-- shall be available as documented information vs documented information shall be available as evidence of;
-- strategic direction.
+Annex A.2 clarifies words that often affect audit interpretation (paraphrased; use the registered PDF for the exact text):
+- **appropriate vs applicable** — not interchangeable. *Appropriate*: suitable for the organization's context, involving judgement about what meets the requirement. *Applicable*: if the requirement is determined to be relevant or possible, it applies to the organization. *As applicable*: a requirement that is generally applicable under 4.3 may be determined not applicable in some situations.
+- **not applicable (A.3)** — allowed only if this does not affect the organization's ability to ensure conformity of products and services, enhance customer satisfaction or fulfil applicable statutory and regulatory obligations; it reflects that the organization considered the requirement and determined, with justification, that it does not apply in its context (see 4.3).
+- **consider vs take into account** — *consider*: think about whether the topic will be included in decisions or actions; *take into account*: think about it and include it in decisions or actions.
+- **continual vs continuous** — *continual*: over a period of time with intervals of interruption (the word used for improvement); *continuous* (not used in the document): without interruption.
+- **ensure** — a responsibility for making a specified result exist or occur; it is accountability for the result, not performing every activity directly (actions can be delegated).
+- **shall be available as documented information vs documented information shall be available as evidence of** — the first concerns availability of information obtained, used or provided by the organization; the second concerns retention of objective evidence (and does not imply legal evidential requirements).
+- **strategic direction** — coordinated decisions, plans and actions that guide the organization towards its objectives.
+
+Where these terms appear as conditional qualifiers in clauses 4–10, see `iso9001-2026-standard-map.md` → “Conditional qualifiers in clauses 4–10”.
 
 Use Annex A as informative clarification only; do not treat it as adding requirements.
 
