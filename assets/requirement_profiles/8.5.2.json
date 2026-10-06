@@ -51,7 +51,7 @@
       "obligation": "use suitable means to identify outputs when necessary for conformity, identify output status with respect to monitoring/measurement requirements, control unique identification when traceability is required, and ensure documented information necessary to enable traceability is available",
       "object": "as evidence",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "when it is necessary",
       "applicability_rule_id": null,
       "semantic_category": "AMBIGUOUS",
       "evidence_expectations": [

@@ -57,7 +57,7 @@
       "obligation": "ensure",
       "object": "documented information is available to the extent necessary",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "to the extent necessary",
       "applicability_rule_id": null,
       "semantic_category": "M4_MANDATORY",
       "evidence_expectations": [

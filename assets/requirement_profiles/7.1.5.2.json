@@ -67,7 +67,7 @@
       "obligation": "determine whether validity of previous measurement results has been adversely affected and take appropriate action",
       "object": "as necessary",
       "condition": "when measuring equipment is found to be unfit for its intended purpose",
-      "qualifier": null,
+      "qualifier": "as necessary",
       "applicability_rule_id": null,
       "semantic_category": "AMBIGUOUS",
       "evidence_expectations": [

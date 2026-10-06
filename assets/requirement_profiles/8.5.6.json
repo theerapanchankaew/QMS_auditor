@@ -51,7 +51,7 @@
       "obligation": "review and control",
       "object": "changes for production or service provision, to the extent necessary to ensure continuing conformity to requirements, and ensure documented information is available as evidence of review results, the person(s) authorizing the change, and any necessary actions arising from the review",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "to the extent necessary",
       "applicability_rule_id": null,
       "semantic_category": "D2_SAFE",
       "evidence_expectations": [

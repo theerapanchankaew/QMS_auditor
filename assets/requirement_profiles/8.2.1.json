@@ -42,7 +42,7 @@
       "obligation": "ensure communication with customers includes",
       "object": "providing product/service information, handling enquiries/contracts/orders including changes, obtaining customer feedback including complaints, handling or controlling customer property, and providing contingency-related information when relevant",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "when relevant",
       "applicability_rule_id": null,
       "semantic_category": "AMBIGUOUS",
       "evidence_expectations": [

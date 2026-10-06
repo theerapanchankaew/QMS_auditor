@@ -20,7 +20,7 @@
        ↓
 [L6]  Requirement Element Decomposer   (clause → testable elements from ref 27)
        ↓
-[L7]  Conditional Qualifier Gate       (as applicable / as appropriate / to the extent necessary)
+[L7]  Conditional Qualifier Gate       (family A applicability / B appropriateness / C extent)
        ↓
 [L8]  Requirement Breach Test          (element + evidence + extent + effect)
        ↓
@@ -168,47 +168,67 @@ Coverage outcome:
     All material elements covered → Complied (no breach found)
     Core element absent            → breach test (L8)
     Entire process element absent  → Major trigger test (L9 Q4)
-    Conditional element unevaluated → OFI (L7 route)
+    Conditional element undetermined → L7 route (OFI for families A/C; family B proceeds to L8 and is InsufficientEvidence if unevidenced)
 ```
 
 ---
 
-## L7 — Conditional Qualifier Gate
+## L7 — Conditional Qualifier Gate (v2, 2026-10-06)
 
-**Trigger words (activate this gate before L8):**
-`as applicable` / `as appropriate` / `to the extent necessary` / `where applicable` / `if applicable` / `if practicable` / `where practicable` / `when relevant` / `as required by` / `when it is necessary`
+**Triggers (activate before L8):** a phrase from the canonical list below in the clause text of the element under test, or an element marked “by scope” / “by circumstance” in `references/27-clause-requirement-profiles.md`. The 22 clauses whose text carries a phrase are listed, with exact wording, in `references/standard/iso9001-2026-standard-map.md` (“Conditional qualifiers in clauses 4–10”). The vocabulary and the routing below are implemented in `scripts/conditional_qualifiers.py` (`PHRASE_FAMILY`, `l7_route`) and checked by `assets/tests/test_conditional_qualifiers.py`.
 
-### Decision logic (MANDATORY before L8 for conditional clauses)
+| Family | Canonical phrases | Meaning (Annex A.2 / A.3) |
+|---|---|---|
+| **A — applicability / relevance** | `as applicable` / `where applicable` / `when applicable` / `if applicable` / `if they are applicable` / `when relevant` (plus elements conditional by scope or circumstance) | the requirement can be determined not applicable in some situations — valid only under A.3 |
+| **B — appropriateness** | `as appropriate` | the requirement applies; the organization judges what is suitable for its context. Not interchangeable with “applicable” |
+| **C — extent / necessity** | `to the extent necessary` / `as necessary` / `if necessary` / `when it is necessary` | the organization determines the necessary extent (Annex A does not define these; the grouping is this project's) |
+
+Equivalent constructions (“if / when / where / as” + applicable, relevant, appropriate or necessary) trigger the gate by their head word. Not triggers: adjectival uses (“applicable requirements”, “take appropriate action”) and event conditions (“when requirements are changed”). `if practicable` / `where practicable` / `as required by` were dropped from the earlier list: they do not occur in ISO 9001:2026 clauses 4–10. Elements conditional only by scope or circumstance (8.3 via 4.3, 8.5.3, 8.5.5, the 7.1.5.2 traceability lead-in) have no phrase and are handled as family A.
+
+### Decision logic (MANDATORY before L8 for conditional elements)
 
 ```
-IF clause_has_conditional_qualifier:
+Objective evidence that the condition applies (the circumstance/activity exists, or the
+requirement is clearly needed) ALWAYS overrides a missing or contrary determination → L8.
 
-    STEP 1 — Has the organization assessed applicability?
-        NOT assessed AND no objective evidence condition applies:
-            → verdict = OFI
-            → STOP. Do not proceed to breach test.
+FAMILY A  (applicability)
+    no determination, no evidence it applies .......... OFI. STOP.   (not NC)
+    organization says applicable ...................... → L8
+    organization says NOT applicable:
+        no justification .............................. OFI. STOP.   (not a valid determination:
+                                                                      A.3 "considered … with justification", 4.3)
+        justified AND no effect on conformity of products/services, customer
+          satisfaction or statutory/regulatory obligations (A.3) → Complied. STOP.
+        justified BUT it affects any of them (A.3 not met) ..... no Complied: judge the scope
+                                                                  determination under 4.3 (AR-4.3-E07 / E09)
+        justified, effect cannot be established from evidence .. ReviewRequired
 
-        Assessed NOT applicable WITH reasonable justification:
-            → verdict = Complied
-            → STOP.
+FAMILY B  (appropriateness)
+    never a not-applicable switch ..................... → L8
+    L8 tests the organization's OWN justified, context-suitable approach; do not substitute your
+    preferred one. No evidence → InsufficientEvidence (per L8): not NC, never Complied-by-N/A.
+    A weak but reasonable approach → OFI/OBS, not NC.
 
-        Assessed AS APPLICABLE, OR evidence clearly shows condition applies:
-            → proceed to L8
+FAMILY C  (extent / necessity)
+    extent determined by the organization ............. → L8 against that extent
+    not determined, no evidence of need ............... OFI. STOP.
+    nil/limited extent, justified, no evidence of need  Complied. STOP.
 
-    STEP 2 — Condition applies; requirement not implemented:
-        → classify Noncomplied per L10
+STEP 2 — condition applies; requirement not implemented → classify Noncomplied per L10
 ```
+
+Changes from v1: family B no longer routes “not applicable” to Complied (Annex A.2(a)); family A “not applicable → Complied” now needs the A.3 test, and “not applicable” without justification is OFI; the evidence-overrides rule is explicit on every path; one trigger vocabulary replaces the differing lists in SKILL.md / refs 08, 19, 26. Benchmark note: the answer key's label `L7_conditional_no_breach` is applied to any OFI-without-breach case, including clauses with no qualifier phrase — it is not an L7 qualifier test.
 
 ### QMS conditional clause table
 
-| Clause | Qualifier | Default when unevaluated |
+| Clause | Qualifier in the text (family) | Default when unevaluated |
 |---|---|---|
-| 8.3 Design and development | `where applicable` | OFI if applicability not assessed; Major M4 if clearly applicable |
-| 8.5.3 Property of external parties | `as appropriate` | OFI if no relevant property demonstrated |
-| 8.5.4 Preservation | `as applicable` | OFI if no preservation-sensitive product demonstrated |
-| 8.5.5 Post-delivery | `as applicable` | OFI if post-delivery obligations not demonstrated |
-| 8.6 Release criteria | `as appropriate for the product/service` | Must evaluate whether documented acceptance criteria needed |
-| 7.1.5 Monitoring resources | `as appropriate to provide assurance of valid results` | OFI if not used for key measurements; Major M3 if used for release |
+| 8.3 Design and development | none — conditional by scope (4.3 / Annex A.3) → A; 8.3.5 `as appropriate` (B), 8.3.6 `to the extent necessary` (C) | OFI if applicability not assessed; Major M4 if clearly applicable |
+| 8.5.3 Property of external parties | none — by circumstance (only if such property exists) → A | OFI if no relevant property demonstrated |
+| 8.5.4 Preservation | `to the extent necessary` (C) | OFI if no preservation-sensitive product demonstrated |
+| 8.5.5 Post-delivery | none — by circumstance (post-delivery activities may not exist) → A | OFI if post-delivery obligations not demonstrated |
+| 8.6 Release | `as applicable` (A) — customer approval; the acceptance criteria themselves are not qualified in the text | Must evaluate whether documented acceptance criteria needed |
+| 7.1.5 Monitoring resources | 7.1.5.2: `as necessary` (C) under a “when traceability … is a requirement or is considered essential” lead-in (A, by circumstance) | OFI if not used for key measurements; Major M3 if used for release |
 
 ---
 
@@ -331,7 +351,7 @@ YES to any → re-enter L9 and re-evaluate Major triggers.
 ### Before finalizing OFI
 
 ```
-1. Does the clause have a conditional qualifier? → OFI valid if condition unevaluated
+1. Does the clause have a conditional qualifier? → OFI valid if the condition is undetermined (family A/C); family B is never an OFI-by-not-applicable
 2. Does objective evidence show the condition actually applies? → proceed to breach test
 3. Has a pattern or recurrence been shown? → reconsider Minor/Major
 ```
@@ -420,8 +440,8 @@ L5: Map evidence to correct ISO 9001:2026 clause using audit intent, not keyword
 L6: Load clause profile (references/27-clause-requirement-profiles.md).
     Check each requirement element: evidenced | gap | partial | conditional_unevaluated.
 
-L7: Check conditional qualifiers. If present and applicability not assessed:
-    → verdict = OFI. STOP. Do not proceed to L8.
+L7: Check conditional qualifiers (families A/B/C, see § L7). Family A/C undetermined and no evidence the
+    condition applies → verdict = OFI. STOP. Do not proceed to L8. Family B → L8.
 
 L8: Confirm breach with all four: requirement_element + objective_evidence + extent + effect.
     Missing any → InsufficientEvidence or OBS, not NC.

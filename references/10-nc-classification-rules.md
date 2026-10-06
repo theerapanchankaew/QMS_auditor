@@ -74,7 +74,7 @@ NC classification now operates as part of the **Layered QMS Audit Cognition Engi
 
 | Gate | Cognition Layer | Rule |
 |---|---|---|
-| **Gate 1 — Conditional qualifier** | **L7** | OFI if qualifier present and applicability not assessed; proceed if applies |
+| **Gate 1 — Conditional qualifier** | **L7 (v2)** | Family A/C: OFI if undetermined and no evidence it applies; family B: no N/A shortcut → L8; proceed if applies (see ref 26 § L7) |
 | **Gate 2 — Requirement breach** | **L8** | All 4 elements required: element + evidence + extent + effect |
 | **Gate 3 — Major triggers** | **L9 Q1–Q5** | Name M-trigger from Q1–Q5 or confirm Q6 (none) |
 | **Gate 4 — Minor anchors** | **L10 D1–D4** | Assign D-anchor if no M-trigger |
@@ -114,11 +114,13 @@ NC classification now operates as part of the **Layered QMS Audit Cognition Engi
 ### OFI vs Noncomplied enforcement
 
 ```
-Q: Does the clause contain a conditional qualifier (as applicable / as appropriate / etc.)?
-    YES → Run L7.
-        IF applicability_not_assessed AND no exposure evidence:
+Q: Does the element carry a conditional qualifier (family A applicability / B appropriateness /
+   C extent — ref 26 § L7) or is it conditional by scope/circumstance?
+    YES → Run L7 (v2).
+        IF family A/C AND condition undetermined AND no objective evidence it applies:
             → OFI. STOP. Do NOT proceed to NC.
-        IF applies: → Gate 2.
+        IF family B: no not-applicable shortcut → Gate 2 via L8 (no evidence → InsufficientEvidence).
+        IF applies (or evidence shows it applies): → Gate 2.
     NO → Gate 2 directly.
 ```
 

@@ -212,7 +212,7 @@
       "obligation": "apply",
       "object": "all the requirements of this document",
       "condition": "if applicable within the determined scope of the quality management system",
-      "qualifier": null,
+      "qualifier": "if they are applicable",
       "applicability_rule_id": null,
       "semantic_category": "AMBIGUOUS",
       "evidence_expectations": [

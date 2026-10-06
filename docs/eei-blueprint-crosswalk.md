@@ -594,3 +594,60 @@ conditions at all (only incidental mentions); the gate itself lives in
    slide's 13 clauses (6.2.1, 8.2.1, 8.2.3.1, 8.3.5, 8.6, 9.1.1) have none, so
    a profile-driven LV1 step would skip L7 for them. L7 has no code
    evaluator (see gap #2 above).
+
+## Update 2026-10-06 (cont.): L7 gate v2 and one trigger vocabulary — the open items above are decided
+
+User asked to adjust the L7 gate and the trigger vocabulary, resolving the
+open items listed in the previous section. **This changes verdict logic**
+(SKILL.md rule 3 and refs 26/08/10/19/28).
+
+**What changed**
+- Triggers are three families (Annex A.2/A.3): **A** applicability/relevance,
+  **B** appropriateness (`as appropriate`), **C** extent/necessity — one
+  canonical vocabulary in `scripts/conditional_qualifiers.py`, replacing the
+  differing lists in SKILL.md (3 phrases), ref 08 (4), ref 19, ref 26 (10).
+  `if practicable` / `where practicable` / `as required by` were dropped
+  (absent from ISO 9001:2026 clauses 4–10); `when applicable`, `as necessary`,
+  `if necessary`, `if they are applicable` were added (they do occur).
+- **Family B** can no longer be answered with “not applicable → Complied”
+  (A.2(a): appropriate ≠ applicable); it goes to L8 on the organization's
+  own justified approach, and with no evidence yields InsufficientEvidence,
+  not NC. This is the one place the gate becomes *stricter*: an unassessed
+  `as appropriate` element used to stop at OFI.
+- **Family A**: “not applicable → Complied” now needs the A.3 test (no effect
+  on conformity, customer satisfaction, statutory/regulatory obligations);
+  if it fails → judge the scope determination under 4.3; if undeterminable →
+  ReviewRequired; not-applicable without justification → OFI.
+- **Evidence overrides** a missing/contrary determination on every path
+  (previously only the OFI step said so; the slide omitted it).
+- `l7_route()` is an executable specification of the table (11 tests); it is
+  **not wired** into the gateway or the AWM runtime. L7 is still a
+  prompt-level gate; gap #2 (code that *evaluates* applicability from
+  evidence) remains open.
+- Profiles: `qualifier` is now set on every element carrying a phrase (27
+  elements in 22 clauses, was 8 clauses), generated from `QUALIFIER_FILL`
+  and validated against the registered text at build time. Element text is
+  unchanged.
+- ref 27 / ref 26 conditional-clause tables corrected (they mislabelled 8.3
+  as `where applicable`, 8.5.4 and 8.6, etc.); the 8.3 “OFI at most”
+  sentence now follows L7 v2.
+
+**Checks added:** `assets/tests/test_conditional_qualifiers.py` (29) — vocabulary,
+routing table, and drift guards (standard-map table == scan of the registered
+PDF == profile qualifiers; ref 26 lists every canonical phrase; SKILL rule 3
+names the families and Annex A).
+
+**Findings recorded, not changed**
+- The benchmark answer key's `L7_conditional_no_breach` label (42 rows, all
+  OFI) is applied to any OFI-without-breach, including clauses with no
+  qualifier phrase (e.g. 5.3, 7.1.3, 7.4, 9.3.x). It is not an L7 qualifier
+  test and none of its expectations conflict with v2, but the label is
+  misleading; the data was left as is.
+- `behavioral-smoke` fixtures and the answer key were not edited; the
+  regression suite compares labels and does not execute the gate.
+- Not done: widening ref 27's per-element `Conditional?` column to all 22
+  clauses (use the standard-map inventory / profile `qualifier`), and event
+  conditions (“when requirements are changed”) are deliberately not triggers.
+- The slide needs the same changes (family split, A.3 test at the
+  not-applicable branch, evidence override at the first branch); the image
+  was not edited.

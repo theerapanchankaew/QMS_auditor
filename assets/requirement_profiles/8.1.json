@@ -163,7 +163,7 @@
       "obligation": "ensure documented information is available",
       "object": "to the extent necessary to have confidence that the processes have been carried out as planned",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "to the extent necessary",
       "applicability_rule_id": null,
       "semantic_category": "AMBIGUOUS",
       "evidence_expectations": [
@@ -185,7 +185,7 @@
       "obligation": "control planned changes and review the consequences of unintended changes, taking action to mitigate any adverse effects",
       "object": "as necessary",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "as necessary",
       "applicability_rule_id": null,
       "semantic_category": "AMBIGUOUS",
       "evidence_expectations": [
@@ -239,7 +239,7 @@
       "obligation": "ensure documented information is available",
       "object": "to the extent necessary as evidence of the conformity of products and services",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "to the extent necessary",
       "applicability_rule_id": null,
       "semantic_category": "AMBIGUOUS",
       "evidence_expectations": [

@@ -99,7 +99,7 @@
       "obligation": "ensure quality objectives are",
       "object": "consistent with the quality policy, measurable, take into account applicable requirements, monitored, communicated, updated as appropriate, available as documented information, and relevant to conformity of products and services and the ability to enhance customer satisfaction",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "as appropriate",
       "applicability_rule_id": null,
       "semantic_category": "AMBIGUOUS",
       "evidence_expectations": [

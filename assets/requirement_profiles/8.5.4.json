@@ -51,7 +51,7 @@
       "obligation": "preserve",
       "object": "the outputs during production and service provision, to the extent necessary to ensure conformity to requirements",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "to the extent necessary",
       "applicability_rule_id": null,
       "semantic_category": "D2_SAFE",
       "evidence_expectations": [

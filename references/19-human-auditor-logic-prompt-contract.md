@@ -196,11 +196,18 @@ L6  — REQUIREMENT ELEMENT DECOMPOSER
       Check each element: evidenced | gap | partial | conditional_unevaluated.
 
 L7  — CONDITIONAL QUALIFIER GATE
-      If clause has qualifier (as applicable / as appropriate / to the extent necessary / etc.):
-        → IF applicability not assessed AND no objective evidence condition applies:
-             verdict = OFI. STOP. Do not proceed to L8.
-        → IF assessed not applicable with justification: verdict = Complied. STOP.
-        → IF applies: proceed to L8.
+      If the element has a qualifier phrase or is conditional by scope/circumstance (ref 26 § L7, families A/B/C):
+        → objective evidence the condition applies: proceed to L8.
+        → FAMILY A (as/where/when/if applicable, when relevant):
+             not assessed AND no evidence it applies: verdict = OFI. STOP. Do not proceed to L8.
+             not applicable, no justification: verdict = OFI. STOP.
+             not applicable, justified, no effect on conformity/customer satisfaction/statutory
+               obligations (Annex A.3): verdict = Complied. STOP.
+             not applicable, justified, but it affects them: no Complied; judge under 4.3.
+             effect cannot be established: ReviewRequired.
+        → FAMILY B (as appropriate): never a not-applicable switch; proceed to L8.
+        → FAMILY C (to the extent necessary / as necessary / if necessary / when it is necessary):
+             extent determined: proceed to L8; not determined and no evidence of need: OFI. STOP.
 
 L8  — REQUIREMENT BREACH TEST
       Confirm breach with all four: requirement_element + objective_evidence + extent + effect.
@@ -250,5 +257,5 @@ Prohibited:
 | `decisive_question_answered` | All Noncomplied | L10 |
 | `confidence` | All material verdicts | L12 |
 | `evidence_gaps` | All verdicts | L4 |
-| `l7_conditional_qualifier_result` | Conditional clause cases | L7 |
+| `l7_conditional_qualifier_result` | Conditional clause cases (`L8` \| `OFI_STOP` \| `COMPLIED_STOP` \| `ROUTE_4_3` \| `REVIEW_REQUIRED`, plus the family A/B/C) | L7 |
 | `counterfactual_note` | All Major/Minor | L11 |

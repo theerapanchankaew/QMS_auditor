@@ -78,7 +78,7 @@
       "obligation": "ensure release does not proceed",
       "object": "until the planned arrangements have been satisfactorily completed, unless otherwise approved by a relevant authority and, as applicable, by the customer",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "as applicable",
       "applicability_rule_id": null,
       "semantic_category": "AMBIGUOUS",
       "evidence_expectations": [

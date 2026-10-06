@@ -84,7 +84,7 @@
       "obligation": "retain, apply and share",
       "object": "this knowledge to the extent necessary",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "to the extent necessary",
       "applicability_rule_id": null,
       "semantic_category": "D2_SAFE",
       "evidence_expectations": [

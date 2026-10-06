@@ -51,7 +51,7 @@
       "obligation": "determine, review and control",
       "object": "changes made during or subsequent to the design and development of products and services, to the extent necessary to ensure no adverse impact on conformity to requirements; ensure documented information is available as evidence of the changes, review results, authorization, and preventive actions taken",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "to the extent necessary",
       "applicability_rule_id": null,
       "semantic_category": "M4_MANDATORY",
       "evidence_expectations": [

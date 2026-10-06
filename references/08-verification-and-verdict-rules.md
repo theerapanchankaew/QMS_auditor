@@ -103,11 +103,11 @@ Populate the Evidence Object Schema (`references/28-evidence-schema.md` §1) bef
 
 ### Conditional qualifier enforcement (L7 — mandatory)
 
-For clauses with `as applicable` / `as appropriate` / `where applicable` / `to the extent necessary`:
-1. Was applicability assessed by the organization?
-2. NO assessment AND no objective evidence condition applies → **OFI, STOP.**
-3. Assessed not applicable with justification → **Complied, STOP.**
-4. Applies → proceed to L8 breach test.
+For an element whose clause carries a conditional-qualifier phrase, or is conditional by scope/circumstance (canonical list, families A/B/C and the routing table: `references/26-layered-audit-cognition.md` § L7):
+1. Objective evidence that the condition applies → proceed to L8, whatever the organization has or has not determined.
+2. **Family A** (`as/where/when/if applicable`, `when relevant`): no determination and no evidence it applies → **OFI, STOP.** Not applicable without justification → **OFI, STOP.** Justified not-applicable that does not affect conformity, customer satisfaction or statutory/regulatory obligations (Annex A.3) → **Complied, STOP**; if it does, judge the scope determination under 4.3; if that cannot be established → `ReviewRequired`. Applies → L8.
+3. **Family B** (`as appropriate`): never a not-applicable switch (Annex A.2(a)) → L8 against the organization's own suitable approach; no evidence → InsufficientEvidence, not NC.
+4. **Family C** (`to the extent necessary`, `as necessary`, `if necessary`, `when it is necessary`): extent determined → L8; not determined and no evidence of need → **OFI, STOP.**
 
 **Common error (failure layer L7):** OFI vs NC confusion arises when this gate is skipped for clauses 8.3, 8.5.5, 8.5.4, 8.5.3, 7.1.5 — keep running L7 for all of them. Note what the text actually contains: only 8.5.4 (`to the extent necessary`), 7.1.5.2 (`as necessary`, under a “when traceability … is a requirement or is considered essential” lead-in) and 8.3.5 / 8.3.6 (`as appropriate` / `to the extent necessary`) carry a qualifier phrase; 8.3 as a whole is conditional through the 4.3 scope determination, and 8.5.3 / 8.5.5 are conditional by circumstance (no customer property / no post-delivery activity). The complete list of qualifier phrases is `references/standard/iso9001-2026-standard-map.md` → “Conditional qualifiers in clauses 4–10”.
 

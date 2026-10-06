@@ -39,7 +39,7 @@
       "obligation": "ensure it has the ability to meet requirements and conduct a review covering customer-defined requirements, requirements not defined by the customer but necessary for intended use, organization-specified requirements, statutory and regulatory requirements, and differing contract or order requirements; resolve any differing requirements; and confirm customer requirements when not documented by the customer",
       "object": "before committing to supply products and services to a customer",
       "condition": "before committing to supply products and services to a customer",
-      "qualifier": null,
+      "qualifier": "when applicable",
       "applicability_rule_id": null,
       "semantic_category": "AMBIGUOUS",
       "evidence_expectations": [

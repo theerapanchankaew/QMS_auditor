@@ -97,6 +97,7 @@ OUT_DIR = REPO_ROOT / "assets" / "requirement_profiles"
 
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 from retrieval_engine import simple_yaml_map  # noqa: E402  (reuse existing parser)
+from conditional_qualifiers import PHRASE_FAMILY, inventory as qualifier_inventory  # noqa: E402
 from hartley_uncertainty import hartley_measure  # noqa: E402  (reuse the real log2|X| implementation, not a re-derived copy)
 
 STANDARD_ID = "ISO 9001:2026"
@@ -581,6 +582,64 @@ def _raw_clause_text(clause: str) -> str:
     return text
 
 
+# Conditional-qualifier phrases (L7 gate, scripts/conditional_qualifiers.py).
+# A clause's profile used to carry `qualifier` for only 8 of 65 clauses, so a
+# profile-driven L7 check skipped the rest. This maps the remaining
+# qualifier-bearing elements to the phrase as worded in the registered text
+# (the 22-clause inventory in references/standard/iso9001-2026-standard-map.md).
+# validate_qualifiers() fails the build if the map and the registered text
+# disagree, so it cannot drift. The element text itself is unchanged.
+QUALIFIER_FILL = {
+    "AR-4.3-E05": "if they are applicable",
+    "AR-4.4.2-E01": "to the extent necessary",
+    "AR-6.2.1-E02": "as appropriate",
+    "AR-7.1.5.2-E02": "as necessary",
+    "AR-7.1.6-E02": "to the extent necessary",
+    "AR-8.1-E02": "to the extent necessary",
+    "AR-8.1-E03": "as necessary",
+    "AR-8.1-E05": "to the extent necessary",
+    "AR-8.2.1-E01": "when relevant",
+    "AR-8.2.3.1-E01": "when applicable",
+    "AR-8.3.5-E01": "as appropriate",
+    "AR-8.3.6-E01": "to the extent necessary",
+    "AR-8.4.3-E01": "as appropriate; as applicable",
+    "AR-8.5.2-E01": "when it is necessary",
+    "AR-8.5.4-E01": "to the extent necessary",
+    "AR-8.5.6-E01": "to the extent necessary",
+    "AR-8.6-E02": "as applicable",
+    "AR-9.1.1-E01": "as applicable",
+    "AR-10.2.1-E02": "if necessary",
+}
+
+
+def qualifier_for(req_id: str, authored):
+    return QUALIFIER_FILL.get(req_id, authored)
+
+
+def validate_qualifiers(profiles_by_clause: dict) -> None:
+    """profiles_by_clause: {clause: [record, ...]} as about to be written.
+    Every QUALIFIER_FILL key must exist and use only canonical phrases, and
+    every phrase the registered text carries (conditional_qualifiers.inventory)
+    must appear in some element's qualifier or condition of that clause."""
+    all_ids = {r["requirement_id"] for recs in profiles_by_clause.values() for r in recs}
+    unknown = sorted(set(QUALIFIER_FILL) - all_ids)
+    if unknown:
+        raise SystemExit(f"QUALIFIER_FILL names unknown elements: {unknown}")
+    for rid, q in QUALIFIER_FILL.items():
+        for part in (p.strip() for p in q.split(";")):
+            if part not in PHRASE_FAMILY:
+                raise SystemExit(f"QUALIFIER_FILL[{rid}] has non-canonical phrase {part!r}")
+    missing = []
+    for clause, items in qualifier_inventory().items():
+        recs = profiles_by_clause.get(clause, [])
+        blob = " ".join(f"{r.get('qualifier') or ''} {r.get('condition') or ''}".lower() for r in recs)
+        for it in items:
+            if it["phrase"] not in blob:
+                missing.append(f"{clause}: {it['phrase']}")
+    if missing:
+        raise SystemExit("registered text carries qualifier phrases no profile element records: " + "; ".join(missing))
+
+
 # Value vocabulary per evidence_type, chosen to mirror the same wording the
 # textbook's own worked example uses (Q1/Q2 "Implementation?"/"Effectiveness
 # evaluated?" -> YES/NO; Q3 "Objective record?" -> PRESENT/ABSENT) rather
@@ -626,6 +685,7 @@ def build():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     index = []
     total_elements = 0
+    all_records: dict = {}
     # First pass: element IDs per clause, needed to resolve related_requirement_ids.
     element_ids_by_clause = {
         clause: [f"AR-{clause}-{e['suffix']}" for e in elements] for clause, _, elements in CLAUSES
@@ -643,7 +703,7 @@ def build():
                 "obligation": e["obligation"],
                 "object": e["object"],
                 "condition": e["condition"],
-                "qualifier": e["qualifier"],
+                "qualifier": qualifier_for(req_id, e["qualifier"]),
                 "applicability_rule_id": None,
                 "semantic_category": category,
                 "evidence_expectations": e["evidence"],
@@ -652,6 +712,7 @@ def build():
                 "version": VERSION,
             })
         total_elements += len(records)
+        all_records[clause] = records
 
         siblings = compute_siblings(clause, CORPUS_CLAUSES)
         yaml_related = compute_yaml_related(clause, CORPUS_CLAUSES)
@@ -716,6 +777,7 @@ def build():
             ),
         })
 
+    validate_qualifiers(all_records)
     index_payload = {
         "standard_id": STANDARD_ID,
         "clause_count": len(CLAUSES),

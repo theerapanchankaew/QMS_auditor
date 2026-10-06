@@ -104,7 +104,7 @@
       "obligation": "implement needed action, review the effectiveness of any corrective action taken, update risks and opportunities if necessary, and make QMS changes if necessary, ensuring corrective actions are appropriate to the effects of the nonconformities encountered",
       "object": "as necessary",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "if necessary",
       "applicability_rule_id": null,
       "semantic_category": "M4_MANDATORY",
       "evidence_expectations": [

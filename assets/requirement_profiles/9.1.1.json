@@ -87,7 +87,7 @@
       "obligation": "determine",
       "object": "what needs to be monitored and measured, the methods for monitoring/measurement/analysis/evaluation, when monitoring and measuring shall be performed, and when results shall be analysed and evaluated",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "as applicable",
       "applicability_rule_id": null,
       "semantic_category": "M4_MANDATORY",
       "evidence_expectations": [

@@ -112,7 +112,7 @@ Populate at **L6 (Requirement Element Decomposer)** after loading clause profile
 | `evidenced` | Objective evidence directly covers this element |
 | `partial` | Some evidence but incomplete coverage |
 | `gap` | Required but no evidence found |
-| `conditional_unevaluated` | Has conditional qualifier; applicability not assessed → OFI |
+| `conditional_unevaluated` | Family A/C qualifier (ref 26 § L7); condition undetermined and no evidence it applies → OFI. Family B never uses this state (it proceeds to L8) |
 | `not_applicable` | Organization determined element not applicable with justification |
 
 ---

@@ -51,7 +51,7 @@
       "obligation": "ensure design and development outputs meet input requirements, are adequate for subsequent processes, include or reference monitoring/measuring requirements and acceptance criteria, and specify essential product/service characteristics; ensure documented information is available",
       "object": "as evidence of design and development outputs",
       "condition": null,
-      "qualifier": null,
+      "qualifier": "as appropriate",
       "applicability_rule_id": null,
       "semantic_category": "D2_SAFE",
       "evidence_expectations": [

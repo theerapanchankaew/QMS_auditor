@@ -42,7 +42,7 @@
       "obligation": "ensure the adequacy of requirements before communicating them to the external provider, and communicate its requirements for processes/products/services, approvals, competence, interactions, control/monitoring, and verification or validation activities",
       "object": "as appropriate",
       "condition": null,
-      "qualifier": "as appropriate",
+      "qualifier": "as appropriate; as applicable",
       "applicability_rule_id": null,
       "semantic_category": "D2_SAFE",
       "evidence_expectations": [
