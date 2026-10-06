@@ -8,6 +8,23 @@ from .evidence_reconciliation import EvidenceReconciliationEngine
 from .requirement_engine import RequirementStateEngine
 from .hypothesis_engine import RuleBasedHypothesisEngine
 from .planner import HeuristicAuditPlanner
+from aias_awm.qualifiers import FAMILY_B, family_of, l7_inputs, phrases_in
+
+
+def _applicability_for(requirement: AtomicRequirement, bundle) -> str:
+    """L7 (references/26 § L7): a not-applicable determination the organization
+    recorded as evidence (metadata org_determination="not_applicable", see
+    aias_awm/qualifiers.py) is passed to the assessment as NOT_APPLICABLE so the
+    element is decision-ready; the L7 gate / harness then decide the verdict.
+    Never for 'as appropriate' (Annex A.2(a)) and never when objective evidence
+    shows the condition applies or the determinations conflict."""
+    phrases = phrases_in(requirement.qualifier)
+    if not phrases or any(family_of(p) == FAMILY_B for p in phrases):
+        return "APPLICABLE"
+    inputs = l7_inputs(list(bundle.evidence) if bundle else [], "APPLICABLE")
+    if inputs["determination"] == "not_applicable" and not inputs["condition_evidenced"] and not inputs["determination_conflict"]:
+        return "NOT_APPLICABLE"
+    return "APPLICABLE"
 
 
 @dataclass(frozen=True)
@@ -50,6 +67,7 @@ class AuditCognitionPipeline:
                 audit_case_id=audit_case_id,
                 requirement=req,
                 bundle=bundles.get(req.requirement_id),
+                applicability=_applicability_for(req, bundles.get(req.requirement_id)),
                 now=now,
             )
             for req in atomic_requirements

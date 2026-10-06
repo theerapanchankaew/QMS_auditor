@@ -175,7 +175,7 @@ Coverage outcome:
 
 ## L7 — Conditional Qualifier Gate (v2, 2026-10-06)
 
-**Triggers (activate before L8):** a phrase from the canonical list below in the clause text of the element under test, or an element marked “by scope” / “by circumstance” in `references/27-clause-requirement-profiles.md`. The 22 clauses whose text carries a phrase are listed, with exact wording, in `references/standard/iso9001-2026-standard-map.md` (“Conditional qualifiers in clauses 4–10”). The vocabulary and the routing below are implemented in `scripts/conditional_qualifiers.py` (`PHRASE_FAMILY`, `l7_route`) and checked by `assets/tests/test_conditional_qualifiers.py`.
+**Triggers (activate before L8):** a phrase from the canonical list below in the clause text of the element under test, or an element marked “by scope” / “by circumstance” in `references/27-clause-requirement-profiles.md`. The 22 clauses whose text carries a phrase are listed, with exact wording, in `references/standard/iso9001-2026-standard-map.md` (“Conditional qualifiers in clauses 4–10”). The vocabulary and the routing below are implemented in `scripts/conditional_qualifiers.py` (`PHRASE_FAMILY`, `l7_route`) and checked by `assets/tests/test_conditional_qualifiers.py`. They are **enforced** by `scripts/harness_gate_executor.py` (gate L7, `references/42` Part 9, so also on the OpenWebUI gateway) and **derived** for AWM candidates by `aias_awm/control/gate_trace_deriver.py` (`references/72-l7-enforcement.md`).
 
 | Family | Canonical phrases | Meaning (Annex A.2 / A.3) |
 |---|---|---|

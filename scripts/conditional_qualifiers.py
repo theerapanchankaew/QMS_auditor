@@ -34,9 +34,14 @@ circumstance (8.3 via 4.3; 8.5.3 customer property; 8.5.5 post-delivery;
 the 7.1.5.2 traceability lead-in) have no phrase; references/27 marks
 them "by scope"/"by circumstance" and L7 treats them as family A.
 
-l7_route() is an executable specification of the prompt-level gate. It is
-not wired into the gateway or the AWM runtime (crosswalk gap #2 stays open
-for the *evaluation* of applicability from evidence).
+l7_route() is the executable specification of the gate. It is enforced by
+scripts/harness_gate_executor.py (gate "L7": l7_from_trace + the verdict
+check below; the OpenWebUI gateway runs that harness on every trace) and
+derived for AWM candidates by aias_awm/control/gate_trace_deriver.py (which
+uses a parity copy, aias_awm/qualifiers.py, because the AWM package is
+installed independently). What stays open (crosswalk gap #2) is *judging*
+applicability from evidence: the inputs to l7_route are supplied by the
+LLM (gateway) or by explicit evidence metadata (AWM), never inferred.
 
 Usage:
   python scripts/conditional_qualifiers.py --inventory [--json]
@@ -201,6 +206,94 @@ def l7_route(
     if a3_effect == "affects":
         return out(ROUTE_4_3, "the exclusion affects conformity/customer satisfaction/statutory obligations, so A.3 is not met: judge the scope determination under 4.3 (AR-4.3-E07 / E09), not this clause")
     return out(ROUTE_REVIEW, "cannot establish from evidence whether the exclusion affects conformity, customer satisfaction or statutory obligations (A.3) -> ReviewRequired")
+
+
+ROUTE_PRIORITY = (ROUTE_4_3, ROUTE_REVIEW, ROUTE_L8, ROUTE_OFI, ROUTE_COMPLIED)
+
+
+def combine_routes(routes: list[str]) -> str:
+    """One element can carry phrases of different families (e.g. 8.4.3:
+    `as appropriate` + `as applicable`). Most cautious route wins:
+    4.3 route > ReviewRequired > L8 > OFI > Complied. Family B always yields
+    L8, so a mixed element is never closed by its applicability phrase alone."""
+    if not routes:
+        raise ValueError("no routes to combine")
+    for r in ROUTE_PRIORITY:
+        if r in routes:
+            return r
+    raise ValueError(f"unknown routes {routes!r}")
+
+
+# Verdicts a trace may carry for each route. ReviewRequired (human
+# escalation) is never a violation. L8 imposes no L7 constraint.
+ROUTE_ALLOWED_VERDICTS = {
+    ROUTE_OFI: frozenset({"OFI", "ReviewRequired"}),
+    ROUTE_COMPLIED: frozenset({"Complied", "InsufficientEvidence", "ReviewRequired"}),
+    ROUTE_4_3: frozenset({"ReviewRequired", "InsufficientEvidence"}),
+    ROUTE_REVIEW: frozenset({"ReviewRequired", "InsufficientEvidence"}),
+    ROUTE_L8: None,
+}
+ROUTE_FORCED_VERDICT = {
+    ROUTE_OFI: "OFI",
+    ROUTE_COMPLIED: "Complied",
+    ROUTE_4_3: "ReviewRequired",
+    ROUTE_REVIEW: "ReviewRequired",
+}
+
+# The 22 clauses whose registered text carries a qualifier phrase (see the
+# standard-map table; a test keeps this equal to it and to the PDF scan).
+QUALIFIER_CLAUSES = frozenset({
+    "4.3", "4.4.2", "5.2.2", "6.2.1", "7.1.5.2", "7.1.6", "7.2", "7.5.3.2", "8.1", "8.2.1", "8.2.3.1",
+    "8.2.3.2", "8.3.5", "8.3.6", "8.4.3", "8.5.1", "8.5.2", "8.5.4", "8.5.6", "8.6", "9.1.1", "10.2.1",
+})
+# Conditional by scope (8.3 via 4.3) or by circumstance (no phrase in the
+# text): references/27 marks them; L7 treats them as family A.
+SCOPE_CONDITIONAL_CLAUSES = frozenset({"8.5.3", "8.5.5"})
+
+
+def is_conditional_clause(clause) -> bool:
+    c = (clause or "").strip()
+    return c in QUALIFIER_CLAUSES or c in SCOPE_CONDITIONAL_CLAUSES or c == "8.3" or c.startswith("8.3.")
+
+
+def l7_from_trace(section) -> dict:
+    """Validate and evaluate a gate_execution_trace["L7_conditional_qualifier"]
+    section. Returns {"ok": True, "route", "routes", "families"} or
+    {"ok": False, "error"}. Section: phrases (non-empty list of qualifier
+    phrases), condition_evidenced (bool, required), determination, justification,
+    a3_effect (see l7_route), determination_conflict (bool; the evidence
+    carries conflicting organization determinations -> ReviewRequired)."""
+    if not isinstance(section, dict):
+        return {"ok": False, "error": "L7_conditional_qualifier must be an object"}
+    phrases = section.get("phrases")
+    if not isinstance(phrases, list) or not phrases or not all(isinstance(p, str) for p in phrases):
+        return {"ok": False, "error": "L7_conditional_qualifier.phrases must be a non-empty list of strings"}
+    try:
+        families = [family_of(p) for p in phrases]
+    except ValueError as e:
+        return {"ok": False, "error": str(e)}
+    evidenced = section.get("condition_evidenced")
+    if not isinstance(evidenced, bool):
+        return {"ok": False, "error": "L7_conditional_qualifier.condition_evidenced must be true or false"}
+    determination = section.get("determination", "none")
+    if determination not in DETERMINATIONS:
+        return {"ok": False, "error": f"L7_conditional_qualifier.determination must be one of {list(DETERMINATIONS)}"}
+    justification = section.get("justification", False)
+    conflict = section.get("determination_conflict", False)
+    if not isinstance(justification, bool) or not isinstance(conflict, bool):
+        return {"ok": False, "error": "L7_conditional_qualifier.justification / determination_conflict must be booleans"}
+    a3_effect = section.get("a3_effect", "unknown")
+    if a3_effect not in A3_EFFECTS:
+        return {"ok": False, "error": f"L7_conditional_qualifier.a3_effect must be one of {list(A3_EFFECTS)}"}
+    if conflict:
+        routes = [ROUTE_REVIEW]
+    else:
+        routes = [
+            l7_route(f, condition_evidenced=evidenced, determination=determination,
+                     justification=justification, a3_effect=a3_effect)["route"]
+            for f in families
+        ]
+    return {"ok": True, "route": combine_routes(routes), "routes": routes, "families": families}
 
 
 def main() -> int:

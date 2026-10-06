@@ -327,3 +327,20 @@ python scripts/run_regression_suite.py --enforce-struct-output --cases assets/te
 | Gate trace present | 100% | Harness rejects any output without trace |
 | Drift regression pass | 50/50 | All drift patterns covered |
 | Oscillation check | F1 delta < 0.05 vs v5.4 | No over-correction |
+
+---
+
+## Part 9 — L7 Conditional Qualifier Gate in the harness (added 2026-10-06)
+
+`harness_gate_executor.py` runs gate **L7** after G0 and before G2 (order: G0, L7, G2, G3, G4, G6, G7). Spec: `references/26-layered-audit-cognition.md` § L7; routing: `scripts/conditional_qualifiers.py`; detail and the AWM side: `references/72-l7-enforcement.md`.
+
+| Situation | Result |
+|---|---|
+| verdict `Noncomplied`, clause conditional (`is_conditional_clause`), no `L7_conditional_qualifier` | reject `L7_NOT_RUN` → forced `ReviewRequired` |
+| section malformed (not an object, empty/non-canonical phrases, non-boolean `condition_evidenced`, unknown `determination` / `a3_effect`) | reject `L7_TRACE_INVALID` → forced `ReviewRequired` |
+| computed route `OFI_STOP` and verdict not in {OFI, ReviewRequired} | reject `L7_ROUTE_VIOLATION` → forced `OFI` |
+| route `COMPLIED_STOP` and verdict not in {Complied, InsufficientEvidence, ReviewRequired} | reject `L7_ROUTE_VIOLATION` → forced `Complied` |
+| route `ROUTE_4_3` / `REVIEW_REQUIRED` and verdict not in {ReviewRequired, InsufficientEvidence} | reject `L7_ROUTE_VIOLATION` → forced `ReviewRequired` |
+| route `L8` | no L7 constraint (G2–G7 apply as usual) |
+
+G6 is not applied when the route is `COMPLIED_STOP` (a justified not-applicable is "the requirement does not apply", not "implementation proven"). On PASS the harness echoes `l7_route`. The model's own claimed route is ignored. The OpenWebUI gateway needs no change: its `outlet()` already runs this harness on the extracted trace and shows `gate_failed` / `rejection_reason` on FAIL.

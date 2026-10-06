@@ -76,6 +76,30 @@ def load_possible_worlds_dimensions(
     return out
 
 
+def load_requirement_records(
+    requirement_ids: list[str],
+    profiles_dir: Path = PROFILES_DIR,
+) -> list[dict]:
+    """The corpus records (dicts in the AtomicRequirement schema, including
+    `qualifier`) for the given requirement_ids, ready for
+    AtomicRequirement(**record) / AuditWorldRuntime.register_requirement().
+    Raises KeyError for an unknown id: registering a requirement must not be
+    silently skipped (its qualifier drives the L7 gate in aias_awm)."""
+    cache: dict[str, dict] = {}
+    out: list[dict] = []
+    for req_id in requirement_ids:
+        clause = _clause_of(req_id)
+        if clause not in cache:
+            path = profiles_dir / f"{clause}.json"
+            if not path.exists():
+                raise KeyError(f"no profile file for clause {clause!r} (requirement {req_id})")
+            cache[clause] = {r["requirement_id"]: r for r in json.loads(path.read_text(encoding="utf-8"))["requirements"]}
+        if req_id not in cache[clause]:
+            raise KeyError(f"unknown requirement_id {req_id!r} in {clause}.json")
+        out.append(dict(cache[clause][req_id]))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--requirement-ids", nargs="+", required=True)

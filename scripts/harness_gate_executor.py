@@ -24,6 +24,12 @@ import argparse
 from pathlib import Path
 from typing import Optional
 
+# Shared L7 routing (scripts/conditional_qualifiers.py). The harness is also
+# loaded by file path (ProductionHarnessAdapter), so put this directory on
+# sys.path before importing the sibling module.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import conditional_qualifiers as cq  # noqa: E402
+
 # ── Gate data tables ───────────────────────────────────────────────────────────
 
 D2_SAFE_LIST = {
@@ -211,9 +217,15 @@ def enforce_g4_m4_conditions(trace: dict, nc_class: Optional[str]) -> Optional[d
     return None
 
 
-def enforce_g6_complied_check(trace: dict, verdict: str) -> Optional[dict]:
-    """G6: Complied pre-conditions — all 4 required."""
+def enforce_g6_complied_check(trace: dict, verdict: str, l7_complied_stop: bool = False) -> Optional[dict]:
+    """G6: Complied pre-conditions — all 4 required.
+
+    Exception: when the L7 gate closed the element as a justified
+    not-applicable (route COMPLIED_STOP), "Complied" means "the requirement
+    does not apply", not "implementation proven" -- C1-C4 do not apply."""
     if verdict != "Complied":
+        return None
+    if l7_complied_stop:
         return None
 
     g6 = trace.get("G6_complied_check", {})
@@ -247,6 +259,68 @@ def enforce_g6_complied_check(trace: dict, verdict: str) -> Optional[dict]:
     return None
 
 
+def enforce_l7_conditional(trace: dict, verdict: str, clause: Optional[str]) -> Optional[dict]:
+    """L7: Conditional Qualifier Gate v2 (references/26 § L7, SKILL.md rule 3).
+
+    * Noncomplied on a conditional clause without an L7 section -> reject:
+      "do not return NC for a conditional clause without running L7".
+    * If an L7 section is present it is evaluated deterministically with
+      conditional_qualifiers.l7_route (the model's own claimed route, if any,
+      is ignored) and the verdict must be one the route allows.
+    """
+    section = trace.get("L7_conditional_qualifier")
+    if section is None:
+        if verdict == "Noncomplied" and cq.is_conditional_clause(clause):
+            return reject(
+                reason="L7_NOT_RUN",
+                message=(
+                    f"Clause {clause} is conditional (qualifier phrase or conditional by scope/circumstance). "
+                    "Noncomplied requires the L7 Conditional Qualifier Gate first: add "
+                    "L7_conditional_qualifier {phrases, condition_evidenced, determination, justification, a3_effect}. "
+                    "Without it the verdict is not final."
+                ),
+                gate="L7",
+                forced_verdict="ReviewRequired",
+            )
+        return None
+
+    res = cq.l7_from_trace(section)
+    if not res["ok"]:
+        return reject(
+            reason="L7_TRACE_INVALID",
+            message=res["error"],
+            gate="L7",
+            forced_verdict="ReviewRequired",
+        )
+    route = res["route"]
+    allowed = cq.ROUTE_ALLOWED_VERDICTS[route]
+    if allowed is not None and verdict not in allowed:
+        return reject(
+            reason="L7_ROUTE_VIOLATION",
+            message=(
+                f"L7 route for this element is {route} (families {res['families']}); "
+                f"verdict {verdict!r} is not allowed (allowed: {sorted(allowed)}). "
+                "Undetermined applicability/extent with no evidence it applies is an OFI, not an NC; "
+                "'as appropriate' is never a not-applicable switch; a not-applicable claim counts only if "
+                "justified and without effect on conformity, customer satisfaction or statutory obligations "
+                "(Annex A.2/A.3)."
+            ),
+            gate="L7",
+            forced_verdict=cq.ROUTE_FORCED_VERDICT[route],
+            l7_route=route,
+        )
+    return None
+
+
+def l7_route_of(trace: dict) -> Optional[str]:
+    """Computed L7 route, or None if the trace has no valid L7 section."""
+    section = trace.get("L7_conditional_qualifier")
+    if section is None:
+        return None
+    res = cq.l7_from_trace(section)
+    return res["route"] if res["ok"] else None
+
+
 def enforce_g7_trace(trace: dict) -> Optional[dict]:
     """G7: Calibration trace completeness."""
     g7 = trace.get("G7_trace", {})
@@ -274,13 +348,16 @@ def enforce_gates(model_output: dict) -> dict:
     if nc_class in ("null", "", "None"):
         nc_class = None
 
+    l7_route = l7_route_of(trace)
+
     # Run gates in order — stop at first violation
     for gate_fn in [
         lambda: enforce_g0_preflight(trace),
+        lambda: enforce_l7_conditional(trace, verdict, clause),
         lambda: enforce_g2_ie_chain(trace, verdict, clause),
         lambda: enforce_g3_severity_ceiling(trace, nc_class, clause),
         lambda: enforce_g4_m4_conditions(trace, nc_class),
-        lambda: enforce_g6_complied_check(trace, verdict),
+        lambda: enforce_g6_complied_check(trace, verdict, l7_complied_stop=(l7_route == cq.ROUTE_COMPLIED)),
         lambda: enforce_g7_trace(trace),
     ]:
         violation = gate_fn()
@@ -288,6 +365,8 @@ def enforce_gates(model_output: dict) -> dict:
             return violation
 
     model_output["gate_validation"] = "PASS"
+    if l7_route is not None:
+        model_output["l7_route"] = l7_route
     return model_output
 
 

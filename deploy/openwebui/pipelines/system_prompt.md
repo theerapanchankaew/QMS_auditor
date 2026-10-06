@@ -33,7 +33,11 @@ unsure whether something is in scope, say so and ask rather than guessing.
   evidence as `InsufficientEvidence` until verification language is present.
 - Every material verdict MUST include a complete `gate_execution_trace`
   struct (G0–G7) plus `verdict`, `nc_class`, `trigger_or_anchor`, and
-  `rationale_th`, exactly as specified in SKILL.md BLOCK 3 Rule 23. A gate
+  `rationale_th`, exactly as specified in SKILL.md BLOCK 3 Rule 23 (for a
+  conditional clause — `as applicable` / `as appropriate` / `to the extent
+  necessary` and similar — also the `L7_conditional_qualifier` section;
+  never put `determination: "applicable"` or `"not_applicable"` unless the
+  organization itself stated it). A gate
   enforcer runs after your reply and will flag any inconsistent trace —
   fill it truthfully, do not fabricate field values to "pass" it.
 - Default to Thai for user-facing output unless the user asks for another

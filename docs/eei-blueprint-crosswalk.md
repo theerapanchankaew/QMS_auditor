@@ -651,3 +651,28 @@ names the families and Annex A).
 - The slide needs the same changes (family split, A.3 test at the
   not-applicable branch, evidence override at the first branch); the image
   was not edited.
+
+## Update 2026-10-06 (cont., 2): `l7_route()` wired into the gateway harness and AWM
+
+User asked to connect `l7_route()` to the gateway or AWM; done on **both**
+paths (the previous section said “not wired”; that is no longer true).
+
+- **Gateway:** `harness_gate_executor.py` gained gate `L7` (G0, L7, G2, G3,
+  G4, G6, G7). `Noncomplied` on a conditional clause without an
+  `L7_conditional_qualifier` trace section → `L7_NOT_RUN`; malformed →
+  `L7_TRACE_INVALID`; verdict not allowed by the recomputed route →
+  `L7_ROUTE_VIOLATION` with a forced verdict. `COMPLIED_STOP` skips G6. The
+  gateway pipeline needed no code change (its `outlet()` already runs the
+  harness); SKILL.md rules 23/24 and `deploy/openwebui/pipelines/system_prompt.md`
+  now ask the model for the section.
+- **AWM:** new `aias_awm/qualifiers.py` (parity copy, drift-tested);
+  `GateTraceDeriver` derives the L7 section and the route-driven verdict;
+  `AuditCognitionPipeline` passes `NOT_APPLICABLE` only for a recorded,
+  unconflicted, non-family-B not-applicable determination.
+- **Tests:** `test_l7_harness_gate.py` (36), `awm_v07/test_l7_awm.py` (24).
+- **Docs:** `references/72-l7-enforcement.md` (behaviour table, schemas,
+  limits), ref 42 Part 9, ref 71 mapping rows, ref 26 pointer.
+
+**Still open (also listed in ref 72 § 4):** L7 inputs are supplied by the model or
+by opt-in metadata, not inferred (gap #2); WG6 blocks all-N/A snapshots; WG0–WG5
+default-True flags; slide image; no AWM service in compose; no CI.

@@ -26,6 +26,10 @@ counts -- see _derive_nc_class_and_g4 below).
 from __future__ import annotations
 
 from aias_awm.domain.models import AtomicRequirement, EvidenceItem, RequirementAssessment, WorldSnapshot
+from aias_awm.qualifiers import (
+    ROUTE_4_3, ROUTE_COMPLIED, ROUTE_L8, ROUTE_OFI, ROUTE_REVIEW,
+    l7_from_section, l7_inputs, phrases_in,
+)
 
 _VERDICT_BY_STATE = {
     "SATISFIED": "Complied",
@@ -150,12 +154,38 @@ class GateTraceDeriver:
         relevant = [e for e in evidence_items if assessment.requirement_id in e.related_requirement_ids]
         verdict = _VERDICT_BY_STATE.get(assessment.state.value, "InsufficientEvidence")
 
+        # L7 Conditional Qualifier Gate v2 (references/26 § L7): an element whose
+        # requirement carries a qualifier phrase is routed through
+        # aias_awm.qualifiers.l7_route; the harness re-evaluates the same
+        # section (gate "L7") and rejects a verdict the route does not allow.
+        l7_section = None
+        l7_route_value = None
+        phrases = phrases_in(requirement.qualifier)
+        if phrases:
+            l7_section = {"phrases": phrases, **l7_inputs(relevant, assessment.applicability)}
+            l7_route_value = l7_from_section(l7_section)["route"]
+            if l7_route_value == ROUTE_OFI:
+                verdict = "OFI"
+            elif l7_route_value == ROUTE_COMPLIED:
+                verdict = "Complied"
+            elif l7_route_value in (ROUTE_4_3, ROUTE_REVIEW):
+                verdict = "ReviewRequired"
+            elif assessment.state.value == "NOT_APPLICABLE":
+                # route L8 but the assessment short-circuited as not applicable:
+                # the claim is contradicted by evidence (or 'as appropriate'
+                # cannot be switched off) -- never OUT_OF_SCOPE here.
+                verdict = "ReviewRequired"
+
         nc_class = None
         g4 = {}
         if verdict == "Noncomplied":
             nc_class, g4 = _derive_nc_class_and_g4(requirement, relevant)
 
-        g6 = _g6_complied_check(assessment, relevant) if verdict == "Complied" else {}
+        g6 = (
+            _g6_complied_check(assessment, relevant)
+            if verdict == "Complied" and l7_route_value != ROUTE_COMPLIED
+            else {}
+        )
 
         trace = {
             "G0_preflight": {"closed_source_confirmed": _closed_source_confirmed(snapshot)},
@@ -166,6 +196,8 @@ class GateTraceDeriver:
             "G6_complied_check": g6,
             "G7_trace": {"decisive_question": _decisive_question(requirement)},
         }
+        if l7_section is not None:
+            trace["L7_conditional_qualifier"] = l7_section
         return {
             "predicted_clause": requirement.clause,
             "clause": requirement.clause,
@@ -176,6 +208,7 @@ class GateTraceDeriver:
                 "assessment_id": assessment.assessment_id,
                 "requirement_id": assessment.requirement_id,
                 "derived_from_state": assessment.state.value,
+                "l7_route": l7_route_value,
                 "note": (
                     "Mechanically derived candidate, conservative by construction -- "
                     "not an SME-authored verdict. See references/71-gate-trace-derivation.md. "

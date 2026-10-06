@@ -109,6 +109,7 @@ The pipeline should:
   `docker compose logs pipelines` if you add debug prints)
 - Let the model answer using the injected governance header + your
   Knowledge base citations
+- (L7: the harness also enforces the Conditional Qualifier Gate on that trace — `references/42` Part 9.)
 - If the model returns a structured `gate_execution_trace` verdict block,
   `outlet()` runs it through `harness_gate_executor.py` and appends a
   rejection banner if the trace is internally inconsistent

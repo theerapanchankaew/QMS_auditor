@@ -241,9 +241,9 @@ AMBIGUOUS_LIST (deeper check or ReviewRequired):
 
 ### Rules 23–24 — Deterministic Harness Enforcement (ref 42)
 
-**23. Structured gate execution required** *(ref 42)* — Every material verdict MUST include a complete `gate_execution_trace` struct (G0–G7) filled truthfully before assigning verdict. `harness_gate_executor.py` validates and rejects contradictions. **DO NOT return a verdict without the struct.**
+**23. Structured gate execution required** *(ref 42)* — Every material verdict MUST include a complete `gate_execution_trace` struct (G0–G7) filled truthfully before assigning verdict; for an element whose clause is conditional (rule 3) it MUST also include `L7_conditional_qualifier` (below). `harness_gate_executor.py` validates and rejects contradictions. **DO NOT return a verdict without the struct.**
 
-**24. Harness validation contract** *(ref 42)* — Model fills struct; harness enforces gates. SEPARATE responsibilities. On rejection (gate_validation=FAIL), retry with corrected values — never override the harness. Rejection codes: `G2_STEP2_VIOLATION`, `G3_D2_SAFE_CEILING_VIOLATION`, `G4_M4_INCOMPLETE_CONDITIONS`, `G6_COMPLIED_PRECONDITION_FAIL`.
+**24. Harness validation contract** *(ref 42)* — Model fills struct; harness enforces gates. SEPARATE responsibilities. On rejection (gate_validation=FAIL), retry with corrected values — never override the harness. Rejection codes: `G2_STEP2_VIOLATION`, `G3_D2_SAFE_CEILING_VIOLATION`, `G4_M4_INCOMPLETE_CONDITIONS`, `G6_COMPLIED_PRECONDITION_FAIL`, `L7_NOT_RUN`, `L7_ROUTE_VIOLATION`, `L7_TRACE_INVALID`.
 
 **Required structured output format:**
 ```json
@@ -263,6 +263,18 @@ AMBIGUOUS_LIST (deeper check or ReviewRequired):
   "rationale_th": "<Thai rationale referencing clause and evidence>"
 }
 ```
+
+**L7 section (conditional clauses only — the 22 clauses in `references/standard/iso9001-2026-standard-map.md`, plus 8.3.x, 8.5.3, 8.5.5):** add inside `gate_execution_trace`
+```json
+"L7_conditional_qualifier": {
+  "phrases": ["as applicable"],            // the qualifier phrase(s) as worded in the clause
+  "condition_evidenced": false,            // objective evidence the condition/activity exists (overrides any claim)
+  "determination": "none|applicable|not_applicable|extent_determined",   // the ORGANIZATION's own determination
+  "justification": false,                  // a not-applicable / nil-extent claim was considered and reasoned
+  "a3_effect": "none|affects|unknown"      // not-applicable claims: effect on conformity / customer satisfaction / statutory obligations (Annex A.3)
+}
+```
+The harness computes the L7 route itself (`scripts/conditional_qualifiers.py::l7_route`, rule 3) and ignores any route you claim; the verdict must be one the route allows (`OFI_STOP` → OFI; `COMPLIED_STOP` → Complied, G6 not applied; `ROUTE_4_3` / `REVIEW_REQUIRED` → ReviewRequired; `L8` → no L7 constraint). `Noncomplied` on a conditional clause without this section is rejected (`L7_NOT_RUN`). Never invent `determination: "applicable"`/`"not_applicable"` — if the organization did not state one, use `"none"`.
 
 ### Rule 25 — Org-Branded Output Contract (ref 43)
 

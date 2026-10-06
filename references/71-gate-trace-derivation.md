@@ -41,6 +41,7 @@ justifies otherwise.
 | `G4_m4_conditions` | same opt-in metadata | filled only in the all-three-true case above; empty otherwise |
 | `G6_complied_check` (when `verdict=="Complied"`) | `RequirementAssessment`/`EvidenceItem` | `C3_elements_covered` = `coverage_ratio == 1.0` (exact); `C1_implementation_proven` = a positive evidence item has `evidence_type=="observation"`; `C2_record_proven` = a positive evidence item has `evidence_type` in `{record, measurement, system_log}`; `C4_evidence_current` = at least one positive evidence item exists and none are `STALE` |
 | `G7_trace.decisive_question` | `AtomicRequirement.subject/obligation/object/clause` | a deterministic template, always present |
+| `L7_conditional_qualifier` (added 2026-10-06) | `AtomicRequirement.qualifier` + evidence metadata | only when `qualifier` carries a phrase; inputs from the opt-in `org_determination` / `na_justification` / `a3_effect` / `condition_applies` metadata (`aias_awm/qualifiers.py`); the verdict then follows the L7 route (OFI / Complied / ReviewRequired) instead of the state-derived one, and `OUT_OF_SCOPE` is never produced for a qualifier element. See `references/72-l7-enforcement.md` |
 
 ### `verdict` table (from `RequirementAssessment.state`)
 
